@@ -102,9 +102,13 @@ $action = GETPOST('action', 'aZ09');
 $cancel = GETPOST('cancel', 'alphanohtml');
 $backtourl = GETPOST('backtourl', 'alpha');
 if (empty($mode) && empty($welcomecid)) $mode='dashboard';
-$extcss=GETPOST('css', 'alpha');
+$extcss=GETPOST('extcss', 'alpha');
 if (empty($extcss)) {
-	$extcss = getDolGlobalString('SELLYOURSAAS_CSS');
+	$extcss = getDolGlobalString('SELLYOURSAAS_EXTCSS');
+}
+$css=GETPOST('css', 'alpha');
+if (empty($css)) {
+	$css = getDolGlobalString('SELLYOURSAAS_CSS');
 }
 //$langs=new Translate('', $conf);
 //$langs->setDefaultLang(GETPOST('lang', 'aZ09') ? GETPOST('lang', 'aZ09') : 'auto');
