@@ -317,6 +317,13 @@ margin-top: 20px;
 .bg-inverse{
 	background-color:#6B33E9 !important;
 }
+.navbar{
+height:5em;
+}
+
+#navbars {
+	font-size:1.1em;
+}
 
 .nowrap { white-space: nowrap; }
 
