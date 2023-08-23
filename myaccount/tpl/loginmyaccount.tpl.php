@@ -146,7 +146,7 @@ if (! empty($conf->global->SELLYOURSAAS_ANNOUNCE_ON) && ! empty($conf->global->S
 
 		<header class="inverse">
 		  <h1><?php echo dol_escape_htmltag($title); ?></h1>
-		  <span class="opacitymedium" style="font-size: 0.85em; margin-top: 4px; line-height: 1;"><?php echo $langs->trans("MyAcountDesc", $homepage, $sellyoursaasname); ?></span>
+		  <span class="opacitymedium" style="font-size: 1em; margin-top: 20px; line-height: 1;display:block"><?php echo $langs->trans("MyAcountDesc", $homepage, $sellyoursaasname); ?></span>
 		</header>
 
 
@@ -258,7 +258,7 @@ if ($forgetpasslink || $helpcenterlink) {
 	if ($dol_use_jmobile)    $moreparam.=(strpos($moreparam, '?')===false?'?':'&').'dol_use_jmobile='.$dol_use_jmobile;
 
 	echo '<br>';
-	echo '<div class="center" style="margin-top: 8px;">';
+	echo '<div class="center" style="margin-top: 15px;">';
 	echo '<a class="alogin" href="./passwordforgotten.php'.$moreparam.'">';
 	echo $langs->trans('PasswordForgotten');
 	echo '</a>';
