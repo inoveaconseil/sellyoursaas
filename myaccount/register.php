@@ -394,7 +394,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 						<?php } ?>
 				</div>
 			</div>
-		  <h1 class="defaultheader"><?php echo $langs->trans("InstanceCreation") ?><?php echo ($tmpproduct->label?'('.$tmpproduct->label.')':''); ?></h1>
+		  <h1 class="defaultheader"><?php echo $langs->trans("InstanceCreation") ?><?php echo ($tmpproduct->label?' '.$tmpproduct->label:''); ?></h1>
 		</header>
 			<?php
 		}

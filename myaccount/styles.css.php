@@ -302,6 +302,8 @@ header.inverse  h1 { padding-top: 5px; }
 
 .defaultheader{
 	font-size:40px;
+	padding: 18px;
+    line-height: 42px;
 }
 
 .block.small {
