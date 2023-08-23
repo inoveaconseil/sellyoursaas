@@ -102,7 +102,7 @@ $action = GETPOST('action', 'aZ09');
 $cancel = GETPOST('cancel', 'alphanohtml');
 $backtourl = GETPOST('backtourl', 'alpha');
 if (empty($mode) && empty($welcomecid)) $mode='dashboard';
-$extcss=GETPOST('css', 'alpha');
+$extcss=GETPOST('css2', 'alpha');
 if (empty($extcss)) {
 	$extcss = getDolGlobalString('SELLYOURSAAS_CSS');
 }
