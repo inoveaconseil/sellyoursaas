@@ -312,7 +312,7 @@ margin-top: 20px;
 .block.medium {
 }
 .page-header-top {
-    background: #f4f4f4;
+    background: #ffffff;
 	padding-top: 20px;
 	padding-bottom: 25px;
 }
