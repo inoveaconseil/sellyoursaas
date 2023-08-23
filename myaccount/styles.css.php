@@ -14,7 +14,7 @@ if (! defined('NOIPCHECK'))      define('NOIPCHECK', '1');				// Do not check IP
 if (! defined('NOBROWSERNOTIF')) define('NOBROWSERNOTIF', '1');
 
 
-include './mainmyaccount.inc.php';
+include '../mainmyaccount.inc.php';
 
 // Load Dolibarr environment
 $res=0;
@@ -102,6 +102,11 @@ input,button,select,textarea {font-family: 'Helvetica Neue', Helvetica, Arial, s
 	width: 290px;
 }
 
+.btn-primary {
+background-color: #6C2FEC;
+border-color: #6C2FEC;
+border-radius: 10px;
+}
 select,textarea,input[type='text'],input[type='password'],input[type='datetime'],input[type='datetime-local'],input[type='date'],input[type='month'],input[type='time'],input[type='week'],input[type='number'],input[type='email'],input[type='url'],input[type='search'],input[type='tel'],input[type='color'],.uneditable-input
 {
 display: inline-block;padding: 4px 6px;
@@ -145,8 +150,8 @@ border-bottom-color: rgba(82, 168, 236, 0.8);
 }
 
 .form-actions {
-padding: 19px 20px 20px;margin-top: 20px;margin-bottom: 20px;background-color: #f5f5f5;
-border: 1px solid #e5e5e5;*zoom: 1;
+//padding: 19px 20px 20px;margin-top: 20px;margin-bottom: 20px;background-color: #f5f5f5;
+//border: 1px solid #e5e5e5;*zoom: 1;
 }
 
 .form-actions:before,.form-actions:after {display: table;content: '';line-height: 0;}.form-actions:after {clear: both;}.help-block,.help-inline {color: #595959;}.help-block {display: block;margin-bottom: 10px;}.help-inline {display: inline-block;*display: inline;*zoom: 1;vertical-align: middle;padding-left: 5px;}.input-append,.input-prepend {margin-bottom: 5px;font-size: 0;white-space: nowrap;}.input-append input,.input-prepend input,.input-append select,.input-prepend select,.input-append .uneditable-input,.input-prepend .uneditable-input {position: relative;margin-bottom: 0;*margin-left: 0;font-size: 14px;vertical-align: top;-webkit-border-radius: 0 3px 3px 0;-moz-border-radius: 0 3px 3px 0;border-radius: 0 3px 3px 0;}.input-append input:focus,.input-prepend input:focus,.input-append select:focus,.input-prepend select:focus,.input-append .uneditable-input:focus,.input-prepend .uneditable-input:focus {z-index: 2;}.input-append .add-on,.input-prepend .add-on {display: inline-block;width: auto;height: 20px;min-width: 16px;padding: 4px 5px;font-size: 14px;font-weight: normal;line-height: 20px;text-align: center;text-shadow: 0 1px 0 #ffffff;background-color: #eeeeee;border: 1px solid #ccc;}.input-append .add-on,.input-prepend .add-on,.input-append .btn,.input-prepend .btn {vertical-align: top;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;}.input-append .active,.input-prepend .active {background-color: #a9dba9;border-color: #46a546;}.input-prepend .add-on,.input-prepend .btn {margin-right: -1px;}.input-prepend .add-on:first-child,.input-prepend .btn:first-child {-webkit-border-radius: 3px 0 0 3px;-moz-border-radius: 3px 0 0 3px;border-radius: 3px 0 0 3px;}.input-append input,.input-append select,.input-append .uneditable-input {-webkit-border-radius: 3px 0 0 3px;-moz-border-radius: 3px 0 0 3px;border-radius: 3px 0 0 3px;}.input-append .add-on,.input-append .btn {margin-left: -1px;}.input-append .add-on:last-child,.input-append .btn:last-child {-webkit-border-radius: 0 3px 3px 0;-moz-border-radius: 0 3px 3px 0;border-radius: 0 3px 3px 0;}.input-prepend.input-append input,.input-prepend.input-append select,.input-prepend.input-append .uneditable-input {-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;}.input-prepend.input-append .add-on:first-child,.input-prepend.input-append .btn:first-child {margin-right: -1px;-webkit-border-radius: 3px 0 0 3px;-moz-border-radius: 3px 0 0 3px;border-radius: 3px 0 0 3px;}.input-prepend.input-append .add-on:last-child,.input-prepend.input-append .btn:last-child {margin-left: -1px;-webkit-border-radius: 0 3px 3px 0;-moz-border-radius: 0 3px 3px 0;border-radius: 0 3px 3px 0;}input.search-query {padding-right: 14px;padding-right: 4px \9;padding-left: 14px;padding-left: 4px \9;margin-bottom: 0;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;}
@@ -289,7 +294,7 @@ header.inverse  h1 { padding-top: 5px; }
 .valigntop { vertical-align: top; }
 
 #logo {
-    text-align: center;	max-width:200px; max-height: 60px;
+    text-align: center;	max-width:250px; max-height: 155px;
 }
 
 .block.small {
@@ -309,9 +314,20 @@ margin-top: 20px;
 	padding-bottom: 25px;
 }
 
+.bg-inverse{
+	background-color:#6B33E9 !important;
+}
+.navbar{
+height:5em;
+}
+
+#navbars {
+	font-size:1.1em;
+}
+
 .nowrap { white-space: nowrap; }
 
-.signup { margin: 0 auto; max-width: 700px; padding-top: 20px;}
+.signup { margin: 0 auto; max-width: 1000px; padding-top: 20px;}
 
 .signup .block.medium { padding-top: 10px; }
 
@@ -485,8 +501,9 @@ input.input-field {
 	}
 
 	header h1 {
-	    font-size: 20px;
-	    line-height: 20px;
+	    font-size: 30px;
+	    line-height: 35px;
+	    font-weight: bold;
 	}
 
 	.areaforresources {
