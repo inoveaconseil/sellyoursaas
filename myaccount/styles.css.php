@@ -300,6 +300,10 @@ header.inverse  h1 { padding-top: 5px; }
     text-align: center;	max-width:250px; max-height: 155px;
 }
 
+.defaultheader{
+	font-size:40px;
+}
+
 .block.small {
 width: 500px;
 min-width: 500px;
