@@ -102,10 +102,13 @@ $action = GETPOST('action', 'aZ09');
 $cancel = GETPOST('cancel', 'alphanohtml');
 $backtourl = GETPOST('backtourl', 'alpha');
 if (empty($mode) && empty($welcomecid)) $mode='dashboard';
-$extcss=GETPOST('css2', 'alpha');
+$extcss=GETPOST('extcss', 'alpha');
 if (empty($extcss)) {
-	$extcss = getDolGlobalString('SELLYOURSAAS_CSS');
+	$extcss = getDolGlobalString('SELLYOURSAAS_EXTCSS', 'dist/css/myaccount.css');
+} elseif ($extcss == 'generic') {
+	$extcss = 'dist/css/myaccount.css';
 }
+
 //$langs=new Translate('', $conf);
 //$langs->setDefaultLang(GETPOST('lang', 'aZ09') ? GETPOST('lang', 'aZ09') : 'auto');
 $langs->loadLangs(array("main","companies","bills","sellyoursaas@sellyoursaas","other","errors",'mails','paypal','paybox','stripe','withdrawals','other','admin'));
