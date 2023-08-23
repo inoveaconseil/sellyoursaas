@@ -14,7 +14,7 @@ if (! defined('NOIPCHECK'))      define('NOIPCHECK', '1');				// Do not check IP
 if (! defined('NOBROWSERNOTIF')) define('NOBROWSERNOTIF', '1');
 
 
-include './mainmyaccount.inc.php';
+include '../mainmyaccount.inc.php';
 
 // Load Dolibarr environment
 $res=0;
@@ -312,6 +312,10 @@ margin-top: 20px;
     background: #f4f4f4;
 	padding-top: 20px;
 	padding-bottom: 25px;
+}
+
+.bg-inverse{
+	background-color:#6B33E9 !important;
 }
 
 .nowrap { white-space: nowrap; }
