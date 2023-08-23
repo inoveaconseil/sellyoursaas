@@ -253,8 +253,12 @@ background: #fff;
 div.block {
 background-color: #fff;
 }
+#mainbody{
+padding-top:0px
+}
+
 div.block header {
-background-color: #334;
+background:linear-gradient(45deg, #6C2FEC, #C3D1F8);
 color: #eee;padding: 10px;margin-bottom: 20px;
 text-align: center;
 }
