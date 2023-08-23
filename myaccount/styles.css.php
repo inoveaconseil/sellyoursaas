@@ -285,7 +285,7 @@ color: #334;
 
 .centered {position: fixed;top: 50%;left: 50%;margin-top: -50px;margin-left: -100px;}.notifications {position: fixed;top: 100px;left: 50%;width: 560px;margin: 0 0 0 -280px;text-align: center;font-weight: bold;border: 1px solid #c09853;z-index: 9999;opacity: 0.7;}
 
-.app-instance.nav-list {font-size: 1.2em;margin-bottom: 20px;}.app-instance.nav-list li {padding: 5px;}.app-instance.nav-list li a {padding: 5px;}.last-login {margin-right: 30px;text-align: center;}.last-login .stats-value {font-size: 1.1em;}p.intro {margin-bottom: 20px;}h4 {color: #585858;}[ngcloak],[ng-cloak],.ng-cloak {display: none;}.label.app-resource {margin-right: 5px;}.form-content {padding: 10px 20px;}.form-actions {padding: 10px 20px;background: #f5f5f5;border-top: 1px solid #e5e5e5;margin: 0;}
+.app-instance.nav-list {font-size: 1.2em;margin-bottom: 20px;}.app-instance.nav-list li {padding: 5px;}.app-instance.nav-list li a {padding: 5px;}.last-login {margin-right: 30px;text-align: center;}.last-login .stats-value {font-size: 1.1em;}p.intro {margin-bottom: 20px;}h4 {color: #585858;}[ngcloak],[ng-cloak],.ng-cloak {display: none;}.label.app-resource {margin-right: 5px;}.form-content {padding: 10px 20px;}.form-actions {padding: 10px 20px;margin: 0;}
 .signUpAlert {width: 90%;margin: 0 auto;}
 header.inverse  h1 { padding-top: 5px; }
 .center { text-align: center; }
