@@ -569,6 +569,8 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 						}
 					}
 				}
+				print '<a href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$line->id.'"> GO GO GO</a>';
+
 			} else { // If there is no product, this is a free product
 				print '<!--no photo defined -->';
 				print '<table width="100%" valign="top" align="center" border="0" cellpadding="2" cellspacing="2"><tr><td width="100%" class="photo">';
@@ -604,7 +606,6 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 					print '</span>';
 				}
 
-				print '<a href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$line->id.'"> GO GO GO</a>';
 			}
 
 			print '</div>';
