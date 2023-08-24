@@ -604,7 +604,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 					print '</span>';
 				}
 
-				print '<a href="'.$_SERVER['PHP_SELF'].$_SERVER['REQUEST_URI'].'&option='.$line->id."> GO GO GO</a>';
+				print '<a href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$line->id.'"> GO GO GO</a>';
 			}
 
 			print '</div>';
