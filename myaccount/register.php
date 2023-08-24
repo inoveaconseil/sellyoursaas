@@ -813,52 +813,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 
 	</div>
 	<div id="promotion">
-		<div class="plans-boxes-container">
-			<div class="plans-boxes plans-boxes--pack-STD ">	<button class="box box--plan pack-STD " id="ABO-STD-1" data-package="ABO-STD-1" data-rowid="22">
-					<h3>Standard Formule 1</h3>
-					<div class="box__description">
-						<span class="price-tag">15 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 2 Go
-					</div>
-					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-STD-1">
-						<span class="try-pack">Je teste !</span>
-						<br>
-						<span class="free-trial">1 mois gratuit</span>
-					</p>
-				</button>
-				<button class="box box--plan pack-STD " id="ABO-STD-2" data-package="ABO-STD-2" data-rowid="26">
-					<h3>Standard Formule 2</h3>
-					<div class="box__description">
-						<span class="price-tag">30 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 5 Go
-					</div>
-					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-STD-2">
-						<span class="try-pack">Je teste !</span>
-						<br>
-						<span class="free-trial">1 mois gratuit</span>
-					</p>
-				</button>
-				<button class="box box--plan pack-STD " id="ABO-STD-3" data-package="ABO-STD-3" data-rowid="27">
-					<h3>Standard Formule 3</h3>
-					<div class="box__description">
-						<span class="price-tag">99 €</span> / mois HT * <br> utilisateurs illimités<br><br>Stockage 20 Go
-					</div>
-					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-STD-3">
-						<span class="try-pack">Je teste !</span>
-						<br>
-						<span class="free-trial">1 mois gratuit</span>
-					</p>
-				</button>
 
-			</div>				<p id="asterisk">*Tarif HT. TVA de 0 pour les utilisateurs hors Europe ou les sociétés en Europe (hors France) possédant un numéro de TVA intracommunautaire.</p>
-			<p id="link-detail-offres">Cliquez <a href="https://www.doliondemand.fr/tarifs/offre-service">ici</a> pour consulter le détail de nos offres et tarifs</p>
-			<div class="back-to-pack-container">
-				<button class="back-btn --description">Découvrez ici toutes nos solutions métiers</button>
-				<div>
-					<button class="STD" data-package="STD"><img src="source/custom/clidoliondemand/img/logos/STD.svg" title="Standard" alt="STD"></button><button class="BTP" data-package="BTP"><img src="source/custom/clidoliondemand/img/logos/BTP.svg" title="BTP" alt="BTP"></button><button class="SER" data-package="SER"><img src="source/custom/clidoliondemand/img/logos/SER.svg" title="Service" alt="SER"></button><button class="NEG" data-package="NEG"><img src="source/custom/clidoliondemand/img/logos/NEG.svg" title="Négoce" alt="NEG"></button><button class="FOR" data-package="FOR"><img src="source/custom/clidoliondemand/img/logos/FOR.svg" title="Formation" alt="FOR"></button><button class="GPAO" data-package="GPAO"><img src="source/custom/clidoliondemand/img/logos/GPAO.svg" title="Industrie" alt="GPAO"></button>					</div>
-				<!--					<a class="test-pack" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-${pack}-1">-->
-				<!--						${try_this_pack}-->
-				<!--					</a>-->
-			</div>
-		</div>
 	</div>
 
 	<?php
