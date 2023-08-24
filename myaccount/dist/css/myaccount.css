@@ -76,9 +76,16 @@ input.form-control::-moz-placeholder { /* Firefox 19+ */
     color: #8a6d3b;
 }
 
+#promotion {
+	float:left;
+	margin-left:30px
+}
+
 .btnalreadyanaccount {
     -webkit-box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25) !important;
     box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25) !important;
+	border: solid 2px #6C2FEC;
+	border-radius: 10px;
 }
 a.btnalreadyanaccount {
     padding-top: 3px;

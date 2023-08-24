@@ -398,7 +398,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 		</header>
 			<?php
 		}
-		print '<div class="signup2 centpercent customregistermain">';
+		print '<div class="signup2 centpercent customregistermain"r>';
 		?>
 
 			<?php
@@ -559,7 +559,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 				if (GETPOST('country')) {	// Can force a country instead of default autodetected value
 					$countryuser = GETPOST('country');
 				}
-				if (empty($countryuser)) $countryuser='US';
+				if (empty($countryuser)) $countryuser='FR';
 				$countryuser = strtoupper($countryuser);
 				print $form->select_country($countryuser, 'country', 'optionsValue="name"'.$disabled, 0, ($conf->dol_optimize_smallscreen ? 'minwidth200' : 'minwidth300'), 'code2', 1, 1);
 				?>
@@ -811,6 +811,218 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 
 	 </form> <!-- end form-content -->
 
+	</div>
+	<div id="promotion">
+		<div class="plans-boxes-container">
+			<div class="plans-boxes plans-boxes--pack-STD ">	<button class="box box--plan pack-STD " id="ABO-STD-1" data-package="ABO-STD-1" data-rowid="22">
+					<h3>Standard Formule 1</h3>
+					<div class="box__description">
+						<span class="price-tag">15 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 2 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-STD-1">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-STD " id="ABO-STD-2" data-package="ABO-STD-2" data-rowid="26">
+					<h3>Standard Formule 2</h3>
+					<div class="box__description">
+						<span class="price-tag">30 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 5 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-STD-2">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-STD " id="ABO-STD-3" data-package="ABO-STD-3" data-rowid="27">
+					<h3>Standard Formule 3</h3>
+					<div class="box__description">
+						<span class="price-tag">99 €</span> / mois HT * <br> utilisateurs illimités<br><br>Stockage 20 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-STD-3">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+			</div><div class="plans-boxes plans-boxes--pack-BTP --selected">	<button class="box box--plan pack-BTP --selected" id="ABO-BTP-1" data-package="ABO-BTP-1" data-rowid="18">
+					<h3>BTP Formule 1</h3>
+					<div class="box__description">
+						<span class="price-tag">15 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 2 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-BTP-1">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-BTP " id="ABO-BTP-2" data-package="ABO-BTP-2" data-rowid="19">
+					<h3>BTP Formule 2</h3>
+					<div class="box__description">
+						<span class="price-tag">30 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 5 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-BTP-2">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-BTP " id="ABO-BTP-3" data-package="ABO-BTP-3" data-rowid="20">
+					<h3>BTP Formule 3</h3>
+					<div class="box__description">
+						<span class="price-tag">99 €</span> / mois HT * <br> utilisateurs illimités<br><br>Stockage 20 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-BTP-3">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+			</div><div class="plans-boxes plans-boxes--pack-SER ">	<button class="box box--plan pack-SER " id="ABO-SER-1" data-package="ABO-SER-1" data-rowid="2">
+					<h3>Service Formule 1</h3>
+					<div class="box__description">
+						<span class="price-tag">15 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 2 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-SER-1">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-SER " id="ABO-SER-2" data-package="ABO-SER-2" data-rowid="16">
+					<h3>Service Formule 2</h3>
+					<div class="box__description">
+						<span class="price-tag">30 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 5 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-SER-2">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-SER " id="ABO-SER-3" data-package="ABO-SER-3" data-rowid="17">
+					<h3>Service Formule 3</h3>
+					<div class="box__description">
+						<span class="price-tag">99 €</span> / mois HT * <br> utilisateurs illimités<br><br>Stockage 20 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-SER-3">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+			</div><div class="plans-boxes plans-boxes--pack-NEG ">	<button class="box box--plan pack-NEG " id="ABO-NEG-1" data-package="ABO-NEG-1" data-rowid="4">
+					<h3>Négoce Formule 1</h3>
+					<div class="box__description">
+						<span class="price-tag">15 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 2 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-NEG-1">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-NEG " id="ABO-NEG-2" data-package="ABO-NEG-2" data-rowid="14">
+					<h3>Négoce Formule 2</h3>
+					<div class="box__description">
+						<span class="price-tag">30 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 5 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-NEG-2">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-NEG " id="ABO-NEG-3" data-package="ABO-NEG-3" data-rowid="15">
+					<h3>Négoce Formule 3</h3>
+					<div class="box__description">
+						<span class="price-tag">99 €</span> / mois HT * <br> utilisateurs illimités<br><br>Stockage 20 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-NEG-3">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+			</div><div class="plans-boxes plans-boxes--pack-FOR ">	<button class="box box--plan pack-FOR " id="ABO-FOR-1" data-package="ABO-FOR-1" data-rowid="8">
+					<h3>Formation Formule 1</h3>
+					<div class="box__description">
+						<span class="price-tag">15 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 2 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-FOR-1">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-FOR " id="ABO-FOR-2" data-package="ABO-FOR-2" data-rowid="13">
+					<h3>Formation Formule 2</h3>
+					<div class="box__description">
+						<span class="price-tag">30 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 5 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-FOR-2">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-FOR " id="ABO-FOR-3" data-package="ABO-FOR-3" data-rowid="9">
+					<h3>Formation Formule 3</h3>
+					<div class="box__description">
+						<span class="price-tag">99 €</span> / mois HT * <br> utilisateurs illimités<br><br>Stockage 20 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-FOR-3">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+			</div><div class="plans-boxes plans-boxes--pack-GPAO ">	<button class="box box--plan pack-GPAO " id="ABO-GPAO-1" data-package="ABO-GPAO-1" data-rowid="23">
+					<h3>Industrie Formule 1</h3>
+					<div class="box__description">
+						<span class="price-tag">15 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 2 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-GPAO-1">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-GPAO " id="ABO-GPAO-2" data-package="ABO-GPAO-2" data-rowid="24">
+					<h3>Industrie Formule 2</h3>
+					<div class="box__description">
+						<span class="price-tag">30 €</span> / mois HT * <br> par utilisateur<br><br>Stockage 5 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-GPAO-2">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+				<button class="box box--plan pack-GPAO " id="ABO-GPAO-3" data-package="ABO-GPAO-3" data-rowid="25">
+					<h3>Industrie Formule 3</h3>
+					<div class="box__description">
+						<span class="price-tag">99 €</span> / mois HT * <br> utilisateurs illimités<br><br>Stockage 20 Go
+					</div>
+					<p class="box__bottom" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-GPAO-3">
+						<span class="try-pack">Je teste !</span>
+						<br>
+						<span class="free-trial">1 mois gratuit</span>
+					</p>
+				</button>
+			</div>				<p id="asterisk">*Tarif HT. TVA de 0 pour les utilisateurs hors Europe ou les sociétés en Europe (hors France) possédant un numéro de TVA intracommunautaire.</p>
+			<p id="link-detail-offres">Cliquez <a href="https://www.doliondemand.fr/tarifs/offre-service">ici</a> pour consulter le détail de nos offres et tarifs</p>
+			<div class="back-to-pack-container">
+				<button class="back-btn --description">Découvrez ici toutes nos solutions métiers</button>
+				<div>
+					<button class="STD" data-package="STD"><img src="source/custom/clidoliondemand/img/logos/STD.svg" title="Standard" alt="STD"></button><button class="BTP" data-package="BTP"><img src="source/custom/clidoliondemand/img/logos/BTP.svg" title="BTP" alt="BTP"></button><button class="SER" data-package="SER"><img src="source/custom/clidoliondemand/img/logos/SER.svg" title="Service" alt="SER"></button><button class="NEG" data-package="NEG"><img src="source/custom/clidoliondemand/img/logos/NEG.svg" title="Négoce" alt="NEG"></button><button class="FOR" data-package="FOR"><img src="source/custom/clidoliondemand/img/logos/FOR.svg" title="Formation" alt="FOR"></button><button class="GPAO" data-package="GPAO"><img src="source/custom/clidoliondemand/img/logos/GPAO.svg" title="Industrie" alt="GPAO"></button>					</div>
+				<!--					<a class="test-pack" href="https://myaccount.doliondemand.fr/register.php?plan=ABO-${pack}-1">-->
+				<!--						${try_this_pack}-->
+				<!--					</a>-->
+			</div>
+		</div>
 	</div>
 
 	<?php

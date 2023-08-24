@@ -295,6 +295,7 @@ header.inverse  h1 { padding-top: 5px; }
 #logo {
     text-align: center;	max-width:250px; max-height: 155px;
 }
+.page-header-top { padding-bottom:0 !important}
 
 .block.small {
 width: 500px;
@@ -330,7 +331,7 @@ height:5em;
 
 .signup .block.medium { padding-top: 10px; }
 
-.signup2 { max-width: 700px; display: inline-block; text-align: initial; }
+.signup2 { max-width: 1000px; display: inline-block; text-align: initial; margin-left:20%; float:left }
 
 .customcompanylogo{
 	display:none;
