@@ -86,6 +86,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/CMailFile.class.php';
 require_once DOL_DOCUMENT_ROOT.'/societe/class/societeaccount.class.php';
 require_once DOL_DOCUMENT_ROOT.'/societe/class/companybankaccount.class.php';
 require_once DOL_DOCUMENT_ROOT.'/societe/class/companypaymentmode.class.php';
+require_once DOL_DOCUMENT_ROOT.'/contrat/class/contrat.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/geturl.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/stripe/class/stripe.class.php';
 dol_include_once('/sellyoursaas/class/packages.class.php');
@@ -97,7 +98,8 @@ $conf->global->SYSLOG_FILE_ONEPERSESSION=2;
 
 $welcomecid = GETPOST('welcomecid', 'int');
 $mode = GETPOST('mode', 'aZ09');
-
+$option = GETPOST('option','int');
+$id = GETPOST('id','int');
 $action = GETPOST('action', 'aZ09');
 $cancel = GETPOST('cancel', 'alphanohtml');
 $backtourl = GETPOST('backtourl', 'alpha');
@@ -114,6 +116,20 @@ if (empty($css)) {
 //$langs->setDefaultLang(GETPOST('lang', 'aZ09') ? GETPOST('lang', 'aZ09') : 'auto');
 $langs->loadLangs(array("main","companies","bills","sellyoursaas@sellyoursaas","other","errors",'mails','paypal','paybox','stripe','withdrawals','other','admin'));
 
+if(!empty($option) && !empty($id)){
+
+	$serviceoption = new Product($db);
+	$serviceoption->fetch($option);
+
+	$user = new User($db);
+	$user->fetch(1);
+	$contract = new Contrat($db);
+	$contract->fetch($id);
+	$contract->reopen($user);
+	$contract->addline($serviceoption->desc,$serviceoption->pu_ht,1);
+	$contract->validate($user);
+	header('Location: '.$_SERVER['PHP_SELF'].'?mode=instance&id='.$id);
+}
 if ($langs->defaultlang == 'en_US') {
 	$langsen = $langs;
 } else {
@@ -223,7 +239,6 @@ $tmp=dol_getdate($now);
 $nowmonth = $tmp['mon'];
 $nowyear = $tmp['year'];
 
-require_once DOL_DOCUMENT_ROOT.'/contrat/class/contrat.class.php';
 $documentstatic=new Contrat($db);
 $documentstaticline=new ContratLigne($db);
 
