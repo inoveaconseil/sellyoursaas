@@ -569,7 +569,6 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 						}
 					}
 				}
-				print '<a href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$line->id.'"> GO GO GO</a>';
 
 			} else { // If there is no product, this is a free product
 				print '<!--no photo defined -->';
@@ -829,12 +828,15 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			// Button to subscribe
 			if (!empty($tmpproduct->array_options['options_package'])) {
 				// If there is a package, sho wlink to subscribe
+				print '<a href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$line->id.'"> GO GO GO</a>';
+
 			} else {
 				// If no package
 				if ($producturl) {
 					print '<a class="btn btn-primary wordbreak" href="'.$producturl.'" target="_blank" rel="noopener">'.$langs->trans("IWantToTest").'...</a><br>';
 				}
 				//print '<span class="opacitymedium">'.$langs->trans("NotYetAvailable").'</span>';
+
 			}
 			print '</div>';
 			print '</div></div>';
