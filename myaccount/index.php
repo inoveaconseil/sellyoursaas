@@ -121,14 +121,28 @@ if(!empty($option) && !empty($id)){
 	$serviceoption = new Product($db);
 	$serviceoption->fetch($option);
 
-	$user = new User($db);
-	$user->fetch(1);
+	// Force user
+	if (empty($user->id)) {
+		$user->fetch($conf->global->SELLYOURSAAS_ANONYMOUSUSER);
+		// Set $user to the anonymous user
+		if (empty($user->id)) {
+			dol_print_error_email('SETUPANON', 'Error setup of module not complete or wrong. Missing the anonymous user.', null, 'alert alert-error');
+			exit(-1);
+		}
+
+		$user->getrights();
+	}
+	echo "<pre>" . print_r($user, 1) . "</pre>";
+
 	$contract = new Contrat($db);
 	$contract->fetch($id);
 	$contract->reopen($user);
 	$contract->addline($serviceoption->desc,$serviceoption->pu_ht,1);
+	echo "<pre>" . print_r($contract, 1) . "</pre>";
+
 	$contract->validate($user);
-	header('Location: '.$_SERVER['PHP_SELF'].'?mode=instance&id='.$id);
+	echo "<pre>" . print_r($contract, 1) . "</pre>";
+	header('Location: ?mode=instances&id='.$id);
 }
 if ($langs->defaultlang == 'en_US') {
 	$langsen = $langs;
