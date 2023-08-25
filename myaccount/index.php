@@ -389,13 +389,23 @@ if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 	$txtva = $txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
 	$date_start = dol_now();
 	$date_end = null;
-	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,1,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
+	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,$qty,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
 	$contractedit->update($user);
 	$contractedit->validate($user);
 
 	$contractLine = new ContratLigne($db);
 	$contractLine->fetch($lineid);
 	$contractLine->active_line($user,$date_start);
+
+	if (! $error) {
+		$sellyoursaasutils = new SellYourSaasUtils($db);
+		$result = $sellyoursaasutils->sellyoursaasRemoteAction('deployoption', $contract, 'admin', '', '', 0, $comment);
+		if ($result <= 0) {
+			$error++;
+			setEventMessages($sellyoursaasutils->error, $sellyoursaasutils->errors, 'errors');
+		}
+	}
+
 	header('Location: /index.php?mode=instances');
 	exit;
 }
@@ -2324,7 +2334,9 @@ llxHeader($head, $langs->trans("MyAccount"), '', '', 0, 0, $arrayofjs, $arrayofc
 if ($action == 'buyoption') {
 	$serviceoption = new Product($db);
 	$serviceoption->fetch($option);
+
 	$formconfirm = $form->formconfirm('/index.php?id='.$id.'&option='.$option.'&action=confirm_buyoption', $langs->trans('BuyOptionTitle'), $langs->trans('ConfirmBuyOption', $serviceoption->label), 'confirm_buyoption', '', 0, 1);
+
 	print $formconfirm;
 
 }

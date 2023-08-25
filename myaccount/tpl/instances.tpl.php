@@ -771,7 +771,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 
 		// TODO Add option from options services into databases
 
-		//Check contract line
+		//Check line contrat for option
 		$alreadyactivate = array();
 		foreach($contract->lines as $l){
 			$alreadyactivate[] = $l->fk_product;
@@ -834,7 +834,6 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			if (!empty($tmpproduct->array_options['options_package'])) {
 				// If there is a package, sho wlink to subscribe
 				if(!in_array($tmpproduct->id,$alreadyactivate))
-
 					print '<a class="btn btn-primary wordbreak" href="/index.php?mode=instances&option='.$tmpproduct->id.'&id='.$contract->id.'&action=buyoption">'.$langs->trans("BuyOption").'</a>';
 				else
 					print $langs->trans('Alreadyactivate');
