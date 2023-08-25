@@ -258,10 +258,11 @@ padding-top:0px
 }
 
 div.block header {
-background:linear-gradient(45deg, #6C2FEC, #C3D1F8);
+background-color: #334;
 color: #eee;padding: 10px;margin-bottom: 20px;
 text-align: center;
 }
+
 div.block header h1 {
 padding-top: 0;
 margin-bottom: 2px;
