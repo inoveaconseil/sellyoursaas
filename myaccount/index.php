@@ -2322,7 +2322,9 @@ llxHeader($head, $langs->trans("MyAccount"), '', '', 0, 0, $arrayofjs, $arrayofc
 
 // Confirmation to buy an option
 if ($action == 'buyoption') {
-	$formconfirm = $form->formconfirm('/index.php?id='.$id.'&option='.$option.'&action=confirm_buyoption', $langs->trans('BuyOptionTitle'), $langs->trans('ConfirmBuyOption'), 'confirm_buyoption', '', 0, 1);
+	$serviceoption = new Product($db);
+	$serviceoption->fetch($option);
+	$formconfirm = $form->formconfirm('/index.php?id='.$id.'&option='.$option.'&action=confirm_buyoption', $langs->trans('BuyOptionTitle'), $langs->trans('ConfirmBuyOption', $serviceoption->label), 'confirm_buyoption', '', 0, 1);
 	print $formconfirm;
 
 }

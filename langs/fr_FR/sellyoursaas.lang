@@ -840,3 +840,5 @@ SELLYOURSAAS_APPLY_RESELLER_EMAIL_DISABLED=Désactiver l'envoi d'un email lors d
 ARequestToBeAResellerHasAlreadyBeenSent=Une demande pour devenir revendeur a déjà été envoyée (le %s)
 ThirdpartyHasNoDefaultBanAccount=Ce tiers n'a pas de mode de paiement bancaire par défaut, veuillez d'abord l'ajouter.
 BuyOption = Achat Immédiat
+BuyOptionTitle = Achat immédiat
+ConfirmBuyOption = Êtes-vous sûr de vouloir souscrire à l'option %s
