@@ -775,7 +775,9 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 		$alreadyactivate = array();
 		foreach($contract->lines as $l){
 			$alreadyactivate[] = $l->id;
+			echo "<pre>" . print_r($l->id, 1) . "</pre>";
 		}
+		echo "<pre>" . print_r($alreadyactivate, 1) . "</pre>";
 		foreach ($arrayofoptionsfull as $key => $val) {
 			$tmpproduct = $val['product'];
 
