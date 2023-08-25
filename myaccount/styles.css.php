@@ -103,9 +103,9 @@ input,button,select,textarea {font-family: 'Helvetica Neue', Helvetica, Arial, s
 }
 
 .btn-primary {
-background-color: #6C2FEC;
-border-color: #6C2FEC;
-border-radius: 10px;
+background-color: #6C2FEC !important;
+border-color: #6C2FEC !important;
+border-radius: 10px !important;
 }
 select,textarea,input[type='text'],input[type='password'],input[type='datetime'],input[type='datetime-local'],input[type='date'],input[type='month'],input[type='time'],input[type='week'],input[type='number'],input[type='email'],input[type='url'],input[type='search'],input[type='tel'],input[type='color'],.uneditable-input
 {
