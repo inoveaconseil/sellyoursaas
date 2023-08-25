@@ -380,7 +380,7 @@ function checkScriptFile($scriptfile, $fh, $params)
 		if (preg_match('/^mkdir __INSTANCEDIR__\/[\/a-z0-9_\.]+$/i', $newline)) {
 			continue;
 		}
-		if (preg_match('/^__INSTANCEDIR__\/htdocs\/cloud\/init.sh __INSTANCEDIR__$/i', $newline)) {
+		if (preg_match('/^__INSTANCEDIR__\/htdocs\/cloud\/init.sh __INSTANCEDIR__$/im', $newline)) {
 			continue;
 		}
 		// Check more patterns
