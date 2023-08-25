@@ -399,7 +399,7 @@ if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 
 	if (! $error) {
 		$sellyoursaasutils = new SellYourSaasUtils($db);
-		$result = $sellyoursaasutils->sellyoursaasRemoteAction('deployoption', $contract, 'admin', '', '', 0, $comment);
+		$result = $sellyoursaasutils->sellyoursaasRemoteAction('deployoption', $contractLine, 'admin', '', '', 0, $comment);
 		if ($result <= 0) {
 			$error++;
 			setEventMessages($sellyoursaasutils->error, $sellyoursaasutils->errors, 'errors');
