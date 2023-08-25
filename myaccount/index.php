@@ -136,10 +136,10 @@ if(!empty($option) && !empty($id)){
 	$contractedit->fetch($id);
 	$contractedit->reopen($user);
 	$qty = 1;
-	$txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
+	$txtva = $txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
 	$date_start = dol_now();
 	$date_end = null;
-	$contractedit->addline($serviceoption->desc,$serviceoption->pu_ht,1,$serviceoption->id,);
+	$contractedit->addline($serviceoption->desc,$serviceoption->pu_ht,1,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
 
 	echo "<pre>" . print_r($contractedit, 1) . "</pre>";
 
