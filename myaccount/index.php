@@ -139,8 +139,9 @@ if(!empty($option) && !empty($id)){
 	$txtva = $txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
 	$date_start = dol_now();
 	$date_end = null;
-	$contractedit->addline($serviceoption->desc,$serviceoption->pu_ht,1,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
+	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,1,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
 	$contractedit->update($user);
+	$contractedit->active_line($user,$lineid);
 	$contractedit->validate($user);
 	header('Location: /index.php?mode=instances');
 	exit;
