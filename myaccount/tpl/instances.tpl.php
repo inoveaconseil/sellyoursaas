@@ -834,7 +834,8 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			if (!empty($tmpproduct->array_options['options_package'])) {
 				// If there is a package, sho wlink to subscribe
 				if(!in_array($tmpproduct->id,$alreadyactivate))
-					print '<a href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$tmpproduct->id.'&id='.$contract->id.'"> GO GO GO</a>';
+
+					print '<a class="btn btn-primary wordbreak" href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$tmpproduct->id.'&id='.$contract->id.'&action=buyoption">'.$langs->trans("BuyOption").'</a>';
 				else
 					print $langs->trans('Alreadyactivate');
 

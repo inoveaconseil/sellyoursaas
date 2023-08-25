@@ -116,7 +116,14 @@ if (empty($css)) {
 //$langs->setDefaultLang(GETPOST('lang', 'aZ09') ? GETPOST('lang', 'aZ09') : 'auto');
 $langs->loadLangs(array("main","companies","bills","sellyoursaas@sellyoursaas","other","errors",'mails','paypal','paybox','stripe','withdrawals','other','admin'));
 
-if(!empty($option) && !empty($id)){
+$formconfirm = '';
+
+// Confirmation to delete
+if ($action == 'buyoption') {
+	$formconfirm = $form->formconfirm($_SERVER["PHP_SELF"].'?id='.$id.'&option='.$option.'&action=confirm_buyoption', $langs->trans('BuyOptionTitle'), $langs->trans('ConfirmBuyOption'), 'confirm_buyoption', '', 0, 1);
+}
+
+if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 
 	$serviceoption = new Product($db);
 	$serviceoption->fetch($option);
