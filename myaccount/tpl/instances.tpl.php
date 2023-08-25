@@ -771,6 +771,11 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 
 		// TODO Add option from options services into databases
 
+		//Check contract line
+		$alreadyactivate = array();
+		foreach($contract->lines as $l){
+			$alreadyactivate[] = $l->id;
+		}
 		foreach ($arrayofoptionsfull as $key => $val) {
 			$tmpproduct = $val['product'];
 
@@ -828,8 +833,10 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			// Button to subscribe
 			if (!empty($tmpproduct->array_options['options_package'])) {
 				// If there is a package, sho wlink to subscribe
-				echo "<pre>" . print_r($contract, 1) . "</pre>";
-				print '<a href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$tmpproduct->id.'&id='.$contract->id.'"> GO GO GO</a>';
+				if(!in_array($tmpproduct->id,$alreadyactivate))
+					print '<a href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$tmpproduct->id.'&id='.$contract->id.'"> GO GO GO</a>';
+				else
+					print $langs->trans('Alreadyactivate');
 
 			} else {
 				// If no package
