@@ -368,6 +368,7 @@ $initialaction = $action;
 
 if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 
+	$error = 0;
 	$serviceoption = new Product($db);
 	$serviceoption->fetch($option);
 
@@ -389,7 +390,7 @@ if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 	$txtva = $txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
 	$date_start = dol_now();
 	$date_end = null;
-	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,$qty,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
+	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,$qty,$serviceoption->txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
 	$contractedit->update($user);
 	$contractedit->validate($user);
 
@@ -403,6 +404,30 @@ if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 		if ($result <= 0) {
 			$error++;
 			setEventMessages($sellyoursaasutils->error, $sellyoursaasutils->errors, 'errors');
+		}
+	}
+
+	if (!$error) {
+		$contractedit->fetchObjectLinked();
+		$arrayfacturerec = array_values($object->linkedObjects["facturerec"]);
+		if (count($arrayfacturerec) != 1) {
+			// TODO: Send mail auto to inform admins of multiples faturerec contract
+			$error ++;
+		} else {
+			$facturerec = $arrayfacturerec[0];
+			$foundlinefacturerec = 0;
+			foreach ($facturerec->lines as $key => $line) {
+				if ($line->description == $serviceoption->desc && $line->fk_product == $serviceoption->id) {
+					$foundlinefacturerec ++;
+				}
+			}
+			if (!$foundlinefacturerec) {
+				$result = $facturerec->addLine($serviceoption->desc, $serviceoption->price, 1, $serviceoption->tva_tx, $serviceoption->localtax1_tx, $serviceoption->localtax2_tx, $serviceoption->id, 0, 'HT', 0, '', 0, 0, -1, 0, '', null, 0, 1, 1);
+				if (!$result) {
+					// TODO: Send mail auto to inform admins of error line creation facturRec
+					$error ++;
+				}
+			}
 		}
 	}
 
