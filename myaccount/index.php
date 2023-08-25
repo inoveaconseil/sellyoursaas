@@ -409,7 +409,7 @@ if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 
 	if (!$error) {
 		$contractedit->fetchObjectLinked();
-		$arrayfacturerec = array_values($object->linkedObjects["facturerec"]);
+		$arrayfacturerec = array_values($contractedit->linkedObjects["facturerec"]);
 		if (count($arrayfacturerec) != 1) {
 			// TODO: Send mail auto to inform admins of multiples faturerec contract
 			$error ++;
