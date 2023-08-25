@@ -116,48 +116,6 @@ if (empty($css)) {
 //$langs->setDefaultLang(GETPOST('lang', 'aZ09') ? GETPOST('lang', 'aZ09') : 'auto');
 $langs->loadLangs(array("main","companies","bills","sellyoursaas@sellyoursaas","other","errors",'mails','paypal','paybox','stripe','withdrawals','other','admin'));
 
-$formconfirm = '';
-$form = new Form($db);
-// Confirmation to delete
-if ($action == 'buyoption') {
-	$formconfirm = $form->formconfirm('/index.php?id='.$id.'&option='.$option.'&action=confirm_buyoption', $langs->trans('BuyOptionTitle'), $langs->trans('ConfirmBuyOption'), 'confirm_buyoption', '', 0, 1);
-	print $formconfirm;
-
-}
-
-if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
-
-	$serviceoption = new Product($db);
-	$serviceoption->fetch($option);
-
-	// Force user
-	if (empty($user->id)) {
-		$user->fetch($conf->global->SELLYOURSAAS_ANONYMOUSUSER);
-		// Set $user to the anonymous user
-		if (empty($user->id)) {
-			dol_print_error_email('SETUPANON', 'Error setup of module not complete or wrong. Missing the anonymous user.', null, 'alert alert-error');
-			exit(-1);
-		}
-
-		$user->getrights();
-	}
-	$contractedit = new Contrat($db);
-	$contractedit->fetch($id);
-	$contractedit->reopen($user);
-	$qty = 1;
-	$txtva = $txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
-	$date_start = dol_now();
-	$date_end = null;
-	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,1,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
-	$contractedit->update($user);
-	$contractedit->validate($user);
-
-	$contractLine = new ContratLigne($db);
-	$contractLine->fetch($lineid);
-	$contractLine->active_line($user,$date_start);
-	header('Location: /index.php?mode=instances');
-	exit;
-}
 if ($langs->defaultlang == 'en_US') {
 	$langsen = $langs;
 } else {
@@ -406,6 +364,41 @@ $initialaction = $action;
  * Action
  */
 
+
+
+if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
+
+	$serviceoption = new Product($db);
+	$serviceoption->fetch($option);
+
+	// Force user
+	if (empty($user->id)) {
+		$user->fetch($conf->global->SELLYOURSAAS_ANONYMOUSUSER);
+		// Set $user to the anonymous user
+		if (empty($user->id)) {
+			dol_print_error_email('SETUPANON', 'Error setup of module not complete or wrong. Missing the anonymous user.', null, 'alert alert-error');
+			exit(-1);
+		}
+
+		$user->getrights();
+	}
+	$contractedit = new Contrat($db);
+	$contractedit->fetch($id);
+	$contractedit->reopen($user);
+	$qty = 1;
+	$txtva = $txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
+	$date_start = dol_now();
+	$date_end = null;
+	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,1,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
+	$contractedit->update($user);
+	$contractedit->validate($user);
+
+	$contractLine = new ContratLigne($db);
+	$contractLine->fetch($lineid);
+	$contractLine->active_line($user,$date_start);
+	header('Location: /index.php?mode=instances');
+	exit;
+}
 if (empty($welcomecid)) {
 	dol_syslog('----- index.php mode='.$mode.' action='.$action.' cancel='.$cancel, LOG_DEBUG, 1);
 }
@@ -2265,6 +2258,12 @@ if ($action == 'updateurl') {	// update URL from the tab "Domain"
  */
 
 $form = new Form($db);
+// Confirmation to delete
+if ($action == 'buyoption') {
+	$formconfirm = $form->formconfirm('/index.php?id='.$id.'&option='.$option.'&action=confirm_buyoption', $langs->trans('BuyOptionTitle'), $langs->trans('ConfirmBuyOption'), 'confirm_buyoption', '', 0, 1);
+	print $formconfirm;
+
+}
 
 if ($welcomecid > 0) {
 	// Here $_POST is empty, $GET has just welcomecid=..., $_SESSION['dol_loginsellyoursaas'] is socid =382
