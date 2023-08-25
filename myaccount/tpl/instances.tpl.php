@@ -856,7 +856,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 		print '<div class="tagtable centpercent divdolibarrwebsites"><div class="tagtr">';
 		print '<div class="tagtd width50 paddingleft paddingright marginrightonly valignmiddle">';
 		print '<br>';
-		print '<span class="opacitymedium">'.$langs->trans("SoonMoreOptionsHere").'...</span><br>';
+		//print '<span class="opacitymedium">'.$langs->trans("SoonMoreOptionsHere").'...</span><br>';
 		print '<br>';
 
 		print '</div></div></div>';
