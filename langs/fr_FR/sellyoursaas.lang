@@ -839,3 +839,4 @@ PendingResellers=Demandes en attente pour les revendeurs
 SELLYOURSAAS_APPLY_RESELLER_EMAIL_DISABLED=Désactiver l'envoi d'un email lors d'une demande de revendeur
 ARequestToBeAResellerHasAlreadyBeenSent=Une demande pour devenir revendeur a déjà été envoyée (le %s)
 ThirdpartyHasNoDefaultBanAccount=Ce tiers n'a pas de mode de paiement bancaire par défaut, veuillez d'abord l'ajouter.
+BuyOption = Achat Immédiat

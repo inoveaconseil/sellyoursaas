@@ -117,7 +117,7 @@ if (empty($css)) {
 $langs->loadLangs(array("main","companies","bills","sellyoursaas@sellyoursaas","other","errors",'mails','paypal','paybox','stripe','withdrawals','other','admin'));
 
 $formconfirm = '';
-
+$form = new Form($db);
 // Confirmation to delete
 if ($action == 'buyoption') {
 	$formconfirm = $form->formconfirm($_SERVER["PHP_SELF"].'?id='.$id.'&option='.$option.'&action=confirm_buyoption', $langs->trans('BuyOptionTitle'), $langs->trans('ConfirmBuyOption'), 'confirm_buyoption', '', 0, 1);

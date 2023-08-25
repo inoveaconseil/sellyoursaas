@@ -826,7 +826,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			}
 			// TODO Scan if module is enabled, if no, show a message to do it. If yes, show list of available websites
 			print '</div>';
-			print '<div class="tagtd valignmiddle width100 paddingleft paddingright">';
+			print '<div class="tagtd valignmiddle width150 paddingleft paddingright">';
 			if ($arrayofoptionsfull[$key]['labelprice']) {
 				print $arrayofoptionsfull[$key]['labelprice'].'<br>';
 			}
