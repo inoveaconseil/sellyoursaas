@@ -842,3 +842,4 @@ ThirdpartyHasNoDefaultBanAccount=Ce tiers n'a pas de mode de paiement bancaire p
 BuyOption = Achat Immédiat
 BuyOptionTitle = Achat immédiat
 ConfirmBuyOption = Êtes-vous sûr de vouloir souscrire à l'option %s
+Alreadyactivate = Option déjà souscrite
