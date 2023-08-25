@@ -359,7 +359,6 @@ function checkScriptFile($scriptfile, $fh, $params)
 		// Check disallowed patterns
 		if (preg_match('/\.\./i', $newline)) {
 			$linenotvalid = $i;
-			print 'Ligne non valide : $newline';
 			break;
 		}
 		// Check allowed pattern
@@ -381,7 +380,7 @@ function checkScriptFile($scriptfile, $fh, $params)
 		if (preg_match('/^mkdir __INSTANCEDIR__\/[\/a-z0-9_\.]+$/i', $newline)) {
 			continue;
 		}
-		if (preg_match('/^__INSTANCEDIR__\/htdocs\/cloud\/init.sh __INSTANCEDIR__$/im', $newline)) {
+		if (preg_match('/^__INSTANCEDIR__\/htdocs\/cloud\/init.sh __INSTANCEDIR__$/i', $newline)) {
 			continue;
 		}
 		// Check more patterns
@@ -415,7 +414,7 @@ function checkScriptFile($scriptfile, $fh, $params)
 
 		// CLI file is not valid
 		http_response_code(599);
-		print 'The CLI file '.$scriptfile.' contains instructions line '.$linenotvalid.' that does not match an allowed pattern. OUKOI'."\n";
+		print 'The CLI file '.$scriptfile.' contains instructions line '.$linenotvalid.' that does not match an allowed pattern.'."\n";
 		exit();
 	} else {
 		fwrite($fh, date('Y-m-d H:i:s')." script file is valid.\n");
