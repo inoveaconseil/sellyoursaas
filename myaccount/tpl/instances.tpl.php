@@ -793,7 +793,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			print '<div class="tagtd width50 paddingleft paddingright marginrightonly valignmiddle">';
 
 			$htmlforphoto = $tmpproduct->show_photos('product', $conf->product->dir_output, 1, 1, 1, 0, 0, $maxHeight, $maxWidth, 1, 1, 1);
-
+			echo "<pre>" . print_r($htmlforphoto, 1) . "</pre>";
 			if (empty($htmlforphoto) || $htmlforphoto == '<!-- Photo -->' || $htmlforphoto == '<!-- Photo -->'."\n") {
 				print '<!--no photo defined -->';
 				print '<table width="100%" valign="top" align="center" border="0" cellpadding="2" cellspacing="2"><tr><td width="100%" class="photo">';
