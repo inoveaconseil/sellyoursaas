@@ -826,7 +826,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			}
 			// TODO Scan if module is enabled, if no, show a message to do it. If yes, show list of available websites
 			print '</div>';
-			print '<div class="tagtd valignmiddle width150 paddingleft paddingright">';
+			print '<div class="tagtd valignmiddle width125 paddingleft paddingright">';
 			if ($arrayofoptionsfull[$key]['labelprice']) {
 				print $arrayofoptionsfull[$key]['labelprice'].'<br>';
 			}
@@ -835,7 +835,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 				// If there is a package, sho wlink to subscribe
 				if(!in_array($tmpproduct->id,$alreadyactivate))
 
-					print '<a class="btn btn-primary wordbreak" href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$tmpproduct->id.'&id='.$contract->id.'&action=buyoption">'.$langs->trans("BuyOption").'</a>';
+					print '<a class="btn btn-primary wordbreak" href="/index.php?mode=instances&option='.$tmpproduct->id.'&id='.$contract->id.'&action=buyoption">'.$langs->trans("BuyOption").'</a>';
 				else
 					print $langs->trans('Alreadyactivate');
 
