@@ -254,6 +254,12 @@ div.block {
 background-color: #fff;
 }
 
+.btnalreadyanaccount {
+    color: #6C2FEC;
+    border: 2px solid;
+    border-radius: 10px;
+    font-weight: bold;
+}
 
 div.block header {
 background:linear-gradient(45deg, #6C2FEC, #C3D1F8);
