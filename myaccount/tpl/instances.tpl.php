@@ -828,6 +828,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			// Button to subscribe
 			if (!empty($tmpproduct->array_options['options_package'])) {
 				// If there is a package, sho wlink to subscribe
+				echo "<pre>" . print_r($arrayoflines, 1) . "</pre>";
 				print '<a href="'.$_SERVER["PHP_SELF"].$_SERVER["REQUEST_URI"].'&option='.$tmpproduct->id.'&id='.$contract->id.'"> GO GO GO</a>';
 
 			} else {
