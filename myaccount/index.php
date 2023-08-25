@@ -140,12 +140,10 @@ if(!empty($option) && !empty($id)){
 	$date_start = dol_now();
 	$date_end = null;
 	$contractedit->addline($serviceoption->desc,$serviceoption->pu_ht,1,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
-
-	echo "<pre>" . print_r($contractedit, 1) . "</pre>";
-
+	$contractedit->update($user);
 	$contractedit->validate($user);
 	echo "<pre>" . print_r($contractedit, 1) . "</pre>";
-	header('Location: ?mode=instances&id='.$id);
+	header('Location: index.php?mode=instances');
 }
 if ($langs->defaultlang == 'en_US') {
 	$langsen = $langs;
