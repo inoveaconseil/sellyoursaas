@@ -142,7 +142,8 @@ if(!empty($option) && !empty($id)){
 	$contractedit->addline($serviceoption->desc,$serviceoption->pu_ht,1,$txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
 	$contractedit->update($user);
 	$contractedit->validate($user);
-	header('Location: index.php?mode=instances');
+	header('Location: /index.php?mode=instances');
+	exit;
 }
 if ($langs->defaultlang == 'en_US') {
 	$langsen = $langs;
