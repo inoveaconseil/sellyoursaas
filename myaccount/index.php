@@ -2258,12 +2258,7 @@ if ($action == 'updateurl') {	// update URL from the tab "Domain"
  */
 
 $form = new Form($db);
-// Confirmation to delete
-if ($action == 'buyoption') {
-	$formconfirm = $form->formconfirm('/index.php?id='.$id.'&option='.$option.'&action=confirm_buyoption', $langs->trans('BuyOptionTitle'), $langs->trans('ConfirmBuyOption'), 'confirm_buyoption', '', 0, 1);
-	print $formconfirm;
 
-}
 
 if ($welcomecid > 0) {
 	// Here $_POST is empty, $GET has just welcomecid=..., $_SESSION['dol_loginsellyoursaas'] is socid =382
@@ -2325,7 +2320,12 @@ var select2arrayoflanguage = {
 
 llxHeader($head, $langs->trans("MyAccount"), '', '', 0, 0, $arrayofjs, $arrayofcss, '', 'myaccount');
 
+// Confirmation to buy an option
+if ($action == 'buyoption') {
+	$formconfirm = $form->formconfirm('/index.php?id='.$id.'&option='.$option.'&action=confirm_buyoption', $langs->trans('BuyOptionTitle'), $langs->trans('ConfirmBuyOption'), 'confirm_buyoption', '', 0, 1);
+	print $formconfirm;
 
+}
 ?>
 
 <div id="waitMask" style="display:none;">
