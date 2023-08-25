@@ -135,7 +135,12 @@ if(!empty($option) && !empty($id)){
 	$contractedit = new Contrat($db);
 	$contractedit->fetch($id);
 	$contractedit->reopen($user);
-	$contractedit->addline($serviceoption->desc,$serviceoption->pu_ht,1);
+	$qty = 1;
+	$txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
+	$date_start = dol_now();
+	$date_end = null;
+	$contractedit->addline($serviceoption->desc,$serviceoption->pu_ht,1,$serviceoption->id,);
+
 	echo "<pre>" . print_r($contractedit, 1) . "</pre>";
 
 	$contractedit->validate($user);
