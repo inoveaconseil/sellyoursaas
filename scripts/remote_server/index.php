@@ -123,8 +123,8 @@ if (in_array($tmparray[0], array('deploy', 'undeploy', 'deployoption', 'deployal
 	// Add a security layer on the CLI scripts
 	$params = array('osusername'=>$osusername, 'dbname'=>$dbname, 'dbusername'=>$dbusername);
 	if (!in_array($tmparray[0], array('undeployall'))) {
-		//checkScriptFile($cliafter, $fh, $params);
-		//checkScriptFile($cliafterpaid, $fh, $params);
+		checkScriptFile($cliafter, $fh, $params);
+		checkScriptFile($cliafterpaid, $fh, $params);
 	}
 
 	exec('./action_deploy_undeploy.sh '.$tmparray[0].' '.$paramspace.' 2>&1', $output, $return_var);
@@ -415,7 +415,7 @@ function checkScriptFile($scriptfile, $fh, $params)
 
 		// CLI file is not valid
 		http_response_code(599);
-		print 'The CLI file '.$scriptfile.' contains instructions line '.$linenotvalid.' that does not match an allowed pattern.'."\n";
+		print 'The CLI file '.$scriptfile.' contains instructions line '.$linenotvalid.' that does not match an allowed pattern. OUKOI'."\n";
 		exit();
 	} else {
 		fwrite($fh, date('Y-m-d H:i:s')." script file is valid.\n");
