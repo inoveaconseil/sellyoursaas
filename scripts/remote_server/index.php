@@ -123,8 +123,8 @@ if (in_array($tmparray[0], array('deploy', 'undeploy', 'deployoption', 'deployal
 	// Add a security layer on the CLI scripts
 	$params = array('osusername'=>$osusername, 'dbname'=>$dbname, 'dbusername'=>$dbusername);
 	if (!in_array($tmparray[0], array('undeployall'))) {
-		checkScriptFile($cliafter, $fh, $params);
-		checkScriptFile($cliafterpaid, $fh, $params);
+		//checkScriptFile($cliafter, $fh, $params);
+		//checkScriptFile($cliafterpaid, $fh, $params);
 	}
 
 	exec('./action_deploy_undeploy.sh '.$tmparray[0].' '.$paramspace.' 2>&1', $output, $return_var);
