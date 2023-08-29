@@ -3304,10 +3304,13 @@ class SellYourSaasUtils
 				$server_port = (! empty($conf->global->SELLYOURSAAS_SSH_SERVER_PORT) ? $conf->global->SELLYOURSAAS_SSH_SERVER_PORT : 22);
 
 				$connection = ssh2_connect($server, $server_port);
+				echo "OK3333";
+				echo "<pre>" . print_r($connection, 1) . "</pre>";
 
 				ini_set('default_socket_timeout', $originalConnectionTimeout);
 
 				if ($connection) {
+					echo "YPUI";
 					//print ">>".$object->array_options['options_username_os']." - ".$object->array_options['options_password_os']."<br>\n";exit;
 					if (! @ssh2_auth_password($connection, $object->array_options['options_username_os'], $object->array_options['options_password_os'])) {
 						dol_syslog("Could not authenticate with username ".$object->array_options['options_username_os'], LOG_WARNING);
