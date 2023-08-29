@@ -3312,6 +3312,7 @@ class SellYourSaasUtils
 						dol_syslog("Could not authenticate with username ".$object->array_options['options_username_os'], LOG_WARNING);
 						$this->errors[] = "Could not authenticate with username ".$object->array_options['options_username_os']." and password ".preg_replace('/./', '*', $object->array_options['options_password_os']);
 						$error++;
+print_r("ici");
 					} else {
 						if ($remoteaction == 'refresh' || $remoteaction == 'refreshfilesonly') {
 							$sftp = ssh2_sftp($connection);
@@ -4474,12 +4475,6 @@ class SellYourSaasUtils
 
 		dol_syslog("* sellyoursaasRemoteAction END (remoteaction=".$remoteaction." email=".$email." error=".$error." errorforsshconnect=".$errorforsshconnect." errorfordb=".$errorfordb." result=".($error ? 'ko' : 'ok')." retarray['http_code']=".(empty($retarray['http_code']) ? '' : $retarray['http_code']).(get_class($object) == 'Contrat' ? ' contractid='.$object->id.' contractref='.$object->ref: '').")", LOG_DEBUG, -1);
 
-		print("error:");
-		print_r($error);
-		print("errorforsshconnect:");
-		print_r($errorforsshconnect);
-		print("errorfordb:");
-		print_r($errorfordb);
 		if ($error) {
 			if ($errorforsshconnect && $errorfordb) {
 				return -2;
