@@ -3307,15 +3307,14 @@ class SellYourSaasUtils
 				ini_set('default_socket_timeout', $originalConnectionTimeout);
 
 				if ($connection) {
-					echo "YOUPI";
-					print ">>".$object->array_options['options_username_os']." - ".$object->array_options['options_password_os']."<br>\n";exit;
+					//print ">>".$object->array_options['options_username_os']." - ".$object->array_options['options_password_os']."<br>\n";exit;
 					if (! @ssh2_auth_password($connection, $object->array_options['options_username_os'], $object->array_options['options_password_os'])) {
 						dol_syslog("Could not authenticate with username ".$object->array_options['options_username_os'], LOG_WARNING);
 						$this->errors[] = "Could not authenticate with username ".$object->array_options['options_username_os']." and password ".preg_replace('/./', '*', $object->array_options['options_password_os']);
 						$error++;
-						echo "<pre>" . print_r($this->error, 1) . "</pre>";
-						exit;
 					} else {
+						echo "OK34";
+
 						if ($remoteaction == 'refresh' || $remoteaction == 'refreshfilesonly') {
 							echo "OK3";
 							$sftp = ssh2_sftp($connection);
