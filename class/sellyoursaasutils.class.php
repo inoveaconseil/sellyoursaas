@@ -3495,7 +3495,7 @@ class SellYourSaasUtils
 									$fstat=ssh2_sftp_stat($sftp, $conf->global->DOLICLOUD_INSTANCES_PATH.'/'.$object->array_options['options_username_os'].'/'.$dir.'/documents/installmodules.lock');
 								} else {
 									$error++;
-print_r("ici");
+print_r("ici5");
 									$this->errors[] = $langs->transnoentitiesnoconv("ErrorFileAlreadyExists");
 								}
 
@@ -3523,13 +3523,13 @@ print_r("ici");
 					dol_syslog('Failed to connect with ssh2_connect to server '.$server.', server_port '.$server_port, LOG_ERR);
 					$this->errors[] = 'Failed to connect with ssh2_connect to '.$server.', server_port '.$server_port;
 					$error++;
-print_r("ici");
+print_r("ici6");
 					$errorforsshconnect++;
 				}
 			} else {
 				$this->errors[] = 'ssh2_connect not supported by this PHP';
 				$error++;
-print_r("ici");
+print_r("ici7");
 			}
 		}
 
@@ -3597,7 +3597,7 @@ print_r("ici");
 					}
 					dol_syslog($this->error.' domainname='.$domainname.' contract->array_options["options_deployment_host"]='.$contract->array_options['options_deployment_host'], LOG_ERR);
 					$error++;
-print_r("ici");
+print_r("ici8");
 					break;
 				}
 				if ($serverdeployment === 'none') {
@@ -3609,7 +3609,7 @@ print_r("ici");
 				if (empty($urlforsellyoursaasaccount)) {	// Failed to get customer account url
 					dol_syslog('Failed to get customer account url', LOG_ERR);
 					$error++;
-print_r("ici");
+print_r("ici9");
 					break;
 				}
 
@@ -3868,7 +3868,7 @@ print_r("ici");
 
 					if ($retarray['curl_error_no'] != '' || $retarray['http_code'] != 200) {
 						$error++;
-print_r("ici");
+print_r("ici10");
 						if ($retarray['curl_error_no'] != '') $this->errors[] = $retarray['curl_error_msg'];
 						else $this->errors[] = $retarray['content'];
 					}
