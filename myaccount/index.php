@@ -292,11 +292,6 @@ if ($resql) {
 	dol_print_error($db);
 }
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 $mythirdpartyaccount->isareseller = 0;
 if ($conf->global->SELLYOURSAAS_DEFAULT_RESELLER_CATEG > 0) {
 	$categorie=new Categorie($db);
@@ -375,6 +370,11 @@ if ($mythirdpartyaccount->isareseller && in_array($mode, array('dashboard', 'myc
 	} else dol_print_error($db);
 }
 //var_dump(array_keys($listofcontractidreseller));
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 // Define environment of payment modes
 $servicestatusstripe = 0;
