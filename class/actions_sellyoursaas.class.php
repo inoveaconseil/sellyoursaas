@@ -389,9 +389,6 @@ class ActionsSellyoursaas
 						$error++;
 						$this->error=$sellyoursaasutils->error;
 						$this->errors=$sellyoursaasutils->errors;
-						print_r($this->error);
-						print_r($this->errors);
-						print_r($result);
 						exit();
 						setEventMessages($this->error, $this->errors, 'errors');
 					}
