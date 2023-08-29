@@ -23,8 +23,7 @@ if (empty($conf) || ! is_object($conf)) {
 
 $langs->load("banks");
 
-print_r("oui");
-exit();
+
 
 ?>
 <!-- BEGIN PHP TEMPLATE registerpaymentmode.tpl.php -->
@@ -68,6 +67,9 @@ $tmp = $mythirdpartyaccount->getOutstandingBills('customer');
 $outstandingTotalIncTax = $tmp['opened'];
 $outstandingRefs = $tmp['refsopened'];
 $totalInvoiced = $tmp['total_ttc'];
+
+print_r("oui");
+exit();
 
 // If thirdparty is not yet a customer (no payment never done), we show him the amount to pay in its first invoice.
 if ($totalInvoiced == 0) {
