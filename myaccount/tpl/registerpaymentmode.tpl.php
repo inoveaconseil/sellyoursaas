@@ -23,6 +23,9 @@ if (empty($conf) || ! is_object($conf)) {
 
 $langs->load("banks");
 
+print_r("oui");
+exit();
+
 ?>
 <!-- BEGIN PHP TEMPLATE registerpaymentmode.tpl.php -->
 <?php
