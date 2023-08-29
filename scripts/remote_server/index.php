@@ -358,6 +358,7 @@ function checkScriptFile($scriptfile, $fh, $params)
 
 		// Check disallowed patterns
 		if (preg_match('/\.\./i', $newline)) {
+			print_r("toto");
 			$linenotvalid = $i;
 			break;
 		}
