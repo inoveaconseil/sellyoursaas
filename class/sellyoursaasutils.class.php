@@ -3312,7 +3312,6 @@ class SellYourSaasUtils
 						dol_syslog("Could not authenticate with username ".$object->array_options['options_username_os'], LOG_WARNING);
 						$this->errors[] = "Could not authenticate with username ".$object->array_options['options_username_os']." and password ".preg_replace('/./', '*', $object->array_options['options_password_os']);
 						$error++;
-print_r("ici");
 					} else {
 						if ($remoteaction == 'refresh' || $remoteaction == 'refreshfilesonly') {
 							$sftp = ssh2_sftp($connection);
@@ -3320,6 +3319,7 @@ print_r("ici");
 								dol_syslog("Could not execute ssh2_sftp", LOG_ERR);
 								$this->errors[]='Failed to connect to ssh2_sftp to '.$server;
 								$error++;
+print_r("ici");
 							} else {
 								// Check if install.lock exists
 								$dir = $object->array_options['options_database_db'];
