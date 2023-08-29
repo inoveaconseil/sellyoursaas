@@ -2322,17 +2322,16 @@ if ($action == 'updateurl') {	// update URL from the tab "Domain"
 	// TODO
 }
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 /*
  * View
  */
 
 $form = new Form($db);
 
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 if ($welcomecid > 0) {
 	// Here $_POST is empty, $GET has just welcomecid=..., $_SESSION['dol_loginsellyoursaas'] is socid =382
