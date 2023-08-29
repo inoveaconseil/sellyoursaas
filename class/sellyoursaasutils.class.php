@@ -3314,7 +3314,7 @@ class SellYourSaasUtils
 						$error++;
 					} else {
 						if ($remoteaction == 'refresh' || $remoteaction == 'refreshfilesonly') {
-							echo "<pre>" . print_r($connection, 1) . "</pre>";exit;
+							echo "<pre>" . print_r($connection, 1) . "</pre>";
 							$sftp = ssh2_sftp($connection);
 							echo"OK4"; exit;
 							if (! $sftp) {

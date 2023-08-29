@@ -104,6 +104,7 @@ $action = GETPOST('action', 'aZ09');
 $cancel = GETPOST('cancel', 'alphanohtml');
 $backtourl = GETPOST('backtourl', 'alpha');
 
+/*
 print_r("Conf global");
 print_r($conf->global);
 print_r("");
@@ -134,7 +135,7 @@ print_r("");
 print_r("");
 print_r("backtourl");
 print_r($backtourl);
-
+*/
 
 if (empty($mode) && empty($welcomecid)) $mode='dashboard';
 $extcss=GETPOST('extcss', 'alpha');

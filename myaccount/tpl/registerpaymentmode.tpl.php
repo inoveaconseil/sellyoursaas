@@ -70,7 +70,6 @@ $totalInvoiced = $tmp['total_ttc'];
 
 // If thirdparty is not yet a customer (no payment never done), we show him the amount to pay in its first invoice.
 if ($totalInvoiced == 0) {
-	echo "<pre>" . print_r($listofcontractid, 1) . "</pre>";
 	// Loop on contracts
 	$amounttopayasfirstinvoice = 0;
 	$amounttopayasfirstinvoicetinstances = array();
