@@ -3304,18 +3304,17 @@ class SellYourSaasUtils
 				$server_port = (! empty($conf->global->SELLYOURSAAS_SSH_SERVER_PORT) ? $conf->global->SELLYOURSAAS_SSH_SERVER_PORT : 22);
 
 				$connection = ssh2_connect($server, $server_port);
-				echo "OK3333";
-				echo "<pre>" . print_r($connection, 1) . "</pre>";
-exit;
 				ini_set('default_socket_timeout', $originalConnectionTimeout);
 
 				if ($connection) {
-					echo "YPUI";
+					echo "YOUPI";
 					//print ">>".$object->array_options['options_username_os']." - ".$object->array_options['options_password_os']."<br>\n";exit;
 					if (! @ssh2_auth_password($connection, $object->array_options['options_username_os'], $object->array_options['options_password_os'])) {
 						dol_syslog("Could not authenticate with username ".$object->array_options['options_username_os'], LOG_WARNING);
 						$this->errors[] = "Could not authenticate with username ".$object->array_options['options_username_os']." and password ".preg_replace('/./', '*', $object->array_options['options_password_os']);
 						$error++;
+						echo "<pre>" . print_r($this->error, 1) . "</pre>";
+						exit;
 					} else {
 						if ($remoteaction == 'refresh' || $remoteaction == 'refreshfilesonly') {
 							echo "OK3";
