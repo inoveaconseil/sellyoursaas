@@ -149,11 +149,6 @@ if (empty($css)) {
 //$langs->setDefaultLang(GETPOST('lang', 'aZ09') ? GETPOST('lang', 'aZ09') : 'auto');
 $langs->loadLangs(array("main","companies","bills","sellyoursaas@sellyoursaas","other","errors",'mails','paypal','paybox','stripe','withdrawals','other','admin'));
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 if ($langs->defaultlang == 'en_US') {
 	$langsen = $langs;
 } else {
@@ -295,6 +290,11 @@ if ($resql) {
 	}
 } else {
 	dol_print_error($db);
+}
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
 }
 
 $mythirdpartyaccount->isareseller = 0;
