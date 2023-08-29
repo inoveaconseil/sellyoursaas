@@ -3291,7 +3291,10 @@ class SellYourSaasUtils
 		if (in_array($remoteaction, array('refresh', 'refreshfilesonly', 'recreateauthorizedkeys', 'deletelock', 'recreatelock'))
 			&& (in_array(get_class($object), array('Contrat', 'SellYourSaasContract')))) {
 			// SFTP refresh
+			echo "OK1";
+
 			if (function_exists("ssh2_connect")) {
+				echo "OK2";
 				// Set timeout for ssh2_connect
 				$TIMEOUTSSH = 5; 	// in seconds
 				$originalConnectionTimeout = ini_get('default_socket_timeout');

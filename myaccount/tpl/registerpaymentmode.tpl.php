@@ -70,7 +70,7 @@ $totalInvoiced = $tmp['total_ttc'];
 
 // If thirdparty is not yet a customer (no payment never done), we show him the amount to pay in its first invoice.
 if ($totalInvoiced == 0) {
-	echo "<pre>" . print_r($listofcontractid, 1) . "</pre>";exit;
+	echo "<pre>" . print_r($listofcontractid, 1) . "</pre>";
 	// Loop on contracts
 	$amounttopayasfirstinvoice = 0;
 	$amounttopayasfirstinvoicetinstances = array();
@@ -81,7 +81,9 @@ if ($totalInvoiced == 0) {
 			$comment = 'Refresh contract '.$contract->ref.' on the payment page to be able to show the correct amount to pay';
 			// First launch update of resources:
 			// This update status of install.lock+authorized key (but does not recreate them) and update qty of contract lines + qty into linked template invoice
+			echo "OK";
 			$result = $sellyoursaasutils->sellyoursaasRemoteAction('refresh', $contract, 'admin', '', '', '0', $comment);
+			echo "<pre>" . print_r($result, 1) . "</pre>";exit;
 			$contract->fetch($contract->id);   // Reload to get new values after refresh
 
 			$amounttopayasfirstinvoice += $contract->total_ttc;
