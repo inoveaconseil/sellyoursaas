@@ -3294,7 +3294,7 @@ class SellYourSaasUtils
 			if (function_exists("ssh2_connect")) {
 
 				// Set timeout for ssh2_connect
-				$TIMEOUTSSH = 5; 	// in seconds
+				$TIMEOUTSSH = 60; 	// in seconds
 				$originalConnectionTimeout = ini_get('default_socket_timeout');
 				ini_set('default_socket_timeout', $TIMEOUTSSH);
 
@@ -3314,7 +3314,7 @@ class SellYourSaasUtils
 						$error++;
 					} else {
 						if ($remoteaction == 'refresh' || $remoteaction == 'refreshfilesonly') {
-							echo "OK3";exit;
+							echo "OK3";
 							$sftp = ssh2_sftp($connection);
 							echo"OK4"; exit;
 							if (! $sftp) {
