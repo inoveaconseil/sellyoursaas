@@ -386,11 +386,12 @@ class ActionsSellyoursaas
 					$sellyoursaasutils = new SellYourSaasUtils($db);
 					$result = $sellyoursaasutils->sellyoursaasRemoteAction('deployall', $object, 'admin', $object->thirdparty->email, $object->array_options['options_deployment_init_adminpass'], '0', 'Deploy from contract card', 300);
 					if ($result <= 0) {
-						print_r("toto");
-						exit();
 						$error++;
 						$this->error=$sellyoursaasutils->error;
 						$this->errors=$sellyoursaasutils->errors;
+						print_r($this->error);
+						print_r($this->errors);
+						print_r($result);
 						setEventMessages($this->error, $this->errors, 'errors');
 					}
 				}
