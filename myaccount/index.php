@@ -3036,11 +3036,6 @@ if ($mythirdpartyaccount->isareseller && count($listofcontractidreseller)) {
 	}
 }
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 $atleastonecontractwithtrialended = 0;
 $atleastonepaymentinerroronopeninvoice = 0;
 $atleastoneinvoicedisputed = 0;
@@ -3356,6 +3351,10 @@ if (! empty($mode)) {
 	}
 }
 
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 print '
 	</div>
