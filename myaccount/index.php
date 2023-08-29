@@ -135,11 +135,6 @@ print_r("");
 print_r("backtourl");
 print_r($backtourl);
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 
 if (empty($mode) && empty($welcomecid)) $mode='dashboard';
 $extcss=GETPOST('extcss', 'alpha');
@@ -153,6 +148,11 @@ if (empty($css)) {
 //$langs=new Translate('', $conf);
 //$langs->setDefaultLang(GETPOST('lang', 'aZ09') ? GETPOST('lang', 'aZ09') : 'auto');
 $langs->loadLangs(array("main","companies","bills","sellyoursaas@sellyoursaas","other","errors",'mails','paypal','paybox','stripe','withdrawals','other','admin'));
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 if ($langs->defaultlang == 'en_US') {
 	$langsen = $langs;
