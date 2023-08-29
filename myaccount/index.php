@@ -384,11 +384,6 @@ if (! empty($conf->stripe->enabled)) {
 	}
 }
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 $servicestatuspaypal = 0;
 if (! empty($conf->paypal->enabled)) {
 	$servicestatuspaypal = 0;
@@ -480,8 +475,6 @@ if (empty($welcomecid)) {
 }
 
 if ($cancel) {
-	print 'toto';
-	exit ();
 	if ($action == 'sendbecomereseller') {
 		$backtourl = 'index.php?mode=dashboard';
 	}
@@ -663,6 +656,11 @@ if (getDolGlobalInt("SELLYOURSAAS_RESELLER_ALLOW_CUSTOM_PRICE") && $action == 'r
 	} else {
 		setEventMessages($langs->trans("ErrorClearingPrice"), null, "errors");
 	}
+}
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
 }
 
 if ($action == 'updateurl') {	// update URL from the tab "Domain"
