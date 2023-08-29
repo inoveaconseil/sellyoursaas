@@ -2700,11 +2700,6 @@ if (!empty($showannouncefordomain)) {
 	}
 }
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 // List of available plans/products (available for reseller)
 $arrayofplans=array();
 $arrayofplanscode=array();
@@ -2957,6 +2952,12 @@ $sql.= " WHERE type in ('ban', 'card', 'paypal')";
 $sql.= " AND fk_soc = ".$mythirdpartyaccount->id;
 $sql.= " AND (type = 'ban' OR (type = 'card' AND status = ".$servicestatusstripe.") OR (type = 'paypal' AND status = ".$servicestatuspaypal."))";
 $sql.= " ORDER BY default_rib DESC, tms DESC";
+
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 $resql = $db->query($sql);
 if ($resql) {
