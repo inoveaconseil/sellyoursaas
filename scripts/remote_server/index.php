@@ -359,11 +359,16 @@ function checkScriptFile($scriptfile, $fh, $params)
 		// Check disallowed patterns
 		if (preg_match('/\.\./i', $newline)) {
 			$linenotvalid = $i;
-			print 'toto';
 			break;
 		}
 		// Check allowed pattern
 		if (preg_match('/^touch __INSTANCEDIR__\/[\/a-z0-9_\.]+$/i', $newline)) {
+			continue;
+		}
+		if (preg_match('/^mkdir/', $newline)) {
+			continue;
+		}
+		if (preg_match('/^#/', $newline)) {
 			continue;
 		}
 		if (preg_match('/^rm -fr? __INSTANCEDIR__\/[\/a-z0-9_\.]+$/i', $newline)) {
