@@ -68,9 +68,6 @@ $outstandingTotalIncTax = $tmp['opened'];
 $outstandingRefs = $tmp['refsopened'];
 $totalInvoiced = $tmp['total_ttc'];
 
-print_r("oui");
-exit();
-
 // If thirdparty is not yet a customer (no payment never done), we show him the amount to pay in its first invoice.
 if ($totalInvoiced == 0) {
 	// Loop on contracts
@@ -94,6 +91,9 @@ if ($totalInvoiced == 0) {
 	$defaultdiscountcode = GETPOST('discountcode', 'aZ09');
 	$acceptdiscountcode = ($conf->global->SELLYOURSAAS_ACCEPT_DISCOUNTCODE ? 1 : 0);
 
+	print_r("oui");
+	exit();
+	
 	// We are not yet a customer
 	if ($amounttopayasfirstinvoice) {
 		print '<div class="opacitymedium firstpaymentmessage"><small>'.$langs->trans("AFirstInvoiceOfWillBeDone", price($amounttopayasfirstinvoice, 0, $langs, 1, -1, -1, $conf->currency));
