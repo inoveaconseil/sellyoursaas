@@ -3319,7 +3319,6 @@ class SellYourSaasUtils
 								dol_syslog("Could not execute ssh2_sftp", LOG_ERR);
 								$this->errors[]='Failed to connect to ssh2_sftp to '.$server;
 								$error++;
-print_r("ici");
 							} else {
 								// Check if install.lock exists
 								$dir = $object->array_options['options_database_db'];
@@ -3360,7 +3359,6 @@ print_r("ici");
 								dol_syslog("Could not execute ssh2_sftp", LOG_ERR);
 								$this->errors[]='Failed to connect to ssh2_sftp to '.$server;
 								$error++;
-print_r("ici");
 							} else {
 								// Update ssl certificate
 								// Dir .ssh must have rwx------ permissions
@@ -3384,7 +3382,6 @@ print_r("ici");
 									$stream = fopen($filecert, 'w');
 									if ($stream === false) {
 										$error++;
-print_r("ici");
 										$this->errors[] = $langs->transnoentitiesnoconv("ErrorConnectOkButFailedToCreateFile");
 									} else {
 										$publickeystodeploy = $conf->global->SELLYOURSAAS_PUBLIC_KEY;
@@ -3398,7 +3395,6 @@ print_r("ici");
 									}
 								} else {
 									$error++;
-print_r("ici");
 									$this->errors[] = $langs->transnoentitiesnoconv("ErrorFileAlreadyExists");
 								}
 
@@ -3412,7 +3408,6 @@ print_r("ici");
 								dol_syslog("Could not execute ssh2_sftp", LOG_ERR);
 								$this->errors[] = 'Failed to connect to ssh2_sftp to '.$server;
 								$error++;
-print_r("ici");
 							} else {
 								// Check if install.lock exists
 								$dir = $object->array_options['options_database_db'];
@@ -3436,6 +3431,7 @@ print_r("ici");
 								dol_syslog("Could not execute ssh2_sftp", LOG_ERR);
 								$this->errors[] = 'Failed to connect to ssh2_sftp to '.$server;
 								$error++;
+print_r("ici");
 							} else {
 								// Check if install.lock exists
 								$dir = $object->array_options['options_database_db'];
@@ -3450,6 +3446,7 @@ print_r("ici");
 									$fstat=ssh2_sftp_stat($sftp, $conf->global->DOLICLOUD_INSTANCES_PATH.'/'.$object->array_options['options_username_os'].'/'.$dir.'/documents/install.lock');
 								} else {
 									$error++;
+print_r("ici");
 									$this->errors[] = $langs->transnoentitiesnoconv("ErrorFileAlreadyExists");
 								}
 
@@ -3465,6 +3462,7 @@ print_r("ici");
 								dol_syslog("Could not execute ssh2_sftp", LOG_ERR);
 								$this->errors[] = 'Failed to connect to ssh2_sftp to '.$server;
 								$error++;
+print_r("ici");
 							} else {
 								// Check if install.lock exists
 								$dir = $object->array_options['options_database_db'];
@@ -3473,6 +3471,7 @@ print_r("ici");
 
 								if (! $result) {
 									$error++;
+print_r("ici");
 									$this->errors[] = $langs->transnoentitiesnoconv("ErrorFailToDeleteFile", $object->array_options['options_username_os'].'/'.$dir.'/documents/installmodules.lock');
 								} else {
 									$object->array_options['options_fileinstallmoduleslock'] = '';
@@ -3487,6 +3486,7 @@ print_r("ici");
 								dol_syslog("Could not execute ssh2_sftp", LOG_ERR);
 								$this->errors[] = 'Failed to connect to ssh2_sftp to '.$server;
 								$error++;
+print_r("ici");
 							} else {
 								// Check if install.lock exists
 								$dir = $object->array_options['options_database_db'];
