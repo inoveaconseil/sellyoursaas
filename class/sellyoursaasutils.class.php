@@ -3313,8 +3313,6 @@ class SellYourSaasUtils
 						$this->errors[] = "Could not authenticate with username ".$object->array_options['options_username_os']." and password ".preg_replace('/./', '*', $object->array_options['options_password_os']);
 						$error++;
 					} else {
-						echo "OK34";
-	exit;
 						if ($remoteaction == 'refresh' || $remoteaction == 'refreshfilesonly') {
 							echo "OK3";
 							$sftp = ssh2_sftp($connection);
