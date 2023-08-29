@@ -2328,11 +2328,6 @@ if ($action == 'updateurl') {	// update URL from the tab "Domain"
 
 $form = new Form($db);
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 if ($welcomecid > 0) {
 	// Here $_POST is empty, $GET has just welcomecid=..., $_SESSION['dol_loginsellyoursaas'] is socid =382
 	/*var_dump($_POST);
@@ -2392,6 +2387,12 @@ var select2arrayoflanguage = {
 
 
 llxHeader($head, $langs->trans("MyAccount"), '', '', 0, 0, $arrayofjs, $arrayofcss, '', 'myaccount');
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
+
 
 // Confirmation to buy an option
 if ($action == 'buyoption') {
