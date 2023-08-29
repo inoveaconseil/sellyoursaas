@@ -658,11 +658,6 @@ if (getDolGlobalInt("SELLYOURSAAS_RESELLER_ALLOW_CUSTOM_PRICE") && $action == 'r
 	}
 }
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 if ($action == 'updateurl') {	// update URL from the tab "Domain"
 	$sellyoursaasemail = $conf->global->SELLYOURSAAS_MAIN_EMAIL;
 
@@ -2327,7 +2322,10 @@ if ($action == 'updateurl') {	// update URL from the tab "Domain"
 	// TODO
 }
 
-
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 /*
  * View
