@@ -3342,6 +3342,10 @@ if (empty($welcomecid) && ! in_array($action, array('instanceverification', 'aut
 	}
 }
 
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 // Include mode with php template
 if (! empty($mode)) {
@@ -3351,10 +3355,6 @@ if (! empty($mode)) {
 	}
 }
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
 
 print '
 	</div>
