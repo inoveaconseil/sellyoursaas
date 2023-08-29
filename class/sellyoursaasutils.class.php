@@ -3306,7 +3306,7 @@ class SellYourSaasUtils
 				$connection = ssh2_connect($server, $server_port);
 				echo "OK3333";
 				echo "<pre>" . print_r($connection, 1) . "</pre>";
-
+exit;
 				ini_set('default_socket_timeout', $originalConnectionTimeout);
 
 				if ($connection) {
