@@ -778,6 +778,8 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 			}
 			if ($urlfortermofuse) {
 				?>
+			  <iframe src="<?=$urlfortermofuse?>" width="50%" height="800" style="border:1px solid black;">
+
 			  <p class="termandcondition small center" style="color:#444; margin:10px 3px;" trans="1"><?php echo $langs->trans("WhenRegisteringYouAccept", $urlfortermofuse) ?></p>
 				<?php
 			}
