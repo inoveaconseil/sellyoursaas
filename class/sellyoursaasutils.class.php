@@ -3308,7 +3308,7 @@ class SellYourSaasUtils
 
 				if ($connection) {
 					echo "YOUPI";
-					//print ">>".$object->array_options['options_username_os']." - ".$object->array_options['options_password_os']."<br>\n";exit;
+					print ">>".$object->array_options['options_username_os']." - ".$object->array_options['options_password_os']."<br>\n";exit;
 					if (! @ssh2_auth_password($connection, $object->array_options['options_username_os'], $object->array_options['options_password_os'])) {
 						dol_syslog("Could not authenticate with username ".$object->array_options['options_username_os'], LOG_WARNING);
 						$this->errors[] = "Could not authenticate with username ".$object->array_options['options_username_os']." and password ".preg_replace('/./', '*', $object->array_options['options_password_os']);
