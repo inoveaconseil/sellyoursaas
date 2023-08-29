@@ -3863,7 +3863,6 @@ class SellYourSaasUtils
 
 					if ($retarray['curl_error_no'] != '' || $retarray['http_code'] != 200) {
 						$error++;
-						print_r(urldecode($urltoget));
 						if ($retarray['curl_error_no'] != '') $this->errors[] = $retarray['curl_error_msg'];
 						else $this->errors[] = $retarray['content'];
 					}
