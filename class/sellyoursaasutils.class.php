@@ -4474,6 +4474,12 @@ class SellYourSaasUtils
 
 		dol_syslog("* sellyoursaasRemoteAction END (remoteaction=".$remoteaction." email=".$email." error=".$error." errorforsshconnect=".$errorforsshconnect." errorfordb=".$errorfordb." result=".($error ? 'ko' : 'ok')." retarray['http_code']=".(empty($retarray['http_code']) ? '' : $retarray['http_code']).(get_class($object) == 'Contrat' ? ' contractid='.$object->id.' contractref='.$object->ref: '').")", LOG_DEBUG, -1);
 
+		print("error:");
+		print_r($error);
+		print("errorforsshconnect:");
+		print_r($errorforsshconnect);
+		print("errorfordb:");
+		print_r($errorfordb);
 		if ($error) {
 			if ($errorforsshconnect && $errorfordb) {
 				return -2;
