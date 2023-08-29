@@ -103,9 +103,9 @@ input,button,select,textarea {font-family: 'Helvetica Neue', Helvetica, Arial, s
 }
 
 .btn-primary {
-background-color: #6C2FEC;
-border-color: #6C2FEC;
-border-radius: 10px;
+background-color: #6C2FEC !important;
+border-color: #6C2FEC !important;
+border-radius: 10px !important;
 }
 select,textarea,input[type='text'],input[type='password'],input[type='datetime'],input[type='datetime-local'],input[type='date'],input[type='month'],input[type='time'],input[type='week'],input[type='number'],input[type='email'],input[type='url'],input[type='search'],input[type='tel'],input[type='color'],.uneditable-input
 {
@@ -258,10 +258,11 @@ padding-top:0px
 }
 
 div.block header {
-background:linear-gradient(45deg, #6C2FEC, #C3D1F8);
+background-color: #334;
 color: #eee;padding: 10px;margin-bottom: 20px;
 text-align: center;
 }
+
 div.block header h1 {
 padding-top: 0;
 margin-bottom: 2px;

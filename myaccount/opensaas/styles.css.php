@@ -253,8 +253,16 @@ background: #fff;
 div.block {
 background-color: #fff;
 }
+
+.btnalreadyanaccount {
+    color: #6C2FEC;
+    border: 2px solid;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
 div.block header {
-background-color: #334;
+background:linear-gradient(45deg, #6C2FEC, #C3D1F8);
 color: #eee;padding: 10px;margin-bottom: 20px;
 text-align: center;
 }
