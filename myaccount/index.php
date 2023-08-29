@@ -439,6 +439,8 @@ if (empty($welcomecid)) {
 }
 
 if ($cancel) {
+	print 'toto'
+	exit ();
 	if ($action == 'sendbecomereseller') {
 		$backtourl = 'index.php?mode=dashboard';
 	}
