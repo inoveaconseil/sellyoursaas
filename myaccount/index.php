@@ -104,14 +104,42 @@ $action = GETPOST('action', 'aZ09');
 $cancel = GETPOST('cancel', 'alphanohtml');
 $backtourl = GETPOST('backtourl', 'alpha');
 
+print_r("Conf global");
 print_r($conf->global);
+print_r("");
+print_r("");
+print_r("welcomid");
 print_r($welcomecid);
+print_r("");
+print_r("");
+print_r("mode");
 print_r($mode);
+print_r("");
+print_r("");
+print_r("option");
 print_r($option);
+print_r("");
+print_r("");
+print_r("id");
 print_r($id);
+print_r("");
+print_r("");
+print_r("action");
 print_r($action);
+print_r("");
+print_r("");
+print_r("cancel");
 print_r($cancel);
+print_r("");
+print_r("");
+print_r("backtourl");
 print_r($backtourl);
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
+
 
 if (empty($mode) && empty($welcomecid)) $mode='dashboard';
 $extcss=GETPOST('extcss', 'alpha');
