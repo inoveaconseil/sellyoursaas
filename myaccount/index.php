@@ -2954,11 +2954,6 @@ $sql.= " AND (type = 'ban' OR (type = 'card' AND status = ".$servicestatusstripe
 $sql.= " ORDER BY default_rib DESC, tms DESC";
 
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 $resql = $db->query($sql);
 if ($resql) {
 	$num_rows = $db->num_rows($resql);
@@ -2981,6 +2976,11 @@ if ($resql) {
 $atleastonepaymentmode = (count($arrayofcompanypaymentmode) > 0 ? 1 : 0);
 $nbpaymentmodeok = count($arrayofcompanypaymentmode);
 
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 // Fill var to count nb of instances
 $nbofinstances = 0;
