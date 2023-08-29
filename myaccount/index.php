@@ -2524,10 +2524,6 @@ print '
 
 //var_dump($_SESSION["dol_loginsellyoursaas"]);
 //var_dump($user);
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
 
 
 // Special case - when coming from a specific contract id $welcomid
@@ -2702,6 +2698,11 @@ if (!empty($showannouncefordomain)) {
 			dol_print_error($db);
 		}
 	}
+}
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
 }
 
 // List of available plans/products (available for reseller)
