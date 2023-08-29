@@ -371,10 +371,7 @@ if ($mythirdpartyaccount->isareseller && in_array($mode, array('dashboard', 'myc
 }
 //var_dump(array_keys($listofcontractidreseller));
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
+
 
 // Define environment of payment modes
 $servicestatusstripe = 0;
@@ -386,6 +383,12 @@ if (! empty($conf->stripe->enabled)) {
 		$servicestatusstripe = 1;
 	}
 }
+
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
+
 $servicestatuspaypal = 0;
 if (! empty($conf->paypal->enabled)) {
 	$servicestatuspaypal = 0;
