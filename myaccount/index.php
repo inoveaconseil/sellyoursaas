@@ -2388,12 +2388,6 @@ var select2arrayoflanguage = {
 
 llxHeader($head, $langs->trans("MyAccount"), '', '', 0, 0, $arrayofjs, $arrayofcss, '', 'myaccount');
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
-
 // Confirmation to buy an option
 if ($action == 'buyoption') {
 	$serviceoption = new Product($db);
@@ -2530,6 +2524,10 @@ print '
 
 //var_dump($_SESSION["dol_loginsellyoursaas"]);
 //var_dump($user);
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 
 // Special case - when coming from a specific contract id $welcomid
