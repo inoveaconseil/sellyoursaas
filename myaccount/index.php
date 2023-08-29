@@ -2977,11 +2977,6 @@ $atleastonepaymentmode = (count($arrayofcompanypaymentmode) > 0 ? 1 : 0);
 $nbpaymentmodeok = count($arrayofcompanypaymentmode);
 
 
-if ($mode == "registerpaymentmode")
-{
-	exit();
-}
-
 // Fill var to count nb of instances
 $nbofinstances = 0;
 $nbofinstancesinprogress = 0;
@@ -3041,6 +3036,10 @@ if ($mythirdpartyaccount->isareseller && count($listofcontractidreseller)) {
 	}
 }
 
+if ($mode == "registerpaymentmode")
+{
+	exit();
+}
 
 $atleastonecontractwithtrialended = 0;
 $atleastonepaymentinerroronopeninvoice = 0;
