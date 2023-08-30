@@ -478,8 +478,8 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			if ($line->fk_product > 0) {
 				$tmpproduct->fetch($line->fk_product);
 
-				$maxHeight=40;
-				$maxWidth=40;
+				$maxHeight=150;
+				$maxWidth=150;
 				$alt='';
 				$htmlforphoto = $tmpproduct->show_photos('product', $conf->product->dir_output, 1, 1, 1, 0, 0, $maxHeight, $maxWidth, 1, 1, 1);
 
