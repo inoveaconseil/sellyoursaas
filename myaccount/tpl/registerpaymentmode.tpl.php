@@ -91,9 +91,6 @@ if ($totalInvoiced == 0) {
 	$defaultdiscountcode = GETPOST('discountcode', 'aZ09');
 	$acceptdiscountcode = ($conf->global->SELLYOURSAAS_ACCEPT_DISCOUNTCODE ? 1 : 0);
 
-	print_r("oui");
-	exit();
-
 	// We are not yet a customer
 	if ($amounttopayasfirstinvoice) {
 		print '<div class="opacitymedium firstpaymentmessage"><small>'.$langs->trans("AFirstInvoiceOfWillBeDone", price($amounttopayasfirstinvoice, 0, $langs, 1, -1, -1, $conf->currency));
