@@ -481,12 +481,12 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 				$maxHeight=150;
 				$maxWidth=150;
 				$alt='';
-				$htmlforphoto = $tmpproduct->show_photos('product', $conf->product->dir_output, 1, 1, 1, 0, 0, $maxHeight, $maxWidth, 1, 1, 1);
+				$htmlforphoto = $tmpproduct->show_photos('product', $conf->product->dir_output, 1, 1, 1, 0, 0, 60, 60, 1, 1, 1);
 
 				if (empty($htmlforphoto) || $htmlforphoto == '<!-- Photo -->' || $htmlforphoto == '<!-- Photo -->'."\n") {
 					print '<!--no photo defined -->';
 					print '<table width="100%" valign="top" align="center" border="0" cellpadding="2" cellspacing="2"><tr><td width="100%" class="photo">';
-					print '<img class="photo photowithmargin" border="0" height="60" width="60" src="'.DOL_URL_ROOT.'/public/theme/common/nophoto.png" title="'.dol_escape_htmltag($alt).'">';
+					print '<img class="photo photowithmargin" border="0" height="60px" width="60px" src="'.DOL_URL_ROOT.'/public/theme/common/nophoto.png" title="'.dol_escape_htmltag($alt).'">';
 					print '</td></tr></table>';
 				} else {
 					print $htmlforphoto;
