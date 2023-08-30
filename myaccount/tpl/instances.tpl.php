@@ -270,7 +270,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 		$arrayforsort[$id] = array('position'=>$position, 'id'=>$id, 'contract'=>$contract);
 	}
 	$arrayforsort = dol_sort_array($arrayforsort, 'position');
-
+	echo "<pre>" . print_r($contract, 1) . "</pre>";
 	foreach ($arrayforsort as $id => $tmparray) {
 		$id = $tmparray['id'];
 		$contract = $tmparray['contract'];
