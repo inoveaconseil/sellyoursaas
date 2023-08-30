@@ -804,7 +804,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			}
 
 			print '</div>';
-			print '<div class="tagtd valignmiddle">';
+			print '<div class="tagtd valignmiddle" style="width:60%;max-width:60%">';
 			$label = $tmpproduct->label;
 			$desc = $tmpproduct->description;
 			$producturl = $tmpproduct->url;
