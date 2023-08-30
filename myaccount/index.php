@@ -2446,7 +2446,7 @@ print '
 	  </form>
 
 	  <!-- Logo -->
-      <span class="navbar-brand"><img src="'.$linklogoblack.'" height="34px"></span>
+      <span class="navbar-brand"><img src="'.$linklogoblack.'"></span>
 
 	  <!-- Menu -->
       <div class="collapse navbar-collapse" id="navbars">
