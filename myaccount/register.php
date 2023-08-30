@@ -776,7 +776,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 				if (preg_match('/^fr/i', $langs->defaultlang)) $urlfortermofuse = 'https://www.'.$conf->global->SELLYOURSAAS_MAIN_DOMAIN_NAME.'/fr-conditions-utilisations.php';
 				if (preg_match('/^es/i', $langs->defaultlang)) $urlfortermofuse = 'https://www.'.$conf->global->SELLYOURSAAS_MAIN_DOMAIN_NAME.'/es-terminos-y-condiciones.php';
 			}
-			if ($urlfortermofuse) {
+			if (!empty($urlfortermofuse)) {
 				?>
 			  <iframe src="<?=$urlfortermofuse?>" width="50%" height="800" style="border:1px solid black;">
 
