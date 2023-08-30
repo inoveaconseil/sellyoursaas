@@ -758,7 +758,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 				<div class="group required">
 					<iframe src="<?=$urlfortermofuse?>" width="100%" height="800px" style="border:1px solid black;" ></iframe>
 
-					<input type="checkbox" id="checkboxtermsandconditions" name="checkboxtermsandconditions" class="valignmiddle inline" style="margin-top: 0; float:left; margin-right:10px" value="1" required="1"<?php echo (GETPOST('checkboxtermsandconditions') ? ' checked="checked"' : ''); ?>>
+					<input type="checkbox" id="checkboxtermsandconditions" name="checkboxtermsandconditions" class="valignmiddle inline" style="margin-top: 10px; float:left; margin-right:10px" value="1" required="1"<?php echo (GETPOST('checkboxtermsandconditions') ? ' checked="checked"' : ''); ?>>
 					<label for="checkboxtermsandconditions" class="valignmiddle small inline"><?php
 						$urlfortermofuse = 'https://www.'.getDolGlobalString('SELLYOURSAAS_MAIN_DOMAIN_NAME').'/'.getDolGlobalString('SELLYOURSAAS_TERMSANDCONDITIONS');
 						echo $langs->trans("WhenRegisteringYouAccept", $urlfortermofuse);
