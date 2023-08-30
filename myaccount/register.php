@@ -756,7 +756,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 			<!-- mandatory checkbox for terms and conditions -->
 			<section id="checkboxtermsandconditions">
 				<div class="group required">
-					<iframe src="<?=$urlfortermofuse?>" width="50%" height="800" style="border:1px solid black;">
+					<iframe src="<?=$urlfortermofuse?>" width="100%" height="800px" style="border:1px solid black;" />
 
 					<input type="checkbox" id="checkboxtermsandconditions" name="checkboxtermsandconditions" class="valignmiddle inline" style="margin-top: 0" value="1" required="1"<?php echo (GETPOST('checkboxtermsandconditions') ? ' checked="checked"' : ''); ?>>
 					<label for="checkboxtermsandconditions" class="valignmiddle small inline"><?php
