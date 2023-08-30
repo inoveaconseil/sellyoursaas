@@ -427,7 +427,7 @@ if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 	$txtva = $txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
 	$date_start = dol_now();
 	$date_end = null;
-	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,$qty,$serviceoption->txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
+	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,$qty,$serviceoption->tva_tx,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
 	$contractedit->update($user);
 	$contractedit->validate($user);
 
