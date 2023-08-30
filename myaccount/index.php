@@ -447,22 +447,26 @@ if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 	if (!$error) {
 		$contractedit->fetchObjectLinked();
 		$arrayfacturerec = array_values($contractedit->linkedObjects["facturerec"]);
-		if (count($arrayfacturerec) != 1) {
-			// TODO: Send mail auto to inform admins of multiples faturerec contract
-			$error ++;
-		} else {
-			$facturerec = $arrayfacturerec[0];
-			$foundlinefacturerec = 0;
-			foreach ($facturerec->lines as $key => $line) {
-				if ($line->description == $serviceoption->desc && $line->fk_product == $serviceoption->id) {
-					$foundlinefacturerec ++;
+		if(count($arrayfacturerec) > 0) {
+			if (count($arrayfacturerec) != 1) {
+				// TODO: Send mail auto to inform admins of multiples faturerec contract
+				$error++;
+			} else {
+				$facturerec=$arrayfacturerec[0];
+				$foundlinefacturerec=0;
+				foreach ($facturerec->lines as $key=>$line) {
+					if ($line->description == $serviceoption->desc && $line->fk_product == $serviceoption->id) {
+						$foundlinefacturerec++;
+					}
 				}
-			}
-			if (!$foundlinefacturerec) {
-				$result = $facturerec->addLine($serviceoption->desc, $serviceoption->price, 1, $serviceoption->tva_tx, $serviceoption->localtax1_tx, $serviceoption->localtax2_tx, $serviceoption->id, 0, 'HT', 0, '', 0, 0, -1, 0, '', null, 0, 1, 1);
-				if (!$result) {
-					// TODO: Send mail auto to inform admins of error line creation facturRec
-					$error ++;
+				if (!$foundlinefacturerec) {
+					$result=$facturerec->addLine($serviceoption->desc, $serviceoption->price, 1, $serviceoption->tva_tx,
+						$serviceoption->localtax1_tx, $serviceoption->localtax2_tx, $serviceoption->id, 0, 'HT', 0, '',
+						0, 0, -1, 0, '', null, 0, 1, 1);
+					if (!$result) {
+						// TODO: Send mail auto to inform admins of error line creation facturRec
+						$error++;
+					}
 				}
 			}
 		}

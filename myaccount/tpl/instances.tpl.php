@@ -831,6 +831,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 				print $arrayofoptionsfull[$key]['labelprice'].'<br>';
 			}
 			// Button to subscribe
+			echo "<pre>" . print_r($contract, 1) . "</pre>";
 			if (!empty($tmpproduct->array_options['options_package'])) {
 				// If there is a package, sho wlink to subscribe
 				if(!in_array($tmpproduct->id,$alreadyactivate))
