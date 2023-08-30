@@ -270,7 +270,6 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 		$arrayforsort[$id] = array('position'=>$position, 'id'=>$id, 'contract'=>$contract);
 	}
 	$arrayforsort = dol_sort_array($arrayforsort, 'position');
-	echo "<pre>" . print_r($contract, 1) . "</pre>";
 	foreach ($arrayforsort as $id => $tmparray) {
 		$id = $tmparray['id'];
 		$contract = $tmparray['contract'];
@@ -833,11 +832,15 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			// Button to subscribe
 			if (!empty($tmpproduct->array_options['options_package'])) {
 				// If there is a package, sho wlink to subscribe
-				if(!in_array($tmpproduct->id,$alreadyactivate))
-					print '<a class="btn btn-primary wordbreak" href="/index.php?mode=instances&option='.$tmpproduct->id.'&id='.$contract->id.'&action=buyoption">'.$langs->trans("BuyOption").'</a>';
-				else
-					print $langs->trans('Alreadyactivate');
-
+				if(!sellyoursaasIsPaidInstance($contract)) {
+					print $langs->trans('Impossib');
+				}else {
+					if (!in_array($tmpproduct->id, $alreadyactivate)) {
+						print '<a class="btn btn-primary wordbreak" href="/index.php?mode=instances&option=' . $tmpproduct->id . '&id=' . $contract->id . '&action=buyoption">' . $langs->trans("BuyOption") . '</a>';
+					} else {
+						print $langs->trans('Alreadyactivate');
+					}
+				}
 			} else {
 				// If no package
 				if ($producturl) {
