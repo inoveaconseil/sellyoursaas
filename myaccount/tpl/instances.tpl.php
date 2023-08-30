@@ -833,7 +833,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			if (!empty($tmpproduct->array_options['options_package'])) {
 				// If there is a package, sho wlink to subscribe
 				if(!sellyoursaasIsPaidInstance($contract)) {
-					print $langs->trans('Impossib');
+					print $langs->trans('ImpossibleInFreeMode');
 				}else {
 					if (!in_array($tmpproduct->id, $alreadyactivate)) {
 						print '<a class="btn btn-primary wordbreak" href="/index.php?mode=instances&option=' . $tmpproduct->id . '&id=' . $contract->id . '&action=buyoption">' . $langs->trans("BuyOption") . '</a>';

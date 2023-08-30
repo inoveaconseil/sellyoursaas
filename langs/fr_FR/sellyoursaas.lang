@@ -843,3 +843,4 @@ BuyOption = Achat Immédiat
 BuyOptionTitle = Achat immédiat
 ConfirmBuyOption = Êtes-vous sûr de vouloir souscrire à l'option %s
 Alreadyactivate = Option déjà souscrite
+ImpossibleInFreeMode = Achat impossible en mode test
