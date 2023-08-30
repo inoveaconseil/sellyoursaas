@@ -3314,9 +3314,7 @@ class SellYourSaasUtils
 						$error++;
 					} else {
 						if ($remoteaction == 'refresh' || $remoteaction == 'refreshfilesonly') {
-							echo "<pre>" . print_r($connection, 1) . "</pre>";
 							$sftp = ssh2_sftp($connection);
-							echo"OK4"; exit;
 							if (! $sftp) {
 								dol_syslog("Could not execute ssh2_sftp", LOG_ERR);
 								$this->errors[]='Failed to connect to ssh2_sftp to '.$server;
