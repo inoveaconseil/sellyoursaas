@@ -805,8 +805,8 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 
 			print '</div>';
 			print '<div class="tagtd valignmiddle">';
-			$label = $tmpprod->label;
-			$desc = $tmpprod->description;
+			$label = $tmpproduct->label;
+			$desc = $tmpproduct->description;
 			$producturl = $tmpproduct->url;
 			if (!empty($tmpproduct->multilangs[$langs->defaultlang])) {
 				$label = $tmpproduct->multilangs[$langs->defaultlang]['label'];
