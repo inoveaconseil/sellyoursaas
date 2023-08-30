@@ -486,7 +486,7 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 				if (empty($htmlforphoto) || $htmlforphoto == '<!-- Photo -->' || $htmlforphoto == '<!-- Photo -->'."\n") {
 					print '<!--no photo defined -->';
 					print '<table width="100%" valign="top" align="center" border="0" cellpadding="2" cellspacing="2"><tr><td width="100%" class="photo">';
-					print '<img class="photo photowithmargin" border="0" height="'.$maxHeight.'" src="'.DOL_URL_ROOT.'/public/theme/common/nophoto.png" title="'.dol_escape_htmltag($alt).'">';
+					print '<img class="photo photowithmargin" border="0" height="'.$maxHeight.'" width="'.$maxWidth.'" src="'.DOL_URL_ROOT.'/public/theme/common/nophoto.png" title="'.dol_escape_htmltag($alt).'">';
 					print '</td></tr></table>';
 				} else {
 					print $htmlforphoto;
