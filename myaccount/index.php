@@ -420,6 +420,20 @@ if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 
 		$user->getrights();
 	}
+	$contractedit = new Contrat($db);
+	$contractedit->fetch($id);
+	$contractedit->reopen($user);
+	$qty = 1;
+	$txtva = $txlocaltax1 = $txlocaltax2 = $remise_percent = 0;
+	$date_start = dol_now();
+	$date_end = null;
+	$lineid = $contractedit->addline($serviceoption->desc,$serviceoption->price,$qty,$serviceoption->txtva,$txlocaltax1,$txlocaltax2,$serviceoption->id,$remise_percent,$date_start,$date_end);
+	$contractedit->update($user);
+	$contractedit->validate($user);
+
+	$contractLine = new ContratLigne($db);
+	$contractLine->fetch($lineid);
+	$contractLine->active_line($user,$date_start);
 
 	if (! $error) {
 		$sellyoursaasutils = new SellYourSaasUtils($db);
@@ -428,25 +442,6 @@ if($action=='confirm_buyoption' && !empty($option) && !empty($id)){
 			$error++;
 			setEventMessages($sellyoursaasutils->error, $sellyoursaasutils->errors, 'errors');
 		}
-	}
-
-	if(!$error) {
-		$contractedit=new Contrat($db);
-		$contractedit->fetch($id);
-		$contractedit->reopen($user);
-		$qty=1;
-		$txtva=$txlocaltax1=$txlocaltax2=$remise_percent=0;
-		$date_start=dol_now();
-		$date_end=null;
-		$lineid=$contractedit->addline($serviceoption->desc, $serviceoption->price, $qty, $serviceoption->txtva,
-			$txlocaltax1, $txlocaltax2, $serviceoption->id, $remise_percent, $date_start, $date_end);
-		$contractedit->update($user);
-		$contractedit->validate($user);
-
-		$contractLine=new ContratLigne($db);
-		$contractLine->fetch($lineid);
-		$contractLine->active_line($user, $date_start);
-
 	}
 
 	if (!$error) {
