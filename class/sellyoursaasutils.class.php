@@ -3271,6 +3271,7 @@ class SellYourSaasUtils
 			$listoflines = array($object);
 		}
 		print_r($listoflines);
+		exit();
 		dol_syslog("* sellyoursaasRemoteAction START (remoteaction=".$remoteaction." initial email=".$email.(get_class($object) == 'Contrat' ? ' contractid='.$object->id.' contractref='.$object->ref: '')." timeout=".$timeout.")", LOG_DEBUG, 1);
 
 		// Load parent contract of the processed contract line $tmpobject
