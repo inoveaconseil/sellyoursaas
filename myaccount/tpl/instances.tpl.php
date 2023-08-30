@@ -809,15 +809,15 @@ if (count($listofcontractid) == 0) {				// If all contracts were removed
 			$producturl = $tmpproduct->url;
 			if (!empty($tmpproduct->multilangs[$langs->defaultlang])) {
 				$label = $tmpproduct->multilangs[$langs->defaultlang]['label'];
-				$description = $tmpproduct->multilangs[$langs->defaultlang]['description'];
+				$desc = $tmpproduct->multilangs[$langs->defaultlang]['description'];
 			} elseif (!empty($tmpproduct->multilangs['en_US'])) {
 				$label = $tmpproduct->multilangs['en_US']['label'];
-				$description = $tmpproduct->multilangs['en_US']['description'];
+				$desc = $tmpproduct->multilangs['en_US']['description'];
 			}
 			print $label.'<br>';
-			if ($description) {
+			if ($desc) {
 				print '<span class="small">';
-				print $description.'<br>';
+				print $desc.'<br>';
 				print '</span>';
 			}
 			if ($producturl) {
