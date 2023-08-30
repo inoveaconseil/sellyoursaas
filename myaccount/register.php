@@ -750,10 +750,14 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 			</section>
 			<?php } ?>
 
-			<?php if (getDolGlobalString('SELLYOURSAAS_TERMSANDCONDITIONS')) { ?>
+			<?php if (getDolGlobalString('SELLYOURSAAS_TERMSANDCONDITIONS')) {
+				$urlfortermofuse = 'https://www.'.getDolGlobalString('SELLYOURSAAS_MAIN_DOMAIN_NAME').'/'.getDolGlobalString('SELLYOURSAAS_TERMSANDCONDITIONS');
+				?>
 			<!-- mandatory checkbox for terms and conditions -->
 			<section id="checkboxtermsandconditions">
 				<div class="group required">
+					<iframe src="<?=$urlfortermofuse?>" width="50%" height="800" style="border:1px solid black;">
+
 					<input type="checkbox" id="checkboxtermsandconditions" name="checkboxtermsandconditions" class="valignmiddle inline" style="margin-top: 0" value="1" required="1"<?php echo (GETPOST('checkboxtermsandconditions') ? ' checked="checked"' : ''); ?>>
 					<label for="checkboxtermsandconditions" class="valignmiddle small inline"><?php
 						$urlfortermofuse = 'https://www.'.getDolGlobalString('SELLYOURSAAS_MAIN_DOMAIN_NAME').'/'.getDolGlobalString('SELLYOURSAAS_TERMSANDCONDITIONS');
@@ -776,10 +780,8 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 				if (preg_match('/^fr/i', $langs->defaultlang)) $urlfortermofuse = 'https://www.'.$conf->global->SELLYOURSAAS_MAIN_DOMAIN_NAME.'/fr-conditions-utilisations.php';
 				if (preg_match('/^es/i', $langs->defaultlang)) $urlfortermofuse = 'https://www.'.$conf->global->SELLYOURSAAS_MAIN_DOMAIN_NAME.'/es-terminos-y-condiciones.php';
 			}
-			if (!empty($urlfortermofuse)) {
+			if ($urlfortermofuse) {
 				?>
-			  <iframe src="<?=$urlfortermofuse?>" width="50%" height="800" style="border:1px solid black;">
-
 			  <p class="termandcondition small center" style="color:#444; margin:10px 3px;" trans="1"><?php echo $langs->trans("WhenRegisteringYouAccept", $urlfortermofuse) ?></p>
 				<?php
 			}
