@@ -2,7 +2,7 @@
 # Purge data
 #
 # Put the following entry into your root cron
-#40 4 4 * * /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/backup_mysql_system.sh databasename confirm
+#40 4 4 * * /home/jarvis/wwwroot/dolibarr_sellyoursaas/scripts/backup_mysql_system.sh databasename confirm
 
 #set -e
 
@@ -28,8 +28,8 @@ echo "# realname dir ---> $(dirname $(realpath ${0}))"
 export PID=${$}
 export scriptdir=$(dirname $(realpath ${0}))
 export DOMAIN=`grep '^domain=' /etc/sellyoursaas.conf | cut -d '=' -f 2`
-export targetdir="/home/admin/backup/mysql"				
-export targetdir2="/home/admin/backup/conf"				
+export targetdir="/home/jarvis/backup/mysql"				
+export targetdir2="/home/jarvis/backup/conf"				
 
 export DATABASE=`grep '^database=' /etc/sellyoursaas.conf | cut -d '=' -f 2`
 export DATABASEMORE=`grep '^databasemore=' /etc/sellyoursaas.conf | cut -d '=' -f 2`

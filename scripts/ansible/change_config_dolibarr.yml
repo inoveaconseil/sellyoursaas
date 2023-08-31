@@ -13,7 +13,7 @@
   tasks:
   - name: Change conf value
     ini_file:
-      path: /home/admin/wwwroot/dolibarr/htdocs/conf/conf.php
+      path: /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php
       section: null
       option: "${{option}}"
       value: "'{{value}}';"

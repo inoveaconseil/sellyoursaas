@@ -67,8 +67,8 @@ if [ "x$1" == "xstart" ]; then
 			echo "Launch $dolibarrdir/htdocs/custom/sellyoursaas/scripts/smtp_watchdog_daemon1.php"
 			"${dolibarrdir}/htdocs/custom/sellyoursaas/scripts/smtp_watchdog_daemon1.php" 2>&1 &
 		else
-			echo Launch /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/smtp_watchdog_daemon1.php
-			/home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/smtp_watchdog_daemon1.php 2>&1 &
+			echo Launch /home/jarvis/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/smtp_watchdog_daemon1.php
+			/home/jarvis/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/smtp_watchdog_daemon1.php 2>&1 &
 		fi
 		echo "smtp_watchdog_daemon1 started"
 	else

@@ -13,7 +13,7 @@
   become_user: root
   tasks:
   - name: Launch clean.sh
-    command: "/home/admin/wwwroot/dolibarr_sellyoursaas/scripts/clean.sh {{command}}"
+    command: "/home/jarviswwwroot/dolibarr_sellyoursaas/scripts/clean.sh {{command}}"
     register: command_output
 
   - debug:

@@ -152,7 +152,7 @@ if (empty($instanceserver) || empty($mode) || empty($option) || empty($stringtoa
 	print "Script must be ran from each deployment server with login root.\n";
 	print "\n";
 	print "Usage:   ".$script_file."  test|confirm  discardiffound|addiffound|replace  'line to add'\n";
-	print "Example: ".$script_file."  test  replace  'php_admin_value open_basedir /tmp/:/home/admin/wwwroot/dolibarr_sellyoursaas/scripts/:__InstanceRoot__'\n";
+	print "Example: ".$script_file."  test  replace  'php_admin_value open_basedir /tmp/:/home/jarvis/wwwroot/dolibarr_sellyoursaas/scripts/:__InstanceRoot__'\n";
 	print "Return code: 0 if success, <>0 if error\n";
 	exit(-1);
 }
@@ -207,7 +207,7 @@ foreach ($listofvirtualhost as $virtualhostconfarray) {
 			$rewritefile = 0;
 			print "  -> We discard file ".$virtualhostconf.".\n";
 		}
-		//php_admin_value open_basedir /tmp/:/home/admin/wwwroot/dolibarr_sellyoursaas/scripts/:/home/jail/home/osur3s2ffyep/dbnzCo96O2J/
+		//php_admin_value open_basedir /tmp/:/home/jarvis/wwwroot/dolibarr_sellyoursaas/scripts/:/home/jail/home/osur3s2ffyep/dbnzCo96O2J/
 
 		if ($rewritefile) {
 			print "  -> We will rewrite the file ".$virtualhostconf." after adding the string (old file will be renamed into .beforeupdate).\n";

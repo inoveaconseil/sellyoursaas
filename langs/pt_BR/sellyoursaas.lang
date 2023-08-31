@@ -10,7 +10,7 @@ RecreateAuthorizedKey=Criar arquivo allowed_keys
 DeploymentIPQuality=Índice de qualidade de IP
 DeploymentIPQualityDesc=Quando um cadastro é feito, é feita uma verificação no IP do assinante para: <br> - http://check.getipintel.net/check.php?ip=IP&contact=&flag=f <br> e/ou <br> - https://www. ipqualityscore.com
 ClosingAccountIsTemporarlyDisabledTryLater=A exclusão de instâncias existentes é suspensa temporariamente para fins de manutenção. Por favor tente mais tarde...
-SSHPublicKeyDesc=Todas as chaves públicas SSH implantadas em cada nova instância. As chaves são implantadas no arquivo .ssh/authorized_keys_support. Você pode incluir aqui o conteúdo do arquivo /home/admin/.ssh/id_rsa_sellyoursaas.pub e as chaves públicas da equipe de administradores de TI.
+SSHPublicKeyDesc=Todas as chaves públicas SSH implantadas em cada nova instância. As chaves são implantadas no arquivo .ssh/authorized_keys_support. Você pode incluir aqui o conteúdo do arquivo /home/jarvis.ssh/id_rsa_sellyoursaas.pub e as chaves públicas da equipe de administradores de TI.
 CustomVirtualHostDir=Linha RequireAll de host virtual personalizado
 EnterAVirtualHostDirLine=Insira uma linha para incluir na seção RequireAll da seção Directory do arquivo virtualhost do servidor da web. Por exemplo: <br> Exigir ip 1.2.3.4/16 <br> Você deve suspender e cancelar a suspensão da instância para que isso seja efetivo.
 ErrorEMailAddressBannedForSecurityReasons=Este tipo de endereço de e-mail foi banido por motivos de segurança. Use outro endereço de e-mail ou entre em contato conosco se não puder fazer o contrário.

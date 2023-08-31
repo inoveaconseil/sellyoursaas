@@ -303,8 +303,8 @@ if [[ "$mode" == "rename" ]]; then
 	
 		echo `date +'%Y-%m-%d %H:%M:%S'`" ***** For instance in $targetdir/$osusername/$dbname, we will create a new custom virtual name $fqn.custom"
 
-		export pathforcertifmaster="/home/admin/wwwroot/dolibarr_documents/sellyoursaas/crt"
-		export pathforcertiflocal="/home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/crt"
+		export pathforcertifmaster="/home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/crt"
+		export pathforcertiflocal="/home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/crt"
 	
 		echo `date +'%Y-%m-%d %H:%M:%S'`" Check that SSL files for $fqn.custom exists and create them if not"
 		if [[ "x$CERTIFFORCUSTOMDOMAIN" != "x" ]]; then
@@ -350,7 +350,7 @@ if [[ "$mode" == "rename" ]]; then
 			# No $CERTIFFORCUSTOMDOMAIN forced (no cert file was created initially), so we will generate one
 			export domainnameorcustomurl=`echo $customurl | cut -d "." -f 1`
 			# We must create it using letsencrypt if not yet created
-			#if [[ ! -e /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/crt/$fqn.crt ]]; then
+			#if [[ ! -e /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/crt/$fqn.crt ]]; then
 					# Generate the letsencrypt certificate
 					
 					# certbot certonly --webroot -w $instancedir -d $customurl 
@@ -569,8 +569,8 @@ if [[ "$mode" == "suspend" || $mode == "suspendmaintenance" ]]; then
 	if [[ "x$customurl" != "x" ]]; then
 		echo `date +'%Y-%m-%d %H:%M:%S'`" ***** For instance in $targetdir/$osusername/$dbname, we will create a new custom virtual name $fqn.custom"
 
-        export pathforcertifmaster="/home/admin/wwwroot/dolibarr_documents/sellyoursaas/crt"
-        export pathforcertiflocal="/home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/crt"
+        export pathforcertifmaster="/home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/crt"
+        export pathforcertiflocal="/home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/crt"
 
 		echo `date +'%Y-%m-%d %H:%M:%S'`" Check that SSL files for $fqn.custom exists to reuse them"
 
@@ -618,7 +618,7 @@ if [[ "$mode" == "suspend" || $mode == "suspendmaintenance" ]]; then
                 export domainnameorcustomurl=`echo $customurl | cut -d "." -f 1`
                 # We must create it using letsencrypt if not yet created
 				# Create disabled for suspend action
-                #if [[ ! -e /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/crt/$fqn.crt ]]; then
+                #if [[ ! -e /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/crt/$fqn.crt ]]; then
                                 # Generate the letsencrypt certificate
 
                                 # certbot certonly --webroot -w $instancedir -d $customurl 
@@ -791,8 +791,8 @@ if [[ "$mode" == "unsuspend" ]]; then
 	if [[ "x$customurl" != "x" ]]; then
 		echo `date +'%Y-%m-%d %H:%M:%S'`" ***** For instance in $targetdir/$osusername/$dbname, we will create a new custom virtual name $fqn.custom"
 
-        export pathforcertifmaster="/home/admin/wwwroot/dolibarr_documents/sellyoursaas/crt"
-        export pathforcertiflocal="/home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/crt"
+        export pathforcertifmaster="/home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/crt"
+        export pathforcertiflocal="/home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/crt"
 
 		echo `date +'%Y-%m-%d %H:%M:%S'`" Check that SSL files for $fqn.custom exists to reuse them"
 	
@@ -840,7 +840,7 @@ if [[ "$mode" == "unsuspend" ]]; then
                 export domainnameorcustomurl=`echo $customurl | cut -d "." -f 1`
                 # We must create it using letsencrypt if not yet created
 				# Create disabled for suspend action
-                #if [[ ! -e /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/crt/$fqn.crt ]]; then
+                #if [[ ! -e /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/crt/$fqn.crt ]]; then
                                 # Generate the letsencrypt certificate
 
                                 # certbot certonly --webroot -w $instancedir -d $customurl 

@@ -3,7 +3,7 @@
 # This script can be run on master or deployment servers.
 #
 # Put the following entry into your root cron
-#40 4 4 * * /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/clean.sh confirm
+#40 4 4 * * /home/jarvis/wwwroot/dolibarr_sellyoursaas/scripts/clean.sh confirm
 
 #set -e
 
@@ -189,16 +189,16 @@ if [ -f /tmp/osusernamefound ]; then
 fi
 
 echo "Nettoyage vieux fichiers log"
-echo find /home/admin/wwwroot/dolibarr_documents -maxdepth 1 -name "dolibarr*.log*" -type f -mtime +2 -delete
-find /home/admin/wwwroot/dolibarr_documents -maxdepth 1 -name "dolibarr*.log*" -type f -mtime +2 -delete
+echo find /home/jarvis/wwwroot/dolibarr_documents -maxdepth 1 -name "dolibarr*.log*" -type f -mtime +2 -delete
+find /home/jarvis/wwwroot/dolibarr_documents -maxdepth 1 -name "dolibarr*.log*" -type f -mtime +2 -delete
 
 echo "Nettoyage vieux fichiers /tmp"
 echo find /tmp -mtime +30 -name 'phpsendmail*.log' -delete
 find /tmp -mtime +30 -name 'phpsendmail*.log' -delete
 
 echo "Nettoyage vieux fichiers conf"
-echo find /home/admin/wwwroot/dolibarr/htdocs/conf -mtime +10 -name '*~' -delete
-find /home/admin/wwwroot/dolibarr/htdocs/conf -mtime +10 -name '*~' -delete
+echo find /home/jarvis/wwwroot/dolibarr/htdocs/conf -mtime +10 -name '*~' -delete
+find /home/jarvis/wwwroot/dolibarr/htdocs/conf -mtime +10 -name '*~' -delete
 
 
 echo "***** Clean available virtualhost that are not enabled hosts (safe)"
@@ -642,7 +642,7 @@ find "/var/log/journal/" -type f -path '/var/log/journal/*/user-*.journal' -mtim
 if [[ "x$masterserver" == "x1" ]]; then
 	echo "***** We are on a master, so we clean sellyoursaas temp files" 
 	echo "Clean sellyoursaas temp files"
-	find "/home/admin/wwwroot/dolibarr_documents/sellyoursaas/temp/." ! -path "/home/admin/wwwroot/dolibarr_documents/sellyoursaas/temp/" -mtime +1 -delete
+	find "/home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/temp/." ! -path "/home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/temp/" -mtime +1 -delete
 fi
 
 # Clean log files

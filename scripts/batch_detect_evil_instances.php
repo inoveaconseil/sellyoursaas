@@ -283,7 +283,7 @@ if (is_numeric($tmparrayblacklistip) && $tmparrayblacklistip < 0) {
 }
 
 if (!empty($tmparrayblacklistip)) {
-	//home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam
+	//home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam
 
 	// Generate the file balcklistip
 	$filetobuild = $pathtospamdir.'/blacklistip';

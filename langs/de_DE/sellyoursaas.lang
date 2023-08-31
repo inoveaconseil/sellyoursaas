@@ -467,7 +467,7 @@ InvoiceBeforeAreAvailableOnDemandAt=Rechnungen vor dem %s sind auf E-Mail-Anfrag
 MyAcountDesc=Dieser Bereich dient der Verwaltung Ihrer Abonnements für <a href="%s" target="sellyoursaas"> %s </a> . Sie können neue Instanzen von Anwendungen erstellen, Optionen auswählen, Ihre Abonnementrechnungen erhalten, das Support-Team kontaktieren oder Ihr Konto kündigen.
 YourCustomUrl=Ihre benutzerdefinierte URL
 CustomURL=eigene URL
-CustomUrlDesc=Mit einer benutzerdefinierten URL wird eine zweite Virtualhost-Datei für die Instanz hinzugefügt, die jedoch mit .custom.conf endet. <br> Beispiel: /etc/apache2/sellyoursaas-available/yourname.withX.domainname.com.custom.conf <br> Wenn SSL-Zertifikatdateien gefunden werden (auf dem Master in /home/admin/wwwroot/dolibarr_documents/sellyoursaas/crt), werden sie verwendet wird. Wenn nicht, können sie von letsencrypt generiert werden. Bei einem Fehler werden die Wildcard-Zertifikatdateien für *.withX.domainname.com verwendet.
+CustomUrlDesc=Mit einer benutzerdefinierten URL wird eine zweite Virtualhost-Datei für die Instanz hinzugefügt, die jedoch mit .custom.conf endet. <br> Beispiel: /etc/apache2/sellyoursaas-available/yourname.withX.domainname.com.custom.conf <br> Wenn SSL-Zertifikatdateien gefunden werden (auf dem Master in /home/jarviswwwroot/dolibarr_documents/sellyoursaas/crt), werden sie verwendet wird. Wenn nicht, können sie von letsencrypt generiert werden. Bei einem Fehler werden die Wildcard-Zertifikatdateien für *.withX.domainname.com verwendet.
 NextInvoice=Nächste Rechnung
 AccessEnabled=Zugriff aktiviert
 OtherOptionsAndParameters=Andere Optionen und Parameter
@@ -503,7 +503,7 @@ ErrorBadValueForIntraVAT=Fehler: Der für das Feld '%s' eingegebene Wert '%s' is
 LoginForSupport=Login für Support
 PasswordForSupport=Passwort für den Support
 SSHPublicKey=Öffentliche SSH-Schlüssel zum Bereitstellen
-SSHPublicKeyDesc=Alle öffentlichen SSH-Schlüssel, die in jeder neuen Instanz bereitgestellt werden. Die Schlüssel werden in der Datei .ssh/authorized_keys_support bereitgestellt. Sie können hier den Inhalt der Datei /home/admin/.ssh/id_rsa_sellyoursaas.pub und öffentliche Schlüssel des IT-Administratorteams einfügen.
+SSHPublicKeyDesc=Alle öffentlichen SSH-Schlüssel, die in jeder neuen Instanz bereitgestellt werden. Die Schlüssel werden in der Datei .ssh/authorized_keys_support bereitgestellt. Sie können hier den Inhalt der Datei /home/jarvis.ssh/id_rsa_sellyoursaas.pub und öffentliche Schlüssel des IT-Administratorteams einfügen.
 SELLYOURSAAS_MAXDEPLOYMENTPERIP=Maximale Anzahl von Bereitstellungen pro IP
 SELLYOURSAAS_MAXDEPLOYMENTPERIPPERHOUR=Maximale Anzahl von Bereitstellungen pro IP pro Stunde
 LogoWhiteBackground=Logo für weiße Hintergründe

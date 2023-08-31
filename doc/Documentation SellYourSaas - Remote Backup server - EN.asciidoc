@@ -144,7 +144,7 @@ Create the user account *admin*. It will be used to install and administer the s
 [source, bash]
 ---------------
 groupadd admin; useradd -m -g admin admin; usermod -a -G adm admin;
-mkdir /home/admin/logs; chown root.adm /home/admin/logs; chmod 770 /home/admin/logs;
+mkdir /home/jarvislogs; chown root.adm /home/jarvislogs; chmod 770 /home/jarvislogs;
 chown admin.admin /mnt/diskbackup
 ---------------
 

@@ -10,8 +10,8 @@ apt install php7.3 php7.3-bz2 php7.3-cli php7.3-gd php7.3-intl php7.3-curl php7.
 sudo vi /etc/apparmor.d/bin.secureBash
 
 Remplacer 7.0 par 7.*  et  ajouter
-/home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/ rw,
-/home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/** rw,
+/home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/ rw,
+/home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/** rw,
 
 aa-enforce bin.secureBash
 

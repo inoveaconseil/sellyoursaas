@@ -18,16 +18,16 @@
   tasks:
   - name: Check if SellYourSaas is installed on this sevrer
     stat: 
-      path: /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/ansible/info_users.php
+      path: /home/jarvis/wwwroot/dolibarr_sellyoursaas/scripts/ansible/info_users.php
     register: sellyoursaas_installed_rules
 
   - name: Get user main public ip into a variable
-    command: "/home/admin/wwwroot/dolibarr_sellyoursaas/scripts/ansible/info_users.php ip {{login}}"
+    command: "/home/jarvis/wwwroot/dolibarr_sellyoursaas/scripts/ansible/info_users.php ip {{login}}"
     register: command_for_userip
     when: sellyoursaas_installed_rules.stat.exists == True
 
   - name: Get public key into a variable
-    command: "/home/admin/wwwroot/dolibarr_sellyoursaas/scripts/ansible/info_users.php public_key {{login}}"
+    command: "/home/jarvis/wwwroot/dolibarr_sellyoursaas/scripts/ansible/info_users.php public_key {{login}}"
     register: command_for_userpublickey
     when: 
       - sellyoursaas_installed_rules.stat.exists == True

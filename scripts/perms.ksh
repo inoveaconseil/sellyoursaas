@@ -40,47 +40,47 @@ cd /tmp
 
 # Owner root on logs and backups dir
 echo "Set owner and permission on logs and backup directory"
-[ -d /home/admin/logs ] || mkdir /home/admin/logs;
+[ -d /home/jarvis/logs ] || mkdir /home/jarvis/logs;
 [ -d /mnt/diskbackup ] || mkdir /mnt/diskbackup;
-[ -d /home/admin/backup ] || mkdir /home/admin/backup;
-[ -d /home/admin/backup/conf ] || mkdir /home/admin/backup/conf;
-[ -d /home/admin/backup/mysql ] || mkdir /home/admin/backup/mysql;
-[ -d /home/admin/wwwroot ] || mkdir /home/admin/wwwroot;
-chown root.admin /home/admin/logs; chmod 770 /home/admin/logs; 
-chown admin.admin /mnt/diskbackup; 
-chown admin.admin /home/admin/backup; chown admin.admin /home/admin/backup/conf; chown admin.admin /home/admin/backup/mysql; 
-chown admin.admin /home/admin/wwwroot
+[ -d /home/jarvis/backup ] || mkdir /home/jarvis/backup;
+[ -d /home/jarvis/backup/conf ] || mkdir /home/jarvis/backup/conf;
+[ -d /home/jarvis/backup/mysql ] || mkdir /home/jarvis/backup/mysql;
+[ -d /home/jarvis/wwwroot ] || mkdir /home/jarvis/wwwroot;
+chown root.admin /home/jarvis/logs; chmod 770 /home/jarvis/logs; 
+chown jarvis:jarvis /mnt/diskbackup; 
+chown jarvis:jarvis /home/jarvis/backup; chown jarvis:jarvis /home/jarvis/backup/conf; chown jarvis:jarvis /home/jarvis/backup/mysql; 
+chown jarvis:jarvis /home/jarvis/wwwroot
 
 # Permissions on SSH config and private key files
 echo "Set owner and permission on admin ssh files"
-[ -s /home/admin/.ssh/config ] && chmod go-rwx /home/admin/.ssh/config && chown admin.admin /home/admin/.ssh/config
-[ -s /home/admin/.ssh/id_rsa ] && chmod go-rwx /home/admin/.ssh/id_rsa && chown admin.admin /home/admin/.ssh/id_rsa
-[ -s /home/admin/.ssh/id_rsa.pub ] && chmod go-wx /home/admin/.ssh/id_rsa.pub && chown admin.admin /home/admin/.ssh/id_rsa.pub
-[ -s /home/admin/.ssh/id_rsa_sellyoursaas ] && chmod go-rwx /home/admin/.ssh/id_rsa_sellyoursaas && chown admin.admin /home/admin/.ssh/id_rsa_sellyoursaas 
-[ -s /home/admin/.ssh/id_rsa_sellyoursaas.pub ] && chmod go-wx /home/admin/.ssh/id_rsa_sellyoursaas.pub && chown admin.admin /home/admin/.ssh/id_rsa_sellyoursaas.pub 
+[ -s /home/jarvis/.ssh/config ] && chmod go-rwx /home/jarvis/.ssh/config && chown jarvis:jarvis /home/jarvis/.ssh/config
+[ -s /home/jarvis/.ssh/id_rsa ] && chmod go-rwx /home/jarvis/.ssh/id_rsa && chown jarvis:jarvis /home/jarvis/.ssh/id_rsa
+[ -s /home/jarvis/.ssh/id_rsa.pub ] && chmod go-wx /home/jarvis/.ssh/id_rsa.pub && chown jarvis:jarvis /home/jarvis/.ssh/id_rsa.pub
+[ -s /home/jarvis/.ssh/id_rsa_sellyoursaas ] && chmod go-rwx /home/jarvis/.ssh/id_rsa_sellyoursaas && chown jarvis:jarvis /home/jarvis/.ssh/id_rsa_sellyoursaas 
+[ -s /home/jarvis/.ssh/id_rsa_sellyoursaas.pub ] && chmod go-wx /home/jarvis/.ssh/id_rsa_sellyoursaas.pub && chown jarvis:jarvis /home/jarvis/.ssh/id_rsa_sellyoursaas.pub 
 
 
-echo "Set owner and permission on /home/admin/wwwroot/dolibarr_documents/ (except sellyoursaas)"
-chmod g+ws /home/admin/wwwroot/dolibarr_documents/
-chown admin.www-data /home/admin/wwwroot/dolibarr_documents
-for fic in `ls /home/admin/wwwroot/dolibarr_documents | grep -v sellyoursaas`; 
+echo "Set owner and permission on /home/jarvis/wwwroot/dolibarr_documents/ (except sellyoursaas)"
+chmod g+ws /home/jarvis/wwwroot/dolibarr_documents/
+chown admin.www-data /home/jarvis/wwwroot/dolibarr_documents
+for fic in `ls /home/jarvis/wwwroot/dolibarr_documents | grep -v sellyoursaas`; 
 do 
-	chown -R admin.www-data "/home/admin/wwwroot/dolibarr_documents/$fic"
-	chmod -R ug+rw "/home/admin/wwwroot/dolibarr_documents/$fic"
-	find "/home/admin/wwwroot/dolibarr_documents/$fic" -type d -exec chmod u+wx {} \;
-	find "/home/admin/wwwroot/dolibarr_documents/$fic" -type d -exec chmod g+ws {} \;
+	chown -R admin.www-data "/home/jarvis/wwwroot/dolibarr_documents/$fic"
+	chmod -R ug+rw "/home/jarvis/wwwroot/dolibarr_documents/$fic"
+	find "/home/jarvis/wwwroot/dolibarr_documents/$fic" -type d -exec chmod u+wx {} \;
+	find "/home/jarvis/wwwroot/dolibarr_documents/$fic" -type d -exec chmod g+ws {} \;
 done
-if [ -d /home/admin/wwwroot/dolibarr_documents/users/temp/odtaspdf ]; then
-	chown www-data.www-data /home/admin/wwwroot/dolibarr_documents/users/temp/odtaspdf
+if [ -d /home/jarvis/wwwroot/dolibarr_documents/users/temp/odtaspdf ]; then
+	chown www-data.www-data /home/jarvis/wwwroot/dolibarr_documents/users/temp/odtaspdf
 fi
 
 if [[ "x$masterserver" == "x1" ]]; then
-	echo We are on a master server, Set owner and permission on /home/admin/wwwroot/dolibarr_documents/sellyoursaas
-	chown -R admin.www-data /home/admin/wwwroot/dolibarr_documents/sellyoursaas
-	chmod -R ug+rw /home/admin/wwwroot/dolibarr_documents/sellyoursaas/git
-	chmod -R ug+rw /home/admin/wwwroot/dolibarr_documents/sellyoursaas/packages
-	chmod -R ug+rw /home/admin/wwwroot/dolibarr_documents/sellyoursaas/temp
-	chmod -R ug+rw /home/admin/wwwroot/dolibarr_documents/sellyoursaas/crt
+	echo We are on a master server, Set owner and permission on /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas
+	chown -R admin.www-data /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas
+	chmod -R ug+rw /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/git
+	chmod -R ug+rw /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/packages
+	chmod -R ug+rw /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/temp
+	chmod -R ug+rw /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/crt
 fi
 
 echo Set owner and permission on /etc/sellyoursaas.conf
@@ -99,27 +99,27 @@ chown -R root.admin /etc/sellyoursaas-public.conf
 chmod a+r /etc/sellyoursaas-public.conf
 chmod a-wx /etc/sellyoursaas-public.conf
 
-echo Set owner and permission on /home/admin/wwwroot/dolibarr
-chown -R admin.admin /home/admin/wwwroot/dolibarr
-chmod -R a-w /home/admin/wwwroot/dolibarr
-chmod -R u+w /home/admin/wwwroot/dolibarr/.git
+echo Set owner and permission on /home/jarvis/wwwroot/dolibarr
+chown -R jarvis:jarvis /home/jarvis/wwwroot/dolibarr
+chmod -R a-w /home/jarvis/wwwroot/dolibarr
+chmod -R u+w /home/jarvis/wwwroot/dolibarr/.git
 
-if [ -d /home/admin/wwwroot/dolibarr_nltechno ]; then
-	echo Set owner and permission on /home/admin/wwwroot/dolibarr_nltechno
-	chmod -R a-w /home/admin/wwwroot/dolibarr_nltechno 2>/dev/null
-	chmod -R u+w /home/admin/wwwroot/dolibarr_nltechno/.git 2>/dev/null
+if [ -d /home/jarvis/wwwroot/dolibarr_nltechno ]; then
+	echo Set owner and permission on /home/jarvis/wwwroot/dolibarr_nltechno
+	chmod -R a-w /home/jarvis/wwwroot/dolibarr_nltechno 2>/dev/null
+	chmod -R u+w /home/jarvis/wwwroot/dolibarr_nltechno/.git 2>/dev/null
 fi
 
-if [ -d /home/admin/wwwroot/dolibarr_sellyoursaas ]; then
-	echo Set owner and permission on /home/admin/wwwroot/dolibarr_sellyoursaas
-	chmod -R a-w /home/admin/wwwroot/dolibarr_sellyoursaas 2>/dev/null
-	chmod -R u+w /home/admin/wwwroot/dolibarr_sellyoursaas/.git 2>/dev/null
+if [ -d /home/jarvis/wwwroot/dolibarr_sellyoursaas ]; then
+	echo Set owner and permission on /home/jarvis/wwwroot/dolibarr_sellyoursaas
+	chmod -R a-w /home/jarvis/wwwroot/dolibarr_sellyoursaas 2>/dev/null
+	chmod -R u+w /home/jarvis/wwwroot/dolibarr_sellyoursaas/.git 2>/dev/null
 fi
 
-echo Set owner and permission on /home/admin/wwwroot/dolibarr/htdocs/conf/conf.php
-if [ -f /home/admin/wwwroot/dolibarr/htdocs/conf/conf.php ]; then
-	chown www-data.admin /home/admin/wwwroot/dolibarr/htdocs/conf/conf.php
-	chmod o-rwx /home/admin/wwwroot/dolibarr/htdocs/conf/conf.php
+echo Set owner and permission on /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php
+if [ -f /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php ]; then
+	chown www-data.admin /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php
+	chmod o-rwx /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php
 fi
 
 echo Set owner and permission on SSL certificates /etc/apache2/*.key and /etc/lestencrypt
@@ -134,31 +134,31 @@ chmod go+x /etc/letsencrypt/live
 
 if [[ "x$masterserver" == "x1" ]]; then
 	echo We are on a master server, so we clean old temp files 
-	find /home/admin/wwwroot/dolibarr_documents/sellyoursaas/temp -maxdepth 1 -name "*.tmp" -type f -mtime +2 -delete
+	find /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/temp -maxdepth 1 -name "*.tmp" -type f -mtime +2 -delete
 fi
 
 echo "Nettoyage vieux fichiers log"
-echo find /home/admin/wwwroot/dolibarr_documents -maxdepth 1 -name "dolibarr*.log*" -type f -mtime +2 -delete
-find /home/admin/wwwroot/dolibarr_documents -maxdepth 1 -name "dolibarr*.log*" -type f -mtime +2 -delete
+echo find /home/jarvis/wwwroot/dolibarr_documents -maxdepth 1 -name "dolibarr*.log*" -type f -mtime +2 -delete
+find /home/jarvis/wwwroot/dolibarr_documents -maxdepth 1 -name "dolibarr*.log*" -type f -mtime +2 -delete
 
 echo "Nettoyage vieux /tmp"
 echo find /tmp -mtime +30 -name 'phpsendmail*.*' -delete
 find /tmp -mtime +30 -name 'phpsendmail*.*' -delete
 
 echo "Check files for antispam system and create them if not found"
-[ -d /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam ] || mkdir -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam;
-[ -s /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistmail ] || cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistmail /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/;
-[ -s /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistip ] || cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistip /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/;
-[ -s /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistfrom ] || cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistfrom /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/;
-[ -s /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistcontent ] || cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistcontent /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/;
-chmod a+rwx /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam; chmod a+rw /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/*;
-chown -R admin.www-data /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local;
+[ -d /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam ] || mkdir -p /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam;
+[ -s /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistmail ] || cp -p /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistmail /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/;
+[ -s /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistip ] || cp -p /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistip /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/;
+[ -s /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistfrom ] || cp -p /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistfrom /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/;
+[ -s /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistcontent ] || cp -p /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistcontent /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/;
+chmod a+rwx /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam; chmod a+rw /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/*;
+chown -R admin.www-data /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local;
 
 [ -d $pathtospamdir ] || mkdir $pathtospamdir;
-[ -s $pathtospamdir/blacklistmail ] || cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistmail $pathtospamdir/;
-[ -s $pathtospamdir/blacklistip ] || cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistip $pathtospamdir/;
-[ -s $pathtospamdir/blacklistfrom ] || cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistfrom $pathtospamdir/;
-[ -s $pathtospamdir/blacklistcontent ] || cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistcontent $pathtospamdir/;
+[ -s $pathtospamdir/blacklistmail ] || cp -p /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistmail $pathtospamdir/;
+[ -s $pathtospamdir/blacklistip ] || cp -p /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistip $pathtospamdir/;
+[ -s $pathtospamdir/blacklistfrom ] || cp -p /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistfrom $pathtospamdir/;
+[ -s $pathtospamdir/blacklistcontent ] || cp -p /home/jarvis/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistcontent $pathtospamdir/;
 chmod a+rwx $pathtospamdir; chmod a+rw $pathtospamdir/*
 chown admin.www-data $pathtospamdir/*
 
@@ -169,35 +169,35 @@ chown admin.www-data $pathtospamdir/*
 # Create some links
 echo "Create links for fail2ban conf"
 cd /etc/fail2ban/filter.d
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoblacklist.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoblacklist.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoblacklist.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoblacklist.conf
 fi
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoquota.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoquota.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoquota.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoquota.conf
 fi
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesko.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesko.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesko.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesko.conf
 fi
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesall.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesall.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesall.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesall.conf
 fi
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesadmin.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesadmin.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesadmin.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesadmin.conf
 fi
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-limit403.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-accesslog-limit403.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-limit403.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-accesslog-limit403.conf
 fi
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulespassforgotten.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulespassforgotten.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulespassforgotten.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulespassforgotten.conf
 fi
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesbruteforce.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesbruteforce.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesbruteforce.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesbruteforce.conf
 fi
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-ruleslimitpublic.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-ruleslimitpublic.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-ruleslimitpublic.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-ruleslimitpublic.conf
 fi
-if [ ! -e /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesregisterinstance.conf ]; then
-	ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesregisterinstance.conf
+if [ ! -e /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesregisterinstance.conf ]; then
+	ln -fs /home/jarvis/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesregisterinstance.conf
 fi
 
 # Clean some files

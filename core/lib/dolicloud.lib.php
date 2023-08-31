@@ -359,9 +359,9 @@ function getListOfLinks($object, $lastloginadmin, $lastpassadmin)
 	// Generate certificate on customer domain name
 	if (!empty($object->array_options['options_custom_url'])) {
 		$generatecertif='certbot certonly --webroot -w '.$homestring.'/'.$object->database_db.'/htdocs -d '.$object->array_options['options_custom_url']."\n";
-		$generatecertif.='ln -fs /etc/letsencrypt/live/'.$object->array_options['options_custom_url'].'/privkey.pem /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/crt/'.$object->hostname_db.'-'.$object->array_options['options_custom_url'].'.key'."\n";
-		$generatecertif.='ln -fs /etc/letsencrypt/live/'.$object->array_options['options_custom_url'].'/cert.pem /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/crt/'.$object->hostname_db.'-'.$object->array_options['options_custom_url'].'.crt'."\n";
-		$generatecertif.='ln -fs /etc/letsencrypt/live/'.$object->array_options['options_custom_url'].'/fullchain.pem /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/crt/'.$object->hostname_db.'-'.$object->array_options['options_custom_url'].'-intermediate.crt'."\n";
+		$generatecertif.='ln -fs /etc/letsencrypt/live/'.$object->array_options['options_custom_url'].'/privkey.pem /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/crt/'.$object->hostname_db.'-'.$object->array_options['options_custom_url'].'.key'."\n";
+		$generatecertif.='ln -fs /etc/letsencrypt/live/'.$object->array_options['options_custom_url'].'/cert.pem /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/crt/'.$object->hostname_db.'-'.$object->array_options['options_custom_url'].'.crt'."\n";
+		$generatecertif.='ln -fs /etc/letsencrypt/live/'.$object->array_options['options_custom_url'].'/fullchain.pem /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/crt/'.$object->hostname_db.'-'.$object->array_options['options_custom_url'].'-intermediate.crt'."\n";
 	} else {
 		$generatecertif='No custom domain for this instance';
 	}

@@ -23,7 +23,7 @@
       name: "admin"
       groups: www-data
       append: yes     
-#  - name: Check/create file /home/admin/.ssh/authorized_keys.toallowmaster
+#  - name: Check/create file /home/jarvis.ssh/authorized_keys.toallowmaster
 #    ansible.builtin.file:
 #      path: /home/ubuntu/.ssh/authorized_keys
 #      state: present
@@ -1062,7 +1062,7 @@
   become_user: root
   tasks:
   - name: Launch perms.sh to set permissions, create some dirs and files
-    command: "/home/admin/wwwroot/dolibarr_sellyoursaas/scripts/perms.ksh confirm"
+    command: "/home/jarviswwwroot/dolibarr_sellyoursaas/scripts/perms.ksh confirm"
     register: command_output
 
   - debug:

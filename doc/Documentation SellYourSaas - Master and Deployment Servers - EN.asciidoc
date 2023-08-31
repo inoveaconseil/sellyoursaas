@@ -295,12 +295,12 @@ Create the user account *admin*. It will be used to install and administer the s
 [source, bash]
 ---------------
 groupadd admin; useradd -m -s bash -g admin admin;
-mkdir /home/admin/logs; chown root.admin /home/admin/logs; chmod 770 /home/admin/logs;
-mkdir /mnt/diskbackup; chown admin.admin /mnt/diskbackup
-mkdir /home/admin/backup; chown admin.admin /home/admin/backup;
-mkdir /home/admin/backup/conf; chown admin.admin /home/admin/backup/conf;
-mkdir /home/admin/backup/mysql; chown admin.admin /home/admin/backup/mysql;
-mkdir /home/admin/wwwroot; chown admin.admin /home/admin/wwwroot
+mkdir /home/jarvislogs; chown root.admin /home/jarvislogs; chmod 770 /home/jarvislogs;
+mkdir /mnt/diskbackup; chown jarvis:jarvis /mnt/diskbackup
+mkdir /home/jarvisbackup; chown jarvis:jarvis /home/jarvisbackup;
+mkdir /home/jarvisbackup/conf; chown jarvis:jarvis /home/jarvisbackup/conf;
+mkdir /home/jarvisbackup/mysql; chown jarvis:jarvis /home/jarvisbackup/mysql;
+mkdir /home/jarviswwwroot; chown jarvis:jarvis /home/jarviswwwroot
 ---------------
 
 Check in /etc/passwd that the id of this user *admin* is greater than or equal to 1000.
@@ -677,7 +677,7 @@ Add a new disk of 500 Mb and mount it on */mnt/disklog* or create a virtual moun
 
 Then modify the file */etc/apache2/envvars* to set *export APACHE_LOG_DIR=/mnt/disklog/*
 
-Delete the dir */home/admin/logs* and replace it with a symbolic link to */mnt/disklog*
+Delete the dir */home/jarvislogs* and replace it with a symbolic link to */mnt/disklog*
 
 Restart Apache. All apache log files of Apache are now stored into */mnt/disklog*.
 
@@ -712,7 +712,7 @@ ln -fs /mnt/diskhome/backup /mnt/diskbackup/backup
 mkdir /home/jail; mkdir /mnt/diskhome/home;
 
 mkdir /mnt/diskbackup/archives-test; mkdir /mnt/diskbackup/archives-paid
-mkdir -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam;
+mkdir -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas/spam;
 chown admin.root /mnt/diskbackup/backup /mnt/diskbackup/archives-test /mnt/diskbackup/archives-paid
 ln -fs /mnt/diskhome/home /home/jail/home
 ln -fs /mnt/diskbackup/backup /home/jail/backup 
@@ -732,20 +732,20 @@ On all servers (*Master and Deployment*):
 apt install git
 ---------------
 
-* Under the *admin* account, retrieve the sources of *Dolibarr* (v16 or +) to be placed in */home/admin/wwwroot/dolibarr*
+* Under the *admin* account, retrieve the sources of *Dolibarr* (v16 or +) to be placed in */home/jarviswwwroot/dolibarr*
 
 [source,bash]
 ---------------
-cd /home/admin/wwwroot
+cd /home/jarviswwwroot
 git clone https://github.com/Dolibarr/dolibarr dolibarr --branch x.y
-chown -R admin.admin /home/admin/wwwroot/dolibarr
+chown -R jarvis:jarvis /home/jarviswwwroot/dolibarr
 ---------------
 
-* Under login *admin*, install the sources of *SellYourSaas* : Get the sources of the project to place them into */home/admin/wwwroot/dolibarr_sellyoursaas*
+* Under login *admin*, install the sources of *SellYourSaas* : Get the sources of the project to place them into */home/jarviswwwroot/dolibarr_sellyoursaas*
 
 [source,bash]
 ---------------
-cd /home/admin/wwwroot
+cd /home/jarviswwwroot
 git clone https://github.com/dolicloud/sellyoursaas dolibarr_sellyoursaas 
 ---------------
 
@@ -819,7 +819,7 @@ databasepassdeployment=xxxxx
 usecompressformatforarchive=zstd
 
 # Set this to directory where dolibarr repository is installed
-dolibarrdir=/home/admin/wwwroot/dolibarr
+dolibarrdir=/home/jarviswwwroot/dolibarr
 # Set directory where instances are stored (default is /home/jail/home)
 #targetdir=/home/jail/home
 
@@ -849,7 +849,7 @@ remotebackupuser=admin
 remotebackupdir=/mnt/diskbackup
 
 # Option to use different path for dataroot
-#olddoldataroot=/home/admin/wwwroot/dolibarr_documents
+#olddoldataroot=/home/jarviswwwroot/dolibarr_documents
 #newdoldataroot=/new/path/of/documents
 # Options to change the directory of vhostfile templates
 #templatesdir=/path/of/vhostfile/templates
@@ -926,7 +926,7 @@ NFS sharing will allow the *Deployment* servers to recover the application image
 
 ==== On the Master server
 
-Install the NFS server and sharing on */home/admin/wwwroot/dolibarr_documents/sellyoursaas*
+Install the NFS server and sharing on */home/jarviswwwroot/dolibarr_documents/sellyoursaas*
 
 [source, bash]
 ---------------
@@ -946,9 +946,9 @@ vi /etc/exports
 # /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
 # /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
 #
-/home/admin/wwwroot/dolibarr_documents/sellyoursaas i.p.deployment.server1(ro,no_root_squash,sync,no_subtree_check)
+/home/jarviswwwroot/dolibarr_documents/sellyoursaas i.p.deployment.server1(ro,no_root_squash,sync,no_subtree_check)
 ...
-/home/admin/wwwroot/dolibarr_documents/sellyoursaas i.p.deployment.serverN(ro,no_root_squash,sync,no_subtree_check)
+/home/jarviswwwroot/dolibarr_documents/sellyoursaas i.p.deployment.serverN(ro,no_root_squash,sync,no_subtree_check)
 ---------------
 
 Note that you should have n lines (one per deployment server) in this file.
@@ -1001,15 +1001,15 @@ Install the NFS client and install it manually. Editing is performed by default 
 [source, bash]
 ---------------
 sudo apt install nfs-common
-sudo mount -t nfs i.p.server.master:/home/admin/wwwroot/dolibarr_documents/sellyoursaas /home/admin/wwwroot/dolibarr_documents/sellyoursaas
-sudo umount /home/admin/wwwroot/dolibarr_documents/sellyoursaas
+sudo mount -t nfs i.p.server.master:/home/jarviswwwroot/dolibarr_documents/sellyoursaas /home/jarviswwwroot/dolibarr_documents/sellyoursaas
+sudo umount /home/jarviswwwroot/dolibarr_documents/sellyoursaas
 ---------------
 
 Add the line to the */etc/fstab* file to have automatic reboot mounting
 
 [source, bash]
 ---------------
-i.p.server.master:/home/admin/wwwroot/dolibarr_documents/sellyoursaas /home/admin/wwwroot/dolibarr_documents/sellyoursaas  nfs  defaults 0 0
+i.p.server.master:/home/jarviswwwroot/dolibarr_documents/sellyoursaas /home/jarviswwwroot/dolibarr_documents/sellyoursaas  nfs  defaults 0 0
 ---------------
 
 and try the automatic mount
@@ -1023,24 +1023,24 @@ mount -a
 
 ==== On deployment servers
 
-On the deployment servers, copy the public and private key of the master's ssh *admin* account to */home/admin/.ssh/id_rsa_sellyoursaas...* (This couple of key file is the one common for maintenance to access osu... user accounts). Set the right permissions.
+On the deployment servers, copy the public and private key of the master's ssh *admin* account to */home/jarvis.ssh/id_rsa_sellyoursaas...* (This couple of key file is the one common for maintenance to access osu... user accounts). Set the right permissions.
 
 [source, bash]
 ---------------
-chmod u+rw /home/admin/.ssh/id_rsa_sellyoursaas*
-chmod go-rw /home/admin/.ssh/id_rsa_sellyoursaas*
-chmod a+r /home/admin/.ssh/id_rsa_sellyoursaas.pub
+chmod u+rw /home/jarvis.ssh/id_rsa_sellyoursaas*
+chmod go-rw /home/jarvis.ssh/id_rsa_sellyoursaas*
+chmod a+r /home/jarvis.ssh/id_rsa_sellyoursaas.pub
 ---------------
 
 
-Complete the file */home/admin/.ssh/config* to indicate to use this public key when accessing to itself or github instead of *id_rsa* by default.
+Complete the file */home/jarvis.ssh/config* to indicate to use this public key when accessing to itself or github instead of *id_rsa* by default.
 
 [source, bash]
 ---------------
 Host ip.server.deployment
-    IdentityFile /home/admin/.ssh/id_rsa_sellyoursaas
+    IdentityFile /home/jarvis.ssh/id_rsa_sellyoursaas
 Host github.com
-    IdentityFile /home/admin/.ssh/id_rsa_sellyoursaas    
+    IdentityFile /home/jarvis.ssh/id_rsa_sellyoursaas    
 ---------------
 
   
@@ -1227,12 +1227,12 @@ Choose a password. You will need to give this couple login/password to anyone wh
         #php_admin_value sendmail_path "/usr/sbin/sendmail -t -i"
         #php_admin_value mail.force_extra_parameters "-f postmaster@mysaasdomainname.com"
         #php_admin_value sendmail_path "/usr/sbin/sendmail -t -i -f webmaster@mysaasdomainname.com"
-        php_admin_value open_basedir /tmp/:/home/admin/wwwroot/:/usr/share/GeoIP:/home/jail/home
+        php_admin_value open_basedir /tmp/:/home/jarviswwwroot/:/usr/share/GeoIP:/home/jail/home
 
         ServerName      admin.mysaasdomainname.com
-        DocumentRoot /home/admin/wwwroot/dolibarr/htdocs/
-        ErrorLog     /home/admin/logs/mycompany_admin_error_log
-        CustomLog    /home/admin/logs/mycompany_admin_access_log combined
+        DocumentRoot /home/jarviswwwroot/dolibarr/htdocs/
+        ErrorLog     /home/jarvislogs/mycompany_admin_error_log
+        CustomLog    /home/jarvislogs/mycompany_admin_access_log combined
 
         UseCanonicalName Off
 
@@ -1243,7 +1243,7 @@ Choose a password. You will need to give this couple login/password to anyone wh
         KeepAliveTimeout 5
         MaxKeepAliveRequests 20
 
-        <Directory /home/admin/wwwroot/dolibarr/htdocs/>
+        <Directory /home/jarviswwwroot/dolibarr/htdocs/>
         AuthType Basic
         AuthName "Authenticate to backoffice"
         AuthUserFile /etc/apache2/.htpasswd
@@ -1253,22 +1253,22 @@ Choose a password. You will need to give this couple login/password to anyone wh
         </Directory>
 
         #leaving /public, /api and /dav accessible to everyone
-        <Directory /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/public/>
+        <Directory /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/public/>
         AuthType None
         Require all granted
         Satisfy any
         </Directory>        
-        <Directory /home/admin/wwwroot/dolibarr/htdocs/public/>
+        <Directory /home/jarviswwwroot/dolibarr/htdocs/public/>
         AuthType None
         Require all granted
         Satisfy any
         </Directory>
-        <Directory /home/admin/wwwroot/dolibarr/htdocs/api/>
+        <Directory /home/jarviswwwroot/dolibarr/htdocs/api/>
         AuthType None
         Require all granted
         Satisfy any
         </Directory>
-        <Directory /home/admin/wwwroot/dolibarr/htdocs/dav/>
+        <Directory /home/jarviswwwroot/dolibarr/htdocs/dav/>
         AuthType None
         Require all granted
         Satisfy any
@@ -1279,7 +1279,7 @@ Choose a password. You will need to give this couple login/password to anyone wh
         Satisfy any
         </Files>
         
-        <Directory /home/admin/wwwroot>
+        <Directory /home/jarviswwwroot>
         AllowOverride FileInfo Limit
         Options +FollowSymLinks
         Order allow,deny
@@ -1289,8 +1289,8 @@ Choose a password. You will need to give this couple login/password to anyone wh
         </Directory>
 
         # Add alias git on sellyoursaas git dir
-        Alias "/git" "/home/admin/wwwroot/dolibarr_documents/sellyoursaas/git"
-        <Directory /home/admin/wwwroot/dolibarr_documents/sellyoursaas/git>
+        Alias "/git" "/home/jarviswwwroot/dolibarr_documents/sellyoursaas/git"
+        <Directory /home/jarviswwwroot/dolibarr_documents/sellyoursaas/git>
         AllowOverride FileInfo Limit
         Options +Indexes
         Order allow,deny
@@ -1330,23 +1330,23 @@ You can create another virtual host for the HTTPS on port 443
    #php_admin_value sendmail_path "/usr/sbin/sendmail -t -i"
    #php_admin_value mail.force_extra_parameters "-f postmaster@mysaasdomainname.com"
    #php_admin_value sendmail_path "/usr/sbin/sendmail -t -i -f postmaster@mysaasdomainname.com"
-   php_admin_value open_basedir /tmp/:/home/admin/wwwroot/:/usr/share/GeoIP:/home/admin/tools/
+   php_admin_value open_basedir /tmp/:/home/jarviswwwroot/:/usr/share/GeoIP:/home/jarvistools/
 
    UseCanonicalName On
    ServerName   myaccount.mysaasdomainname.com
-   ErrorLog     /home/admin/logs/mysaas_myaccount_error_log
-   CustomLog    /home/admin/logs/mysaas_myaccount_access_log combined
+   ErrorLog     /home/jarvislogs/mysaas_myaccount_error_log
+   CustomLog    /home/jarvislogs/mysaas_myaccount_access_log combined
 
-   DocumentRoot /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/myaccount
+   DocumentRoot /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/myaccount
 
-   <Directory /home/admin/wwwroot/dolibarr_sellyoursaas/myaccount>
+   <Directory /home/jarviswwwroot/dolibarr_sellyoursaas/myaccount>
    AllowOverride FileInfo Options
    Options       -Indexes -MultiViews +FollowSymLinks -ExecCGI
    Require all granted
    </Directory>
 
    # To access images
-   <Directory /home/admin/wwwroot/dolibarr_documents>
+   <Directory /home/jarviswwwroot/dolibarr_documents>
    AllowOverride FileInfo Options
    Options       -Indexes -MultiViews +FollowSymLinks -ExecCGI
    Require all granted
@@ -1435,7 +1435,7 @@ Then launch and enable the firewall
 
 [source, bash]
 ---------------
-/home/admin/wwwroot/dolibarr_sellyoursaas/scripts/firewallsellyoursaasufw.sh start
+/home/jarviswwwroot/dolibarr_sellyoursaas/scripts/firewallsellyoursaasufw.sh start
 ---------------
 
 
@@ -1445,7 +1445,7 @@ Then launch and enable the firewall
 
 [source,bash]
 ---------------
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/repair.ksh /usr/sbin/repair
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/scripts/repair.ksh /usr/sbin/repair
 ---------------
 
 To consult, disable at startup, enable at startup, stop, launch respectively:
@@ -1468,14 +1468,14 @@ Required to compensate an apache bug making apache dying after a too high number
 
 On the *Deployment servers* :
 
-* Installation and activation of the apache watchdogs provided in */home/admin/wwwroot/dolibarr_sellyoursaas/scripts/* by creating a link by
+* Installation and activation of the apache watchdogs provided in */home/jarviswwwroot/dolibarr_sellyoursaas/scripts/* by creating a link by
 
 [source, bash]
 ---------------
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/apache_watchdog_launcher1.sh /etc/init.d/apache_watchdog_launcher1
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/apache_watchdog_launcher2.sh /etc/init.d/apache_watchdog_launcher2
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/apache_watchdog_launcher3.sh /etc/init.d/apache_watchdog_launcher3
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/smtp_watchdog_launcher1.sh /etc/init.d/smtp_watchdog_launcher1
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/scripts/apache_watchdog_launcher1.sh /etc/init.d/apache_watchdog_launcher1
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/scripts/apache_watchdog_launcher2.sh /etc/init.d/apache_watchdog_launcher2
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/scripts/apache_watchdog_launcher3.sh /etc/init.d/apache_watchdog_launcher3
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/scripts/smtp_watchdog_launcher1.sh /etc/init.d/smtp_watchdog_launcher1
 systemctl daemon-reload
 
 systemctl enable apache_watchdog_launcher1;
@@ -1500,11 +1500,11 @@ systemctl status smtp_watchdog_launcher1;
 
 On the *Deployment servers* :
 
-* Agent installation and activation in */home/admin/wwwroot/dolibarr_sellyoursaas/scripts/remote_server_launcher.sh* by creating a link by
+* Agent installation and activation in */home/jarviswwwroot/dolibarr_sellyoursaas/scripts/remote_server_launcher.sh* by creating a link by
 
 [source, bash]
 ---------------
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/remote_server_launcher.sh /etc/init.d/remote_server_launcher
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/scripts/remote_server_launcher.sh /etc/init.d/remote_server_launcher
 systemctl daemon-reload
 systemctl enable remote_server_launcher
 systemctl is-enabled remote_server_launcher
@@ -1521,7 +1521,7 @@ To use systemd create a file */etc/systemd/system/remote-server-launcher.service
 # /etc/systemd/system/remote-server-launcher.service
 [Unit]
  Description=Remote Server Launcher
- RequiresMountsFor=/home/admin/wwwroot/dolibarr_documents/sellyoursaas
+ RequiresMountsFor=/home/jarviswwwroot/dolibarr_documents/sellyoursaas
 
 [Service]
  Type=forking
@@ -1744,16 +1744,16 @@ Then place the available filter files supplied with the project in *etc/fail2ban
 [source, bash]
 ---------------
 cd /etc/fail2ban/filter.d
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoblacklist.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoquota.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesko.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesall.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesadmin.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-accesslog-limit403.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulespassforgotten.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesbruteforce.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-ruleslimitpublic.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesregisterinstance.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoblacklist.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-ruleskoquota.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesko.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesall.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/email-dolibarr-rulesadmin.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-accesslog-limit403.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulespassforgotten.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesbruteforce.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-ruleslimitpublic.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesregisterinstance.conf
 ---------------
 
 Then place sellyoursaas conf rules to enable that are supplied with the project in *etc/fail2ban/jail.d* inside the directory of the same name */etc/fail2ban/jail.d* by creating links:
@@ -1763,12 +1763,12 @@ Then place sellyoursaas conf rules to enable that are supplied with the project 
 [source, bash]
 ---------------
 cd /etc/fail2ban/jail.d
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-ruleskoblacklist.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-ruleskoquota.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-rulesko.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-rulesall.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-rulesadmin.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-accesslog-limit403.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-ruleskoblacklist.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-ruleskoquota.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-rulesko.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-rulesall.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/email-dolibarr-rulesadmin.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-accesslog-limit403.conf
 ---------------
 
 *Add also this for Master servers only:*
@@ -1776,10 +1776,10 @@ ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-accessl
 [source, bash]
 ---------------
 cd /etc/fail2ban/jail.d
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-dolibarr-rulespassforgotten.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-dolibarr-rulesbruteforce.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-dolibarr-ruleslimitpublic.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-dolibarr-rulesregisterinstance.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-dolibarr-rulespassforgotten.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-dolibarr-rulesbruteforce.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-dolibarr-ruleslimitpublic.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/jail.d/web-dolibarr-rulesregisterinstance.conf
 ---------------
 
 
@@ -1993,17 +1993,17 @@ exclude_suffix := tmp old bak
 !/etc/subuid-
 
 /home MyRule
-/home/admin/logs Logs
+/home/jarvislogs Logs
 /var/log/datadog Logs2
-!/home/admin/backup
+!/home/jarvisbackup
 !/home/jail/home
-!/home/admin/wwwroot/dolibarr_documents
-!/home/admin/wwwroot/dolibarr/.git
-!/home/admin/wwwroot/dolibarr_sellyoursaas/.git
+!/home/jarviswwwroot/dolibarr_documents
+!/home/jarviswwwroot/dolibarr/.git
+!/home/jarviswwwroot/dolibarr_sellyoursaas/.git
 
-!/home/admin/.bash_history
-!/home/admin/.viminfo
-!/home/admin/.mysql_history
+!/home/jarvis.bash_history
+!/home/jarvis.viminfo
+!/home/jarvis.mysql_history
 !/home/myunixlogin/.bash_history
 !/home/myunixlogin/.viminfo
 !/home/myunixlogin/.mysql_history
@@ -2947,7 +2947,7 @@ tar czf privatejail.tgz template
 
 [source,bash]
 ---------------
-mv commonjail.tgz privatejail.tgz /home/admin/wwwroot/dolibarr_documents/sellyoursaas/scripts/templates/
+mv commonjail.tgz privatejail.tgz /home/jarviswwwroot/dolibarr_documents/sellyoursaas/scripts/templates/
 ---------------
 
 * Modify the /etc/sellyoursaas.conf file of your instances server
@@ -3186,10 +3186,10 @@ Create the sample files that will be used for antispam internal features of Sell
 
 [source,bash]
 ---------------
-echo >> /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistmail;
-echo >> /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistip;
-echo >> /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistfrom;
-echo >> /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistcontent;
+echo >> /home/jarviswwwroot/dolibarr_documents/sellyoursaas/spam/blacklistmail;
+echo >> /home/jarviswwwroot/dolibarr_documents/sellyoursaas/spam/blacklistip;
+echo >> /home/jarviswwwroot/dolibarr_documents/sellyoursaas/spam/blacklistfrom;
+echo >> /home/jarviswwwroot/dolibarr_documents/sellyoursaas/spam/blacklistcontent;
 ---------------
 
 On *Deployment servers*:
@@ -3202,8 +3202,8 @@ Create a symlink to the 2 tools used for preprocessing PHP
 
 [source,bash]
 ---------------
-ln -fs /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/phpsendmailprepend.php /usr/local/bin/
-ln -fs /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/phpsendmail.php /usr/local/bin/
+ln -fs /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/phpsendmailprepend.php /usr/local/bin/
+ln -fs /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/phpsendmail.php /usr/local/bin/
 ---------------
 
 For *PHP versions greater than or equal to 8.1*:
@@ -3212,8 +3212,8 @@ Create a hard link to the 2 tools used for preprocessing PHP (be sure <<Installa
 
 [source,bash]
 ---------------
-ln /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/phpsendmailprepend.php /usr/local/bin/
-ln /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/phpsendmail.php /usr/local/bin/
+ln /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/phpsendmailprepend.php /usr/local/bin/
+ln /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/phpsendmail.php /usr/local/bin/
 ---------------
 
 Modify the file *php.ini* (the one for *apache* and the one for *cli*) with:
@@ -3247,27 +3247,27 @@ Create a directory for blacklist files used by *phpsendmail.php*
 
 [source,bash]
 ---------------
-mkdir -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam;
-chown admin.www-data /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local;
-chmod a+rwx /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local;
+mkdir -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam;
+chown admin.www-data /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local;
+chmod a+rwx /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local;
 ---------------
 
 And copy them on local directory:
 
 [source,bash]
 ---------------
-cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistmail /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistmail;
-cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistip /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistip;
-cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistfrom /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistfrom;
-cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas/spam/blacklistcontent /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistcontent;
-chmod a+rwx /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam; chmod a+rw /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/*;
+cp -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas/spam/blacklistmail /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistmail;
+cp -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas/spam/blacklistip /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistip;
+cp -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas/spam/blacklistfrom /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistfrom;
+cp -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas/spam/blacklistcontent /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistcontent;
+chmod a+rwx /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam; chmod a+rw /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/*;
 
 
 mkdir /tmp/spam;
-cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistmail /tmp/spam/;
-cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistip /tmp/spam/;
-cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistfrom /tmp/spam/;
-cp -p /home/admin/wwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistcontent /tmp/spam/;
+cp -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistmail /tmp/spam/;
+cp -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistip /tmp/spam/;
+cp -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistfrom /tmp/spam/;
+cp -p /home/jarviswwwroot/dolibarr_documents/sellyoursaas_local/spam/blacklistcontent /tmp/spam/;
 chmod a+rwx /tmp/spam; chmod a+rw /tmp/spam/*
 ---------------
 
@@ -3335,7 +3335,7 @@ rotate 365
         create 600 root root
 }
 
-/home/admin/wwwroot/dolibarr_documents/*.log {
+/home/jarviswwwroot/dolibarr_documents/*.log {
         su admin www-data
         daily
         rotate 7
@@ -3503,7 +3503,7 @@ Run cerbot with the following command line (you can test it beforehand by adding
 
 [source,bash]
 ---------------
-certbot certonly -n --manual-public-ip-logging-ok --server https://acme-v02.api.letsencrypt.org/directory --agree-tos --manual --preferred-challenges=dns --manual-auth-hook /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/letsencrypt_authenticator.sh -d "*.with<X>.<your_domain>,with<X>.<your_domain>" -m <email_for_your_account_with_lets_encrypt> --deploy-hook "systemctl restart apache2" [--expand]
+certbot certonly -n --manual-public-ip-logging-ok --server https://acme-v02.api.letsencrypt.org/directory --agree-tos --manual --preferred-challenges=dns --manual-auth-hook /home/jarviswwwroot/dolibarr_sellyoursaas/scripts/letsencrypt_authenticator.sh -d "*.with<X>.<your_domain>,with<X>.<your_domain>" -m <email_for_your_account_with_lets_encrypt> --deploy-hook "systemctl restart apache2" [--expand]
 ---------------
 
 For example, you can use *supervision@mysaasdomainname.com* as the email for letsencrypt account.
@@ -3543,7 +3543,7 @@ You can use the same command as used originally (with --dry-run option first if 
 
 [source,bash]
 ---------------
-certbot certonly -n --manual-public-ip-logging-ok --server https://acme-v02.api.letsencrypt.org/directory --agree-tos --manual --preferred-challenges=dns --manual-auth-hook /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/letsencrypt_authenticator.sh -d "*.with<X>.<your_domain>,with<X>.<your_domain>" -m <email_for_your_account_with_lets_encrypt> --deploy-hook "systemctl restart apache2" --force-renewal
+certbot certonly -n --manual-public-ip-logging-ok --server https://acme-v02.api.letsencrypt.org/directory --agree-tos --manual --preferred-challenges=dns --manual-auth-hook /home/jarviswwwroot/dolibarr_sellyoursaas/scripts/letsencrypt_authenticator.sh -d "*.with<X>.<your_domain>,with<X>.<your_domain>" -m <email_for_your_account_with_lets_encrypt> --deploy-hook "systemctl restart apache2" --force-renewal
 ---------------
 
 Note: To know if a certificate will correctly use the hook for the renewal, you can have a look into the file 
@@ -3575,7 +3575,7 @@ ln -fs /etc/letsencrypt/live/withX.mysaasdomainname.com/cert.pem with.sellyoursa
 ln -fs /etc/letsencrypt/live/withX.mysaasdomainname.com/chain.pem with.sellyoursaas.com-intermediate.crt
 ---------------
 
-NOTE: This is the wildcard certificate that will be used for the customer instances. Custom certificates for instances will be saved into */home/admin/wwwroot/dolibarr_documents/sellyoursaas/crt*
+NOTE: This is the wildcard certificate that will be used for the customer instances. Custom certificates for instances will be saved into */home/jarviswwwroot/dolibarr_documents/sellyoursaas/crt*
 
 * If the file */etc/apache2/sites-available/default-ssl.conf* exists, rename it into */etc/apache2/sites-available/000-default-ssl.conf* :
 
@@ -3678,10 +3678,10 @@ You must have inside the cron of user *root*
 # m h  dom mon dow   command
 # cron master and deployment root
 #47 2 * * * /root/certbot-auto renew --no-self-upgrade > /var/log/letsencrypt/certbot-auto_renew.log 2>&1
-10 0 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm >/home/admin/logs/backup_mysql_system.log 2>&1
-40 4 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/admin/logs/backup_backups.log 2>&1
-00 4 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/perms.ksh >/home/admin/logs/perms.log
-#40 4 4 * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/clean.sh confirm
+10 0 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm >/home/jarvislogs/backup_mysql_system.log 2>&1
+40 4 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/jarvislogs/backup_backups.log 2>&1
+00 4 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/perms.ksh >/home/jarvislogs/perms.log
+#40 4 4 * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/clean.sh confirm
 ---------------
 
 
@@ -3691,10 +3691,10 @@ You must have inside the cron of user *admin*:
 ---------------
 # m h  dom mon dow   command
 # cron master admin
-*/10 * * * * /home/admin/wwwroot/dolibarr/scripts/cron/cron_run_jobs.php <securitykeydefinedinscheduledjobsetup> anonymousbatch >> /home/admin/wwwroot/dolibarr_documents/cron_run_jobs.php.log 2>&1
-5 5 * * 0 /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_customers.php updatestatsonly >> /home/admin/logs/batch_customers-updatedatabase.log 2>&1
-7 7 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sources.sh /home/admin/wwwroot/dolibarr_documents/sellyoursaas/git >> /home/admin/logs/git_update_sources.log 2>&1
-#7 7 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sellyoursaas.sh /home/admin/wwwroot >> /home/admin/logs/git_update_sellyoursaas.log 2>&1
+*/10 * * * * /home/jarviswwwroot/dolibarr/scripts/cron/cron_run_jobs.php <securitykeydefinedinscheduledjobsetup> anonymousbatch >> /home/jarviswwwroot/dolibarr_documents/cron_run_jobs.php.log 2>&1
+5 5 * * 0 /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_customers.php updatestatsonly >> /home/jarvislogs/batch_customers-updatedatabase.log 2>&1
+7 7 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sources.sh /home/jarviswwwroot/dolibarr_documents/sellyoursaas/git >> /home/jarvislogs/git_update_sources.log 2>&1
+#7 7 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sellyoursaas.sh /home/jarviswwwroot >> /home/jarvislogs/git_update_sellyoursaas.log 2>&1
 ---------------
 
 
@@ -3710,11 +3710,11 @@ You must have inside the cron of user *root*
 # m h  dom mon dow   command
 # cron master and deployment root
 #47 2 * * * /root/certbot-auto renew --no-self-upgrade > /var/log/letsencrypt/certbot-auto_renew.log 2>&1
-10 0 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm >/home/admin/logs/backup_mysql_system.log 2>&1
-00 4 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/perms.ksh >/home/admin/logs/perms.log
-40 15 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/admin/logs/backup_backups.log 2>&1
-00 9 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_detect_evil_instances.php test 86400 > /home/admin/logs/batch_detect_evil_instances.log 2>&1
-#40 4 4 * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/clean.sh confirm
+10 0 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm >/home/jarvislogs/backup_mysql_system.log 2>&1
+00 4 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/perms.ksh >/home/jarvislogs/perms.log
+40 15 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/jarvislogs/backup_backups.log 2>&1
+00 9 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_detect_evil_instances.php test 86400 > /home/jarvislogs/batch_detect_evil_instances.log 2>&1
+#40 4 4 * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/clean.sh confirm
 ---------------
 
 You must have inside the cron of user *admin*:
@@ -3723,8 +3723,8 @@ You must have inside the cron of user *admin*:
 ---------------
 # m h  dom mon dow   command
 # cron master and deployment root
-#7 7 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sellyoursaas.sh /home/admin/wwwroot >> /home/admin/logs/git_update_sellyoursaas.log 2>&1
-20 0 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_customers.php backup >> /home/admin/logs/batch_customers-backup.log 2>&1
+#7 7 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sellyoursaas.sh /home/jarviswwwroot >> /home/jarvislogs/git_update_sellyoursaas.log 2>&1
+20 0 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_customers.php backup >> /home/jarvislogs/batch_customers-backup.log 2>&1
 ---------------
 
 ==== Check that launching of cron is ok
@@ -3744,25 +3744,25 @@ We need to install the program files of Dolibarr ERP CRM as we use it for a lot 
 
 On all servers (*Master and Deployment*):
 
-* Create a symbolic link called *sellyoursaas* into */home/admin/wwwroot/dolibarr/htdocs/custom* to point to */home/admin/wwwroot/dolibarr_sellyoursaas* :
+* Create a symbolic link called *sellyoursaas* into */home/jarviswwwroot/dolibarr/htdocs/custom* to point to */home/jarviswwwroot/dolibarr_sellyoursaas* :
 
 [source,bash]
 ---------------
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas
 ---------------
 
-* Create a symbolic link called *source* into directory *myaccount* that point to */home/admin/wwwroot/dolibarr/htdocs* :
-
-[source,bash]
----------------
-ln -fs /home/admin/wwwroot/dolibarr/htdocs /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/myaccount/source
----------------
-
-* Create a symbolic link called *main.inc.php* into directory *myaccount* that point to */home/admin/wwwroot/dolibarr/htdocs/main.inc.php* :
+* Create a symbolic link called *source* into directory *myaccount* that point to */home/jarviswwwroot/dolibarr/htdocs* :
 
 [source,bash]
 ---------------
-ln -fs /home/admin/wwwroot/dolibarr/htdocs/main.inc.php /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/myaccount
+ln -fs /home/jarviswwwroot/dolibarr/htdocs /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/myaccount/source
+---------------
+
+* Create a symbolic link called *main.inc.php* into directory *myaccount* that point to */home/jarviswwwroot/dolibarr/htdocs/main.inc.php* :
+
+[source,bash]
+---------------
+ln -fs /home/jarviswwwroot/dolibarr/htdocs/main.inc.php /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/myaccount
 ---------------
 
 
@@ -3784,7 +3784,7 @@ a2ensite myaccount.mysaasdomainname.com
 certbot
 ---------------
 
-* Call the URL to install Dolibarr. Warning: Choose, during the installation wizard, the name of the document directory as */home/admin/wwwroot/dolibarr_documents* rather than */home/admin/wwwroot/dolibarr/documents*
+* Call the URL to install Dolibarr. Warning: Choose, during the installation wizard, the name of the document directory as */home/jarviswwwroot/dolibarr_documents* rather than */home/jarviswwwroot/dolibarr/documents*
 
 * If you configure the sending of emails from the Dolibarr backoffice via an SMTP relay like Google or SendGrid, remember to update the IPs (v4 and v6) authorized by the relay on the console of the SMTP relay service with the IP of the Master server.
 
@@ -3795,11 +3795,11 @@ certbot
 
 On *Deployment servers*:
 
-* Create a file */home/admin/wwwroot/dolibarr/htdocs/conf/conf.php*:
+* Create a file */home/jarviswwwroot/dolibarr/htdocs/conf/conf.php*:
 
 [source,ini]
 ---------------
-sudo vi /home/admin/wwwroot/dolibarr/htdocs/conf/conf.php
+sudo vi /home/jarviswwwroot/dolibarr/htdocs/conf/conf.php
 ---------------
 
 and add the following content:
@@ -3807,8 +3807,8 @@ and add the following content:
 [source,ini]
 ---------------
 <?php
-$dolibarr_main_document_root='/home/admin/wwwroot/dolibarr/htdocs';
-$dolibarr_main_data_root='/home/admin/wwwroot/dolibarr_documents';
+$dolibarr_main_document_root='/home/jarviswwwroot/dolibarr/htdocs';
+$dolibarr_main_data_root='/home/jarviswwwroot/dolibarr_documents';
 ---------------
 
 
@@ -3816,13 +3816,13 @@ $dolibarr_main_data_root='/home/admin/wwwroot/dolibarr_documents';
 
 * Install the free database file of Maxmind.
 
-mkdir /home/admin/tools/maxmind/ -p
+mkdir /home/jarvistools/maxmind/ -p
 
 Copy the file GeoLite2-Country.mmdb you can get from website maxmind.com
 
 (or wget https://cdn.jsdelivr.net/npm/geolite2-country@1.0.2/GeoLite2-Country.mmdb.gz)
 
-chmod -R o-w /home/admin/tools/maxmind
+chmod -R o-w /home/jarvistools/maxmind
 
 On the Dolibarr *master server*, activate and setup the module GeoIP of Dolibarr to use this database file.
 
@@ -4129,7 +4129,7 @@ instances:
   - use_mount: false
 
     mount_point_exclude:
-        - /home/admin/wwwroot/dolibarr_documents/sellyoursaas
+        - /home/jarviswwwroot/dolibarr_documents/sellyoursaas
     
     include_all_devices: false
     
@@ -4197,13 +4197,13 @@ See chapter <<Cloning_a_server_instance_for_an_extra_production_server_or_a_dev_
 
 - The configuration of the server and the system database is done locally via the cron task of *root* :
 
-*/home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm* 
+*/home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm* 
 
-See <<installing_cron_tasks>>. This will write backup files into */home/admin/backup/conf* and */home/admin/backup/mysql*
+See <<installing_cron_tasks>>. This will write backup files into */home/jarvisbackup/conf* and */home/jarvisbackup/mysql*
 
 - Paying user instances are backed up locally by the cron task of *admin* :
 
-*/home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_customers.php backup*
+*/home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_customers.php backup*
 
 See <<installing_cron_tasks>>. This will write backup files into */mnt/diskbackup/backup/osu*
 
@@ -4212,7 +4212,7 @@ See <<installing_cron_tasks>>. This will write backup files into */mnt/diskbacku
 
 - An external backup must be done to another server by a cron task of *root* :
 
-*/home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/admin/logs/backup_backups.log 2>&1*
+*/home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/jarvislogs/backup_backups.log 2>&1*
 
 See <<installing_cron_tasks>>. This will copy local files from */mnt/diskbackup/backup* to */mnt/diskbackup/backup_sourceServer* (to another server in another datacenter). 
 
@@ -4249,13 +4249,13 @@ so the old URL will still works (temporarily until the old instance is closed)
 === Update images of application to deploy
 
 - A cron script on the *Master* does the git pull to update the images of the packages to deploy.
-*/home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sources.sh /home/admin/wwwroot/dolibarr_documents/sellyoursaas/git*
+*/home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sources.sh /home/jarviswwwroot/dolibarr_documents/sellyoursaas/git*
 
 
 === Update Sell-Your-Saas statistics
 
 - A cron script on *Master* calulates statistics: 
-*/home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_customers.php updatestatsonly*
+*/home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/batch_customers.php updatestatsonly*
 
 
 === Increase size of disk
@@ -4409,7 +4409,7 @@ to add a line that looks like:
 
 [source,bash]
 ---------------
-/home/admin/wwwroot/dolibarr_documents/sellyoursaas <deployment.server.IP>(ro,no_root_squash,sync,no_subtree_check)
+/home/jarviswwwroot/dolibarr_documents/sellyoursaas <deployment.server.IP>(ro,no_root_squash,sync,no_subtree_check)
 ---------------
 
 [source,bash]
@@ -4423,7 +4423,7 @@ systemctl restart nfs-kernel-server
 
 [source,bash]
 ---------------
-<master.server.IP>:/home/admin/wwwroot/dolibarr_documents/sellyoursaas /home/admin/wwwroot/dolibarr_documents/sellyoursaas  nfs  defaults 0 0
+<master.server.IP>:/home/jarviswwwroot/dolibarr_documents/sellyoursaas /home/jarviswwwroot/dolibarr_documents/sellyoursaas  nfs  defaults 0 0
 ---------------
 
 - Allow access between the new *Deployment server* and the *Master server* in the firewall.
@@ -4972,7 +4972,7 @@ Launch the script:
 
 [source,bash]
 ---------------
-/home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/clean.sh confirm
+/home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/clean.sh confirm
 ---------------
 
 
@@ -5674,7 +5674,7 @@ This occurs on some distributions due to a bug in PHP method ssh2_disconnect().
 You can disable the call to *ssh2_disconnect()* by setting constant SELLYOURSAAS_SSH2_DISCONNECT_DISABLED to 1
 
 
-==== On a deployment server, the user root can read files into /home/admin/wwwroot/dolibarr_documents/sellyoursaas
+==== On a deployment server, the user root can read files into /home/jarviswwwroot/dolibarr_documents/sellyoursaas
 
 Check that on the master server, the option *no_root_squash* is present into the file */var/exports*
 

@@ -47,9 +47,9 @@ Create the user account *admin*. It will be used to install and administer the s
 [source, bash]
 ---------------
 groupadd admin; useradd -m -g admin admin; usermod -a -G adm admin
-mkdir /home/admin/logs; chown root.adm /home/admin/logs; chmod 770 /home/admin/logs;
+mkdir /home/jarvislogs; chown root.adm /home/jarvislogs; chmod 770 /home/jarvislogs;
 mkdir /mnt/diskbackup; chown admin.admin /mnt/diskbackup
-mkdir /home/admin/wwwroot; chown admin.admin /home/admin/wwwroot
+mkdir /home/jarviswwwroot; chown admin.admin /home/jarviswwwroot
 ---------------
 
 Check that the id of this user *admin* is greater than or equal to 1000.
@@ -407,20 +407,20 @@ On all servers (*Master and Deployment*):
 apt install git
 ---------------
 
-* Under the *admin* account, retrieve the sources of *Dolibarr* (v16 or +) to be placed in */home/admin/wwwroot/dolibarr*
+* Under the *admin* account, retrieve the sources of *Dolibarr* (v16 or +) to be placed in */home/jarviswwwroot/dolibarr*
 
 [source,bash]
 ---------------
-cd /home/admin/wwwroot
+cd /home/jarviswwwroot
 git clone https://github.com/Dolibarr/dolibarr dolibarr --branch x.y
-chown -R admin.admin /home/admin/wwwroot/dolibarr
+chown -R admin.admin /home/jarviswwwroot/dolibarr
 ---------------
 
-* Under login *admin*, install the sources of *SellYourSaas* : Get the sources of the project to place them into */home/admin/wwwroot/dolibarr_sellyoursaas*
+* Under login *admin*, install the sources of *SellYourSaas* : Get the sources of the project to place them into */home/jarviswwwroot/dolibarr_sellyoursaas*
 
 [source,bash]
 ---------------
-cd /home/admin/wwwroot
+cd /home/jarviswwwroot
 git clone https://github.com/dolicloud/sellyoursaas dolibarr_sellyoursaas 
 ---------------
 
@@ -478,7 +478,7 @@ databasepass=xxxxx
 usecompressformatforarchive=zstd
 
 # Set this to directory where dolibarr repository is installed
-dolibarrdir=/home/admin/wwwroot/dolibarr
+dolibarrdir=/home/jarviswwwroot/dolibarr
 # Set directory where instances are stored (default is /home/jail/home)
 #targetdir=/home/jail/home
 
@@ -499,7 +499,7 @@ remotebackupuser=admin
 remotebackupdir=/mnt/diskbackup
 
 # Option to use different path for dataroot
-#olddoldataroot=/home/admin/wwwroot/dolibarr_documents
+#olddoldataroot=/home/jarviswwwroot/dolibarr_documents
 #newdoldataroot=/new/path/of/documents
 # Options to change the directory of vhostfile templates
 #templatesdir=/path/of/vhostfile/templates
@@ -620,7 +620,7 @@ On modifie la configuration du module *mpm_event* en éditant le fichier */etc/a
 
 [source,bash]
 ---------------
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/scripts/repair.ksh /usr/sbin/repair
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/scripts/repair.ksh /usr/sbin/repair
 ---------------
 
 To consult, no longer launch at startup, launch at startup, stop, launch:
@@ -845,7 +845,7 @@ maxretry = 5
 enabled = true
 port    = http,https
 filter  = web-dolibarr-rulespassforgotten
-logpath = /home/admin/wwwroot/dolibarr_documents/dolibarr.log
+logpath = /home/jarviswwwroot/dolibarr_documents/dolibarr.log
 action  = %(action_mw)s
 bantime  = 4320000   ; 50 days
 findtime = 86400     ; 1 day
@@ -857,7 +857,7 @@ maxretry = 10
 enabled = true
 port    = http,https
 filter  = web-dolibarr-rulesbruteforce
-logpath = /home/admin/wwwroot/dolibarr_documents/dolibarr.log
+logpath = /home/jarviswwwroot/dolibarr_documents/dolibarr.log
 action  = %(action_mw)s
 bantime  = 86400     ; 1 day
 findtime = 3600      ; 1 hour
@@ -870,7 +870,7 @@ maxretry = 10
 ;enabled = true
 ;port    = http,https
 ;filter  = web-dolibarr-rulesregisterinstance
-;logpath = /home/admin/wwwroot/dolibarr_documents/dolibarr_DOLSESSID_sellyoursaasXXXXXXXXXXX.log
+;logpath = /home/jarviswwwroot/dolibarr_documents/dolibarr_DOLSESSID_sellyoursaasXXXXXXXXXXX.log
 ;action  = %(action_mw)s
 ;bantime  = 4320000   ; 50 days
 ;findtime = 86400     ; 1 day
@@ -883,9 +883,9 @@ Then place the filter files supplied with the project in *etc/fail2ban/filter.d*
 [source, bash]
 ---------------
 cd /etc/fail2ban/filter.d
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesregisterinstance.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulespassforgotten.conf
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesbruteforce.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesregisterinstance.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulespassforgotten.conf
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas/etc/fail2ban/filter.d/web-dolibarr-rulesbruteforce.conf
 ---------------
 
 Relaunch fail2ban and check errors into */var/log/fail2ban.log*
@@ -1001,17 +1001,17 @@ exclude_suffix := tmp old bak
 !/etc/subuid-
 
 /home MyRule
-/home/admin/logs Logs
+/home/jarvislogs Logs
 /var/log/datadog Logs
-!/home/admin/backup
+!/home/jarvisbackup
 !/home/jail/home
-!/home/admin/wwwroot/dolibarr_documents
-!/home/admin/wwwroot/dolibarr/.git
-!/home/admin/wwwroot/dolibarr_sellyoursaas/.git
+!/home/jarviswwwroot/dolibarr_documents
+!/home/jarviswwwroot/dolibarr/.git
+!/home/jarviswwwroot/dolibarr_sellyoursaas/.git
 
-!/home/admin/.bash_history
-!/home/admin/.viminfo
-!/home/admin/.mysql_history
+!/home/jarvis.bash_history
+!/home/jarvis.viminfo
+!/home/jarvis.mysql_history
 !/home/myunixlogin/.bash_history
 !/home/myunixlogin/.viminfo
 !/home/myunixlogin/.mysql_history
@@ -1474,13 +1474,13 @@ vi */etc/apache2/sites-available/mysellyoursaasdomain.com.conf*
         #php_admin_value sendmail_path "/usr/sbin/sendmail -t -i"
         #php_admin_value mail.force_extra_parameters "-f postmaster@nltechno.com"
         #php_admin_value sendmail_path "/usr/sbin/sendmail -t -i -f webmaster1@nltechno.com"
-        php_admin_value open_basedir /tmp/:/home/admin/wwwroot/:/home/admin/awstats/:/usr/share/GeoIP:/home/jail/home:/home/admin/backup/dump:/home/admin/tools/
+        php_admin_value open_basedir /tmp/:/home/jarviswwwroot/:/home/jarvisawstats/:/usr/share/GeoIP:/home/jail/home:/home/jarvisbackup/dump:/home/jarvistools/
 
         ServerName      mysellyoursaasdomain.com
         ServerAlias     www.mysellyoursaasdomain.com
-        DocumentRoot /home/admin/wwwroot/dolibarr_documents/website/mysellyoursaasdomain.com/
-        ErrorLog     /home/admin/logs/mysellyoursaasdomain_error_log
-        CustomLog    /home/admin/logs/mysellyoursaasdomain_access_log combined
+        DocumentRoot /home/jarviswwwroot/dolibarr_documents/website/mysellyoursaasdomain.com/
+        ErrorLog     /home/jarvislogs/mysellyoursaasdomain_error_log
+        CustomLog    /home/jarvislogs/mysellyoursaasdomain_access_log combined
 
         UseCanonicalName Off
 
@@ -1491,7 +1491,7 @@ vi */etc/apache2/sites-available/mysellyoursaasdomain.com.conf*
         KeepAliveTimeout 5
         MaxKeepAliveRequests 20
 
-        <Directory /home/admin/wwwroot>
+        <Directory /home/jarviswwwroot>
         AllowOverride FileInfo Limit
         Options +FollowSymLinks
         Order allow,deny
@@ -1585,7 +1585,7 @@ su root syslog
 
 [source,conf]
 ---------------
-/home/admin/wwwroot/dolibarr_documents/*.log {
+/home/jarviswwwroot/dolibarr_documents/*.log {
         su admin www-data
         daily
         rotate 7
@@ -1711,11 +1711,11 @@ You must have inside the cron of user *root*
 # m h  dom mon dow   command
 # cron master root
 #47 2 * * * /root/certbot-auto renew --no-self-upgrade > /var/log/letsencrypt/certbot-auto_renew.log 2>&1
-10 0 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm >/home/admin/logs/backup_mysql_system.log 2>&1
+10 0 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm >/home/jarvislogs/backup_mysql_system.log 2>&1
 # cron master and deployment root
-40 4 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/admin/logs/backup_backups.log 2>&1
-00 4 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/perms.ksh >/home/admin/logs/perms.log
-#40 4 4 * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/clean.sh confirm
+40 4 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/jarvislogs/backup_backups.log 2>&1
+00 4 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/perms.ksh >/home/jarvislogs/perms.log
+#40 4 4 * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/clean.sh confirm
 ---------------
 
 Note: certbot-auto may be certbot
@@ -1726,9 +1726,9 @@ You must have inside the cron of user *admin*:
 ---------------
 # m h  dom mon dow   command
 # cron master admin
-*/10 * * * * /home/admin/wwwroot/dolibarr/scripts/cron/cron_run_jobs.php securitykeydefinedinscheduledjobsetup firstadmin >> /home/admin/wwwroot/dolibarr_documents/cron_run_jobs.php.log
+*/10 * * * * /home/jarviswwwroot/dolibarr/scripts/cron/cron_run_jobs.php securitykeydefinedinscheduledjobsetup firstadmin >> /home/jarviswwwroot/dolibarr_documents/cron_run_jobs.php.log
 # cron master and deployment root
-#7 7 * * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sellyoursaas.sh /home/admin/wwwroot >> /home/admin/logs/git_update_sellyoursaas.log 2>&1
+#7 7 * * * /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/git_update_sellyoursaas.sh /home/jarviswwwroot >> /home/jarvislogs/git_update_sellyoursaas.log 2>&1
 ---------------
 
 Note: *securitykeydefinedinscheduledjobsetup* is the value of the key to decide. You will also set it into the setup of module *Scheduled jobs* on the Dolibarr later.
@@ -1746,18 +1746,18 @@ cd / && run-parts --report /etc/cron.daily
 
 == Installation of Dolibarr
 
-* Under the *admin* account, retrieve the sources of *Dolibarr* (v13 or +) to be placed in */home/admin/wwwroot/dolibarr*
+* Under the *admin* account, retrieve the sources of *Dolibarr* (v13 or +) to be placed in */home/jarviswwwroot/dolibarr*
 
 [source,bash]
 ---------------
-cd /home/admin/wwwroot
+cd /home/jarviswwwroot
 git clone https://github.com/Dolibarr/dolibarr dolibarr
-chown -R admin.admin /home/admin/wwwroot/dolibarr
+chown -R admin.admin /home/jarviswwwroot/dolibarr
 ---------------
 
-* Install an Apache virtual host, for example: https://adminweb.mysaasdomainname.com (therefore pointing to */home/admin/wwwroot/dolibarr/htdocs*).
-Warning: Choose, during the installation wizard, the name of the document directory as */home/admin/wwwroot/dolibarr_documents* rather than
-*/home/admin/wwwroot/dolibarr/documents*
+* Install an Apache virtual host, for example: https://adminweb.mysaasdomainname.com (therefore pointing to */home/jarviswwwroot/dolibarr/htdocs*).
+Warning: Choose, during the installation wizard, the name of the document directory as */home/jarviswwwroot/dolibarr_documents* rather than
+*/home/jarviswwwroot/dolibarr/documents*
 
 * If you will add feature to send email from web portal using a SMTP relay like Google or SendGrid, remember to update the IPs (v4 and v6) authorized by the relay on the console of the SMTP relay service.
 
@@ -1767,26 +1767,26 @@ Warning: Choose, during the installation wizard, the name of the document direct
 
 == Installation of plugin SellYourSaas
 
-* Under login *admin*, install the sources of *SellYourSaas* : Get the sources of the project to place them into */home/admin/wwwroot/dolibarr_sellyoursaas*
+* Under login *admin*, install the sources of *SellYourSaas* : Get the sources of the project to place them into */home/jarviswwwroot/dolibarr_sellyoursaas*
 
 [source,bash]
 ---------------
-cd /home/admin/wwwroot
+cd /home/jarviswwwroot
 git clone https://github.com/eldy/sellyoursaas dolibarr_sellyoursaas
 ---------------
 
-* Create a symbolic link called *sellyoursaas* into */home/admin/wwwroot/dolibarr/htdocs/custom* to point to */home/admin/wwwroot/dolibarr_sellyoursaas* :
+* Create a symbolic link called *sellyoursaas* into */home/jarviswwwroot/dolibarr/htdocs/custom* to point to */home/jarviswwwroot/dolibarr_sellyoursaas* :
 
 [source,bash]
 ---------------
-ln -fs /home/admin/wwwroot/dolibarr_sellyoursaas /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas
+ln -fs /home/jarviswwwroot/dolibarr_sellyoursaas /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas
 ---------------
 
-* Create a symbolic link called *source* into directory *myaccount* that point to */home/admin/wwwroot/dolibarr/htdocs* :
+* Create a symbolic link called *source* into directory *myaccount* that point to */home/jarviswwwroot/dolibarr/htdocs* :
 
 [source,bash]
 ---------------
-ln -fs /home/admin/wwwroot/dolibarr/htdocs /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/myaccount/source
+ln -fs /home/jarviswwwroot/dolibarr/htdocs /home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/myaccount/source
 ---------------
 
 
@@ -1973,9 +1973,9 @@ Et si le serveur avait des services complémentaires:
 
 - The configuration of the server and the system database is done locally via the cron task of *root* :
 
-*/home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm* 
+*/home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_mysql_system.sh confirm* 
 
-See <<installing_cron_tasks>>. This will write backup files into */home/admin/backup/conf* and */home/admin/backup/mysql*
+See <<installing_cron_tasks>>. This will write backup files into */home/jarvisbackup/conf* and */home/jarvisbackup/mysql*
 
 The script will read the file */etc/sellyoursaas.conf* to find the list of the name of backup servers where to push the backup to.
 
@@ -1985,7 +1985,7 @@ The script will read the file */etc/sellyoursaas.conf* to find the list of the n
 
 - An external backup must be done to another server by a cron task of *root* :
 
-*/home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/admin/logs/backup_backups.log 2>&1*
+*/home/jarviswwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/backup_backups.sh confirm none --delete >/home/jarvislogs/backup_backups.log 2>&1*
 
 See <<installing_cron_tasks>>. This will copy local files from */mnt/diskbackup/backup* to */mnt/diskbackup/backup_sourceServer* (to another server in another datacenter). 
 

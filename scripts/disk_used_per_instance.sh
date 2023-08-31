@@ -3,7 +3,7 @@
 # This script can be run on a deployment servers.
 #
 # Put the following entry into your root cron
-#50 5 5 * * /home/admin/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/disk_used_per_instance.sh list > /home/admin/logs/disk_used_per_instance.log
+#50 5 5 * * /home/jarvis/wwwroot/dolibarr/htdocs/custom/sellyoursaas/scripts/disk_used_per_instance.sh list > /home/jarvis/logs/disk_used_per_instance.log
 
 #set -e
 
