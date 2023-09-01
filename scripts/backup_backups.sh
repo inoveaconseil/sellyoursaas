@@ -161,6 +161,9 @@ export errstring=""
 export atleastoneerror=0
 declare -A ret1
 declare -A ret2
+declare -A listServ
+declare -A listDir
+declare -A listDirByIp
 totalinstancessaved=0
 totalinstancesfailed=0
 
@@ -168,28 +171,42 @@ totalinstancesfailed=0
 # the following line is to have an empty dir to clear the last incremental directories
 [ -d $HOME/emptydir ] || mkdir $HOME/emptydir
 
-
+indexServ=0
 # Loop on each target server
 for SERVDESTICURSOR in `echo $SERVDESTI | sed -e 's/,/ /g'`
 do
+	listServ[$indexServ]=$SERVDESTICURSOR
+    ((indexServ++))
 	ret1[$SERVDESTICURSOR]=0
 	ret2[$SERVDESTICURSOR]=0
 done
 
-# Loop on each target server to make backup of SOURCE1
-for SERVDESTICURSOR in `echo $SERVDESTI | sed -e 's/,/ /g'`
+indexServDir=0
+for SERVDIRCURSOR in `echo "$remotebackupdir" | sed -e 's/,/ /g'`
 do
-	#echo `date +'%Y-%m-%d %H:%M:%S'`" Do rsync of emptydir to $SERVDESTICURSOR:$DIRDESTI1/backupold_$HISTODIR/..."
-	#rsync $TESTN -a $HOME/emptydir/ $USER@$SERVDESTICURSOR:$DIRDESTI1/backupold_$HISTODIR/
+        listDir[$indexServDir]=$SERVDIRCURSOR
+        ((indexServDir++))
+done
 
+for x in $(seq 0 ${#listServ[@]})
+do
+        ipFromIndex=${listServ[$x]}
+        listDirByIp[$ipFromIndex]=${listDir[$x]}
+done
+
+for ip in ${!listDirByIp[@]}; do
+	IPSERVBACKUP=${ip}
+	DIRFORIP=${listDirByIp[${ip}]}
+	export DIRDESTI1="$DIRFORIP/home_"`hostname`;
+	export DIRDESTI2="$DIRFORIP/backup_"`hostname`;
 	echo
-	echo `date +'%Y-%m-%d %H:%M:%S'`" Do rsync of $DIRSOURCE1 to remote $USER@$SERVDESTICURSOR:$DIRDESTI1..."
+	echo `date +'%Y-%m-%d %H:%M:%S'`" Do rsync of $DIRSOURCE1 to remote $USER@$IPSERVBACKUP:$DIRDESTI1..."
 	
 	export RSYNC_RSH="ssh -p $SERVPORTDESTI"
 	if [ "x$HISTODIR" == "x" ]; then
-		export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS $DIRSOURCE1/* $USER@$SERVDESTICURSOR:$DIRDESTI1";
+		export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS $DIRSOURCE1/* $USER@$IPSERVBACKUP:$DIRDESTI1";
 	else
-		export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS --backup --backup-dir=$DIRDESTI1/backupold_$HISTODIR $DIRSOURCE1/* $USER@$SERVDESTICURSOR:$DIRDESTI1";
+		export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS --backup --backup-dir=$DIRDESTI1/backupold_$HISTODIR $DIRSOURCE1/* $USER@$IPSERVBACKUP:$DIRDESTI1";
 	fi
 	echo `date +'%Y-%m-%d %H:%M:%S'`" $command";
 	
@@ -198,14 +215,46 @@ do
    	# WARNING: The set of rescommand must be just after the $command. No echo between.
 	rescommand=$?
     if [ "x$rescommand" != "x0" ]; then
-		ret1[$SERVDESTICURSOR]=$rescommand
-    	echo "ERROR Failed to make rsync for $DIRSOURCE1 to $SERVDESTICURSOR. ret=${ret1[$SERVDESTICURSOR]}."
+		ret1[$IPSERVBACKUP]=$rescommand
+    	echo "ERROR Failed to make rsync for $DIRSOURCE1 to $IPSERVBACKUP. ret=${ret1[$IPSERVBACKUP]}."
     	echo "Command was: $command"
-    	export errstring="$errstring\n"`date '+%Y-%m-%d %H:%M:%S'`" Dir $DIRSOURCE1 to $SERVDESTICURSOR. ret=${ret1[$SERVDESTICURSOR]}. Command was: $command\n"
+    	export errstring="$errstring\n"`date '+%Y-%m-%d %H:%M:%S'`" Dir $DIRSOURCE1 to $IPSERVBACKUP. ret=${ret1[$IPSERVBACKUP]}. Command was: $command\n"
     fi
     
     sleep 2
+
 done
+
+# Loop on each target server to make backup of SOURCE1
+# for SERVDESTICURSOR in `echo $SERVDESTI | sed -e 's/,/ /g'`
+# do
+# 	#echo `date +'%Y-%m-%d %H:%M:%S'`" Do rsync of emptydir to $SERVDESTICURSOR:$DIRDESTI1/backupold_$HISTODIR/..."
+# 	#rsync $TESTN -a $HOME/emptydir/ $USER@$SERVDESTICURSOR:$DIRDESTI1/backupold_$HISTODIR/
+
+# 	echo
+# 	echo `date +'%Y-%m-%d %H:%M:%S'`" Do rsync of $DIRSOURCE1 to remote $USER@$SERVDESTICURSOR:$DIRDESTI1..."
+	
+# 	export RSYNC_RSH="ssh -p $SERVPORTDESTI"
+# 	if [ "x$HISTODIR" == "x" ]; then
+# 		export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS $DIRSOURCE1/* $USER@$SERVDESTICURSOR:$DIRDESTI1";
+# 	else
+# 		export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS --backup --backup-dir=$DIRDESTI1/backupold_$HISTODIR $DIRSOURCE1/* $USER@$SERVDESTICURSOR:$DIRDESTI1";
+# 	fi
+# 	echo `date +'%Y-%m-%d %H:%M:%S'`" $command";
+	
+	
+# 	$command 2>&1
+#    	# WARNING: The set of rescommand must be just after the $command. No echo between.
+# 	rescommand=$?
+#     if [ "x$rescommand" != "x0" ]; then
+# 		ret1[$SERVDESTICURSOR]=$rescommand
+#     	echo "ERROR Failed to make rsync for $DIRSOURCE1 to $SERVDESTICURSOR. ret=${ret1[$SERVDESTICURSOR]}."
+#     	echo "Command was: $command"
+#     	export errstring="$errstring\n"`date '+%Y-%m-%d %H:%M:%S'`" Dir $DIRSOURCE1 to $SERVDESTICURSOR. ret=${ret1[$SERVDESTICURSOR]}. Command was: $command\n"
+#     fi
+    
+#     sleep 2
+# done
 
 
 # Loop on each target server to make backup of SOURCE2
@@ -234,8 +283,14 @@ if [[ "x$instanceserver" != "x0" ]]; then
 				fi
 			fi
 
-			for SERVDESTICURSOR in `echo $SERVDESTI | sed -e 's/,/ /g'`
+			# for SERVDESTICURSOR in `echo $SERVDESTI | sed -e 's/,/ /g'`
+			# do
+			for ip in ${!listDirByIp[@]}
 			do
+				IPSERVBACKUP=${ip}
+				DIRFORIP=${listDirByIp[${ip}]}
+				export DIRDESTI1="$DIRFORIP/home_"`hostname`;
+				export DIRDESTI2="$DIRFORIP/backup_"`hostname`;
 				export RSYNC_RSH="ssh -p $SERVPORTDESTI"
 				if [ "x$HISTODIR" == "x" ]; then
 		    	    export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS $DIRSOURCE2/osu$i* $USER@$SERVDESTICURSOR:$DIRDESTI2";
@@ -248,11 +303,11 @@ if [[ "x$instanceserver" != "x0" ]]; then
 			   	# WARNING: The set of rescommand must be just after the $command. No echo between.
 				rescommand=$?
 		        if [ "x$rescommand" != "x0" ]; then
-		        	ret2[$SERVDESTICURSOR]=$((${ret2[$SERVDESTICURSOR]} + 1));
-		        	echo "ERROR Failed to make rsync for $DIRSOURCE2/osu$i to $SERVDESTICURSOR. ret=${ret2[$SERVDESTICURSOR]}."
+		        	ret2[$ip]=$((${ret2[$ip]} + 1));
+		        	echo "ERROR Failed to make rsync for $DIRSOURCE2/osu$i to $ip. ret=${ret2[$ip]}."
 		        	echo "Command was: $command"
 		        	((totalinstancesfailed += nbofdir))
-		        	export errstring="$errstring\n"`date '+%Y-%m-%d %H:%M:%S'`" Dir osu$i to $SERVDESTICURSOR. ret=${ret2[$SERVDESTICURSOR]}. Command was: $command\n"
+		        	export errstring="$errstring\n"`date '+%Y-%m-%d %H:%M:%S'`" Dir osu$i to $ip. ret=${ret2[$ip]}. Command was: $command\n"
 		        else
 		          ((totalinstancessaved += nbofdir))
 		        	echo
