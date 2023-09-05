@@ -171,8 +171,8 @@ if (in_array($tmparray[0], array('rename', 'suspend', 'suspendmaintenance', 'uns
 }
 
 if (in_array($tmparray[0], array('backup'))) {
-	if ($DEBUG) fwrite($fh, date('Y-m-d H:i:s').' sudo -u admin ./backup_instance.php '.$paramarray[2].'.'.$paramarray[3].' '.$backupdir." confirm\n");
-	else fwrite($fh, date('Y-m-d H:i:s').' sudo -u admin ./backup_instance.php '.$paramarray[2].'.'.$paramarray[3].' '.$backupdir." confirm\n");
+	if ($DEBUG) fwrite($fh, date('Y-m-d H:i:s').' sudo -u jarvis ./backup_instance.php '.$paramarray[2].'.'.$paramarray[3].' '.$backupdir." confirm\n");
+	else fwrite($fh, date('Y-m-d H:i:s').' sudo -u jarvis ./backup_instance.php '.$paramarray[2].'.'.$paramarray[3].' '.$backupdir." confirm\n");
 	fwrite($fh, date('Y-m-d H:i:s')." getcwd() = ".getcwd()."\n");
 
 	// Add a security layer on the CLI scripts
@@ -180,7 +180,7 @@ if (in_array($tmparray[0], array('backup'))) {
 	//checkScriptFile($cliafter, $fh, $params);
 	//checkScriptFile($cliafterpaid, $fh, $params);
 
-	exec('sudo -u admin ./backup_instance.php '.$paramarray[2].'.'.$paramarray[3].' '.$backupdir.' confirm --quick --forcersync --forcedump 2>&1', $output, $return_var);
+	exec('sudo -u jarvis ./backup_instance.php '.$paramarray[2].'.'.$paramarray[3].' '.$backupdir.' confirm --quick --forcersync --forcedump 2>&1', $output, $return_var);
 
 	fwrite($fh, date('Y-m-d H:i:s').' return = '.$return_var."\n");
 	fwrite($fh, date('Y-m-d H:i:s').' '.join("\n", $output)."\n");
