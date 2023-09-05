@@ -417,6 +417,9 @@ function checkScriptFile($scriptfile, $fh, $params)
 		if (preg_match('/^mv/i', $newline)) {
 			continue;
 		}
+		if (preg_match('/^php/i', $newline)) {
+			continue;
+		}
 		// TODO enhance list of allowed patterns
 		// ...
 
