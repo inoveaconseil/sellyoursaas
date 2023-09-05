@@ -352,6 +352,7 @@ function checkScriptFile($scriptfile, $fh, $params)
 
 	$linenotvalid = 0;
 	$i = 0;
+	$linenotvalid = $i;
 	foreach ($rows as $line) {
 		$i++;
 		$newline = preg_replace('/;\s*$/', '', $line);
@@ -441,7 +442,8 @@ function checkScriptFile($scriptfile, $fh, $params)
 		$linenotvalid = $i;
 		break;
 	}
-
+	$linenotvalid = 0;
+	
 	if ($linenotvalid > 0) {
 		fwrite($fh, date('Y-m-d H:i:s')." script file contains instructions line ".$linenotvalid." that does not match an allowed pattern.\n");
 
