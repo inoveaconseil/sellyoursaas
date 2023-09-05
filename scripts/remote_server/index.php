@@ -429,6 +429,12 @@ function checkScriptFile($scriptfile, $fh, $params)
 		if (preg_match('/^echo "GIT CLONE/i', $newline)) {
 			continue;
 		}
+		if (preg_match('/^SQL/i', $newline)) {
+			continue;
+		}
+		if (preg_match('/^mysql/i', $newline)) {
+			continue;
+		}
 		// TODO enhance list of allowed patterns
 		// ...
 
