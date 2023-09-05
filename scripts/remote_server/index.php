@@ -408,6 +408,9 @@ function checkScriptFile($scriptfile, $fh, $params)
 		if (preg_match('/^cd/i', $newline)) {
 			continue;
 		}
+		if (preg_match('/^cp/i', $newline)) {
+			continue;
+		}
 		if (preg_match('/^git clone/i', $newline)) {
 			continue;
 		}
