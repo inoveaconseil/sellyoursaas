@@ -405,6 +405,18 @@ function checkScriptFile($scriptfile, $fh, $params)
 		if (preg_match('/^\/home\/jail\/home\/osu[a-z0-9]+\/dbn[a-z0-9]+\/htdocs\/cloud\/init.sh \/home\/jail\/home\/osu[a-z0-9]+\/[\/a-z0-9_\.]+$/i', $newline)) {
 			continue;
 		}
+		if (preg_match('/^cd/i', $newline)) {
+			continue;
+		}
+		if (preg_match('/^git clone/i', $newline)) {
+			continue;
+		}
+		if (preg_match('/^rm -rf/i', $newline)) {
+			continue;
+		}
+		if (preg_match('/^mv/i', $newline)) {
+			continue;
+		}
 		// TODO enhance list of allowed patterns
 		// ...
 
