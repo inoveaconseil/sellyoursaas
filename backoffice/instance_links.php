@@ -414,7 +414,7 @@ if ($id > 0 && $action != 'edit' && $action != 'create') {
 				$stringofversion .= '='.$resbashformula;
 			} else {
 				setEventMessages('Failed to execute BASH: '.$resbashformula . '(' . $formula . ')', null, 'warnings');
-				print_r($retval);
+				print_r($output);
 				$error++;
 			}
 		}
