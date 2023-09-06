@@ -209,6 +209,8 @@ if (empty($db)) {
 	$db = $dbmaster;
 }
 
+echo "<pre>".print_r("OUI",1)."</pre>";
+
 if (empty($dirroot) || empty($instance) || empty($mode)) {
 	print "This script must be ran as 'admin' user.\n";
 	print "Usage:   $script_file  instance    backup_dir  (testrsync|testdatabase|test|confirmrsync|confirmdatabase|confirm) [--delete] [--notransaction] [--quick] [--forcersync] [--forcedump] [--nostats]\n";
@@ -236,7 +238,6 @@ if (! empty($instance) && ! preg_match('/\./', $instance) && ! preg_match('/\.ho
 	}
 	$tmpstring = preg_replace('/:.*$/', '', $tmparray[0]);
 	$instance = $instance.".".$tmpstring;   // Automatically concat first domain name
-	echo "<pre>".print_r($instanceserver,1)."</pre>";
 }
 
 
