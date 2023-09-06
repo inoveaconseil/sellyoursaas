@@ -173,9 +173,15 @@ if (! $res) {
 	print ("Include of master fails");
 	exit(-1);
 }
+echo "<pre>".print_r("OUI",1)."</pre>";
 
 include_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
+echo "<pre>".print_r("OUI1",1)."</pre>";
+
 dol_include_once("/sellyoursaas/core/lib/dolicloud.lib.php");
+
+echo "<pre>".print_r("OUI2",1)."</pre>";
+
 
 $return_varother = 0;
 $return_var = 0;
@@ -208,8 +214,6 @@ if ($dbmaster) {
 if (empty($db)) {
 	$db = $dbmaster;
 }
-
-echo "<pre>".print_r("OUI",1)."</pre>";
 
 if (empty($dirroot) || empty($instance) || empty($mode)) {
 	print "This script must be ran as 'admin' user.\n";
