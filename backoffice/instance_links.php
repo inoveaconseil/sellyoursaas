@@ -403,21 +403,22 @@ if ($id > 0 && $action != 'edit' && $action != 'create') {
 				setEventMessages('Failed to execute SQL: '.$newdb->lasterror(), null, 'warnings');
 				$error++;
 			}
-		} else if (preg_match('/BASH:/', $formula)) {
-			// Define $stringofversion
-			$formula = preg_replace('/BASH:/', '', $formula);
-			$formula = make_substitutions($formula, $substitarray);
-			// 'MAIN_VERSION_LAST_UPGRADE='.$confinstance->global->MAIN_VERSION_LAST_UPGRADE;
-			$resbashformula = exec($formula, $output, $retval);
+		} 
+		// else if (preg_match('/BASH:/', $formula)) {
+		// 	// Define $stringofversion
+		// 	$formula = preg_replace('/BASH:/', '', $formula);
+		// 	$formula = make_substitutions($formula, $substitarray);
+		// 	// 'MAIN_VERSION_LAST_UPGRADE='.$confinstance->global->MAIN_VERSION_LAST_UPGRADE;
+		// 	$resbashformula = exec($formula, $output, $retval);
 
-			if ($resbashformula) {
-				$stringofversion .= '='.$resbashformula;
-			} else {
-				setEventMessages('Failed to execute BASH: '.$resbashformula . '(' . $formula . ')', null, 'warnings');
-				print_r($output);
-				$error++;
-			}
-		}
+		// 	if ($resbashformula) {
+		// 		$stringofversion .= '='.$resbashformula;
+		// 	} else {
+		// 		setEventMessages('Failed to execute BASH: '.$resbashformula . '(' . $formula . ')', null, 'warnings');
+		// 		print_r($output);
+		// 		$error++;
+		// 	}
+		// }
 
 		if ($fordolibarr) {
 			$confinstance = new Conf();
