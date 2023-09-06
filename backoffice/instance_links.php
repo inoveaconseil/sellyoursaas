@@ -261,6 +261,9 @@ if ($id > 0 && $action != 'edit' && $action != 'create') {
 
 	$instance = 'xxxx';
 	$type_db = $conf->db->type;
+	$targetdir = $conf->global->DOLICLOUD_INSTANCES_PATH;
+	$generatedunixlogin    = $contract->array_options['options_username_os'];
+	$generateddbname       = $contract->array_options['options_database_db'];
 
 	$object->fetch_thirdparty();
 
