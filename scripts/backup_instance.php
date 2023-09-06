@@ -159,7 +159,6 @@ if (empty($backupdumpdayfrequency)) {
 $res=0;
 // Try master.inc.php into web root detected using web root caluclated from SCRIPT_FILENAME
 $tmp=empty($_SERVER['SCRIPT_FILENAME'])?'':$_SERVER['SCRIPT_FILENAME'];$tmp2=realpath(__FILE__); $i=strlen($tmp)-1; $j=strlen($tmp2)-1;
-echo "<pre>".print_r("OUI",1)."</pre>";
 
 while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i]==$tmp2[$j]) { $i--; $j--; }
 if (! $res && $i > 0 && file_exists(substr($tmp, 0, ($i+1))."/master.inc.php")) $res=@include substr($tmp, 0, ($i+1))."/master.inc.php";
@@ -168,8 +167,9 @@ if (! $res && $i > 0 && file_exists(dirname(substr($tmp, 0, ($i+1)))."/master.in
 if (! $res && file_exists("../master.inc.php")) $res=@include "../master.inc.php";
 if (! $res && file_exists("../../master.inc.php")) $res=@include "../../master.inc.php";
 if (! $res && file_exists("../../../master.inc.php")) $res=@include "../../../master.inc.php";
-echo "<pre>".print_r("OUI1",1)."</pre>";
+echo "<pre>".print_r("OUI",1)."</pre>";
 if (! $res && file_exists(__DIR__."/../../master.inc.php")) $res=@include __DIR__."/../../../master.inc.php";
+echo "<pre>".print_r("OUI1",1)."</pre>";
 if (! $res && file_exists(__DIR__."/../../../master.inc.php")) $res=@include __DIR__."/../../../master.inc.php";
 if (! $res && file_exists($dolibarrdir."/htdocs/master.inc.php")) $res=@include $dolibarrdir."/htdocs/master.inc.php";
 echo "<pre>".print_r("OUI2",1)."</pre>";
