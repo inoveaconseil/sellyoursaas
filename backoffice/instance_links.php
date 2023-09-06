@@ -297,6 +297,8 @@ if ($id > 0 && $action != 'edit' && $action != 'create') {
 	$newdb = getDoliDBInstance($type_db, $hostname_db, $username_db, $password_db, $database_db, $port_db);
 	$newdb->prefix_db = $prefix_db;
 
+	$homestring=$conf->global->DOLICLOUD_INSTANCES_PATH.'/'.$object->username_os;
+
 	$stringofversion = '';
 	$stringoflistofmodules = '';
 
@@ -356,7 +358,7 @@ if ($id > 0 && $action != 'edit' && $action != 'create') {
 		// Replace __INSTANCEDBPREFIX__
 		$substitarray=array(
 			'__INSTANCEDBPREFIX__' => $prefix_db,
-			'__INSTANCEDIR__' => $targetdir.'/'.$generatedunixlogin.'/'.$generateddbname,
+			'__INSTANCEDIR__' => $homestring,
 		);
 
 		// Get $stringofversion and $stringoflistofmodules
