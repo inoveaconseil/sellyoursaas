@@ -185,7 +185,8 @@ if (in_array($tmparray[0], array('backup'))) {
 	fwrite($fh, date('Y-m-d H:i:s').' return = '.$return_var."\n");
 	fwrite($fh, date('Y-m-d H:i:s').' '.join("\n", $output)."\n");
 	fclose($fh);
-
+	print "toto";
+	echo "<pre>".print_r($paramarray,1)."</pre>";
 	$httpresponse = 550 + ($return_var < 50 ? $return_var : 0);
 	if ($return_var == 0) {
 		$httpresponse = 200;

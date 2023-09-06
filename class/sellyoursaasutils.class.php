@@ -3860,7 +3860,6 @@ class SellYourSaasUtils
 					$urltoget='http://'.$serverdeployment.':8080/'.$remoteaction.'?'.urlencode($commandurl);
 					include_once DOL_DOCUMENT_ROOT.'/core/lib/geturl.lib.php';
 					$retarray = getURLContent($urltoget, 'GET', '', 0, array(), array('http', 'https'), 2);   // Timeout is defined before into $conf->global->MAIN_USE_RESPONSE_TIMEOUT
-					echo "<pre>".print_r($retarray,1)."</pre>";
 					if ($retarray['curl_error_no'] != '' || $retarray['http_code'] != 200) {
 						$error++;
 						if ($retarray['curl_error_no'] != '') $this->errors[] = $retarray['curl_error_msg'];
