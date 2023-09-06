@@ -411,6 +411,8 @@ if ($mode == 'testrsync' || $mode == 'test' || $mode == 'confirmrsync' || $mode 
 		// Excludes for other
 		$param[]="--exclude '*/_source/*'";
 		$param[]="--exclude '*/__MACOSX/*'";
+		// Excludes for customic
+		$param[]="--exclude '*/htdocs/customic/'";
 
 		//$param[]="--backup --suffix=.old";
 		if ($RSYNCDELETE) {
