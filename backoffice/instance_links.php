@@ -404,7 +404,7 @@ if ($id > 0 && $action != 'edit' && $action != 'create') {
 			$formula = preg_replace('/BASH:/', '', $formula);
 			$formula = make_substitutions($formula, $substitarray);
 			// 'MAIN_VERSION_LAST_UPGRADE='.$confinstance->global->MAIN_VERSION_LAST_UPGRADE;
-			$resbashformula = shell_exec($formula)
+			$resbashformula = shell_exec($formula);
 
 			if ($resbashformula) {
 				$stringofversion .= '='.$resbashformula;
