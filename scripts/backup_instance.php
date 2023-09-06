@@ -170,7 +170,7 @@ if (! $res && file_exists("../../../master.inc.php")) $res=@include "../../../ma
 if (! $res && file_exists(__DIR__."/../../master.inc.php")) $res=@include __DIR__."/../../../master.inc.php";
 echo "<pre>".print_r("OUI1",1)."</pre>";
 if (! $res && file_exists(__DIR__."/../../../master.inc.php")) $res=@include __DIR__."/../../../master.inc.php";
-echo "<pre>".print_r("On veut charger ceci avant que ça deconne ptn:" . $dolibarrdir,1)."</pre>";
+echo "<pre>".print_r("On veut charger ceci avant que ça deconne ptn:" . $dolibarrdir."/htdocs/master.inc.php",1)."</pre>";
 if (! $res && file_exists($dolibarrdir."/htdocs/master.inc.php")) $res=@include $dolibarrdir."/htdocs/master.inc.php";
 echo "<pre>".print_r("OUI2",1)."</pre>";
 if (! $res) {
