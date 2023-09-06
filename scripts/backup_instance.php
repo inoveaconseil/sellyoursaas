@@ -102,7 +102,6 @@ if ($fp) {
 		$tmpline=explode("=", $val);
 		if ($tmpline[0] == 'instanceserver') {
 			$instanceserver = $tmpline[1];
-			echo "<pre>".print_r($instanceserver,1)."</pre>";
 		}
 		if ($tmpline[0] == 'databasehost') {
 			$databasehost = $tmpline[1];
@@ -237,6 +236,7 @@ if (! empty($instance) && ! preg_match('/\./', $instance) && ! preg_match('/\.ho
 	}
 	$tmpstring = preg_replace('/:.*$/', '', $tmparray[0]);
 	$instance = $instance.".".$tmpstring;   // Automatically concat first domain name
+	echo "<pre>".print_r($instanceserver,1)."</pre>";
 }
 
 
