@@ -400,6 +400,21 @@ if ($id > 0 && $action != 'edit' && $action != 'create') {
 				$error++;
 			}
 		}
+		if (preg_match('/BASH:/', $formula)) {
+			// Define $stringofversion
+			$formula = preg_replace('/BASH:/', '', $formula);
+			$formula = make_substitutions($formula, $substitarray);
+			// 'MAIN_VERSION_LAST_UPGRADE='.$confinstance->global->MAIN_VERSION_LAST_UPGRADE;
+			$resbashformula = shell_exec($formula)
+
+			if ($resbashformula) {
+				$stringofversion .= '='.$resbashformula;
+				}
+			} else {
+				setEventMessages('Failed to execute BASH: '.$resbashformula, null, 'warnings');
+				$error++;
+			}
+		}
 
 		if ($fordolibarr) {
 			$confinstance = new Conf();
