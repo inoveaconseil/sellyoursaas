@@ -102,7 +102,7 @@ if ($fp) {
 		$tmpline=explode("=", $val);
 		if ($tmpline[0] == 'instanceserver') {
 			$instanceserver = $tmpline[1];
-			print_r($instanceserver)
+			print_r($instanceserver);
 		}
 		if ($tmpline[0] == 'databasehost') {
 			$databasehost = $tmpline[1];
