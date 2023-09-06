@@ -399,8 +399,7 @@ if ($id > 0 && $action != 'edit' && $action != 'create') {
 				setEventMessages('Failed to execute SQL: '.$newdb->lasterror(), null, 'warnings');
 				$error++;
 			}
-		}
-		if (preg_match('/BASH:/', $formula)) {
+		} else if (preg_match('/BASH:/', $formula)) {
 			// Define $stringofversion
 			$formula = preg_replace('/BASH:/', '', $formula);
 			$formula = make_substitutions($formula, $substitarray);
