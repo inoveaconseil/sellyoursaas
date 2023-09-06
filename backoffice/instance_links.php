@@ -353,6 +353,7 @@ if ($id > 0 && $action != 'edit' && $action != 'create') {
 		// Replace __INSTANCEDBPREFIX__
 		$substitarray=array(
 			'__INSTANCEDBPREFIX__' => $prefix_db
+			'__INSTANCEDIR__'=>$targetdir.'/'.$generatedunixlogin.'/'.$generateddbname,
 		);
 
 		// Get $stringofversion and $stringoflistofmodules
