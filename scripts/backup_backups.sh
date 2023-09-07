@@ -194,8 +194,6 @@ do
         listDirByIp[$ipFromIndex]=${listDir[$x]}
 done
 
-echo ${listDirByIp[@]}
-
 for ip in ${!listDirByIp[@]}; do
 	IPSERVBACKUP=${ip}
 	DIRFORIP=${listDirByIp[${ip}]}
