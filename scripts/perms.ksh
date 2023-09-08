@@ -46,7 +46,7 @@ echo "Set owner and permission on logs and backup directory"
 [ -d /home/jarvis/backup/conf ] || mkdir /home/jarvis/backup/conf;
 [ -d /home/jarvis/backup/mysql ] || mkdir /home/jarvis/backup/mysql;
 [ -d /home/jarvis/wwwroot ] || mkdir /home/jarvis/wwwroot;
-chown root.admin /home/jarvis/logs; chmod 770 /home/jarvis/logs; 
+chown root:jarvis /home/jarvis/logs; chmod 770 /home/jarvis/logs; 
 chown jarvis:jarvis /mnt/diskbackup; 
 chown jarvis:jarvis /home/jarvis/backup; chown jarvis:jarvis /home/jarvis/backup/conf; chown jarvis:jarvis /home/jarvis/backup/mysql; 
 chown jarvis:jarvis /home/jarvis/wwwroot
@@ -87,7 +87,7 @@ echo Set owner and permission on /etc/sellyoursaas.conf
 if [ ! -s /etc/sellyoursaas.conf ]; then
 	echo > /etc/sellyoursaas.conf
 fi
-chown -R root.admin /etc/sellyoursaas.conf
+chown -R root:jarvis /etc/sellyoursaas.conf
 chmod g-wx /etc/sellyoursaas.conf
 chmod o-rwx /etc/sellyoursaas.conf
 
@@ -95,7 +95,7 @@ echo Set owner and permission on /etc/sellyoursaas-pubic.conf
 if [ ! -s /etc/sellyoursaas-public.conf ]; then
 	echo > /etc/sellyoursaas-public.conf
 fi
-chown -R root.admin /etc/sellyoursaas-public.conf
+chown -R root:jarvis /etc/sellyoursaas-public.conf
 chmod a+r /etc/sellyoursaas-public.conf
 chmod a-wx /etc/sellyoursaas-public.conf
 
@@ -118,7 +118,7 @@ fi
 
 echo Set owner and permission on /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php
 if [ -f /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php ]; then
-	chown www-data.admin /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php
+	chown www-data:jarvis /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php
 	chmod o-rwx /home/jarvis/wwwroot/dolibarr/htdocs/conf/conf.php
 fi
 
