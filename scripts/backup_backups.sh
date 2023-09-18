@@ -297,9 +297,9 @@ if [[ "x$instanceserver" != "x0" ]]; then
 				export DIRDESTI2="$DIRFORIP/backup_"`hostname`;
 				export RSYNC_RSH="ssh -p $SERVPORTDESTI"
 				if [ "x$HISTODIR" == "x" ]; then
-		    	    export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS $DIRSOURCE2/osu$i* $USER@$SERVDESTICURSOR:$DIRDESTI2";
+		    	    export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS $DIRSOURCE2/osu$i* $USER@$IPSERVBACKUP:$DIRDESTI2";
 		    	else 
-		    	    export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS --backup --backup-dir=$DIRDESTI2/backupold_$HISTODIR $DIRSOURCE2/osu$i* $USER@$SERVDESTICURSOR:$DIRDESTI2";
+		    	    export command="rsync $TESTN -x --exclude-from=$scriptdir/backup_backups.exclude $OPTIONS --backup --backup-dir=$DIRDESTI2/backupold_$HISTODIR $DIRSOURCE2/osu$i* $USER@$IPSERVBACKUP:$DIRDESTI2";
 		    	fi
 	        	echo `date +'%Y-%m-%d %H:%M:%S'`" $command";
 
