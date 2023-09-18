@@ -188,7 +188,10 @@ do
         ((indexServDir++))
 done
 
-for x in $(seq 0 ${#listServ[@]})
+nbrMax=${#listServ[@]}
+((nbrMax--))
+
+for x in $(seq 0 $nbrMax)
 do
         ipFromIndex=${listServ[$x]}
         listDirByIp[$ipFromIndex]=${listDir[$x]}
