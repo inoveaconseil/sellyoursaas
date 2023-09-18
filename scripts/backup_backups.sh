@@ -292,6 +292,7 @@ if [[ "x$instanceserver" != "x0" ]]; then
 			do
 				IPSERVBACKUP=${ip}
 				DIRFORIP=${listDirByIp[${ip}]}
+				echo "Tentative de save sur $listDirByIp[${ip}] pour l'ip $ip"
 				export DIRDESTI1="$DIRFORIP/home_"`hostname`;
 				export DIRDESTI2="$DIRFORIP/backup_"`hostname`;
 				export RSYNC_RSH="ssh -p $SERVPORTDESTI"
