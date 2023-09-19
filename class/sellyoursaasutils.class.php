@@ -4180,8 +4180,8 @@ class SellYourSaasUtils
 								}
 
 								dol_syslog("newqty = ".$newqty." resultstring = ".$resultstring);
-								print '<pre>'.print_r($newqty,1).'</pre>';
-								$newcommentonqty .= $newqty."\n";
+								//print '<pre>'.print_r($newqty,1).'</pre>';
+								//$newcommentonqty .= $newqty."\n";
 							} else {
 								$error++;
 								$this->error = 'ssh2_connect failed to connect to server '.$server.', port '.$server_port;
