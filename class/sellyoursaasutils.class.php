@@ -4345,6 +4345,7 @@ class SellYourSaasUtils
 			$contract->context['actionmsg'] = 'Update contract by '.getUserRemoteIP().' to set options_latestresupdate_date'.($newcommentonqty ? ' and options_commentonqty' : '');
 
 			$result = $contract->update($user);
+			echo "toto update";
 			if ($result <= 0) {
 				$error++;
 				$this->error = 'Failed to update field options_latestresupdate_date or options_commentonqty on contract '.$contract->ref;
