@@ -4086,6 +4086,7 @@ class SellYourSaasUtils
 								if (preg_match('/^select count/i', $sqlformula)) {
 									// If request is a simple SELECT COUNT
 									$objsql = $dbinstance->fetch_object($resql);
+									print '<pre>'.print_r($objsql->nb,1).'</pre>';
 									if ($objsql) {
 										$newqty = $objsql->nb;
 										$newcommentonqty .= '';
