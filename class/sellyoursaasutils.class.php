@@ -4338,7 +4338,7 @@ class SellYourSaasUtils
 		// If flag was set to say contract metrics has been refreshed
 		if (!empty($contracthasbeenrefreshed) && ! $error) {
 			$contract->array_options['options_latestresupdate_date'] = dol_now();
-			if ($newcommentonqty) {
+			if ($currentcommentonqty2) {
 				$contract->array_options['options_commentonqty'] = $currentcommentonqty2 . ' ' . $newcommentonqty;
 			}
 
