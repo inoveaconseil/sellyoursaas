@@ -4040,7 +4040,7 @@ class SellYourSaasUtils
 					$tmparray = explode(':', $producttmp->array_options['options_resource_formula'], 2);
 					print '<pre>'.print_r($tmparray,1).'</pre>';
 					if ($tmparray[0] === 'SQL') {
-						$currentcommentonqty = preg_replace('#User Accounts ([0-9]+) : #', '' ,$currentcommentonqty);
+						$currentcommentonqty = preg_replace('#User Accounts \([0-9]+\) : #', '' ,$currentcommentonqty);
 						$sqlformula = make_substitutions($tmparray[1], $substitarray);
 
 						//$serverdeployment = $this->getRemoteServerDeploymentIp($domainname);
