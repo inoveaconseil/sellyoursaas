@@ -4108,6 +4108,7 @@ class SellYourSaasUtils
 												$newqty += (isset($objsql->nb) ? $objsql->nb : 1);
 												if (isset($objsql->comment)) {
 													$arrayofcomment[] = $objsql->comment;
+													print '<pre>'.print_r($arrayofcomment,1).'</pre>';
 												}
 											}
 											$itmp++;
