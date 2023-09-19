@@ -4280,7 +4280,7 @@ class SellYourSaasUtils
 													if ($newcommentonqty && $lasttemplateinvoice->array_options['options_commentonqty'] != $newcommentonqty) {
 														if($tmparray[0] === 'BASH')
 														{
-															str_replace('#Gb supp: [0-9]+#', $currentcommentonqty)
+															$currentcommentonqty = str_replace('#Gb supp: [0-9]+#', $currentcommentonqty);
 														}
 														$lasttemplateinvoice->array_options['options_commentonqty'] = $currentcommentonqty . ' ' . $newcommentonqty;
 
