@@ -4041,9 +4041,9 @@ class SellYourSaasUtils
 					if ($tmparray[0] === 'SQL') {
 						echo "currentcommentonqty before sql";
 						print '<pre>'.print_r($currentcommentonqty,1).'</pre>';
-						$currentcommentonqty2 = preg_replace('#User Accounts \([0-9]+\) : #', '' ,$currentcommentonqty);
-						echo "currentcommentonqty2 after sql preg";
-						print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
+						$currentcommentonqty = preg_replace('#User Accounts \([0-9]+\) : #', '' ,$currentcommentonqty);
+						echo "currentcommentonqty after sql";
+						print '<pre>'.print_r($currentcommentonqty,1).'</pre>';
 						$sqlformula = make_substitutions($tmparray[1], $substitarray);
 
 						//$serverdeployment = $this->getRemoteServerDeploymentIp($domainname);
@@ -4120,9 +4120,9 @@ class SellYourSaasUtils
 											$itmp++;
 										}
 										//$newcommentonqty .= 'Qty '.$producttmp->ref.' = '.$newqty."\n";
-										$newcommentonqty2 .= $newcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
+										$newcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
 										echo "tata";
-										print '<pre>'.print_r($newcommentonqty2,1).'</pre>';
+										print '<pre>'.print_r($newcommentonqty,1).'</pre>';
 									} else {
 										$error++;
 										$this->error = 'sellyoursaasRemoteAction: SQL to get resource list returns empty list for '.$object->ref.' - '.$producttmp->ref.' - '.$sqlformula;
@@ -4143,10 +4143,10 @@ class SellYourSaasUtils
 						}
 					} elseif ($tmparray[0] === 'BASH') {
 						echo "currentcommentonqty before bash";
-						print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
-						$currentcommentonqty2 = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty2);
-						echo "currentcommentonqty2 after bash";
-						print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
+						print '<pre>'.print_r($currentcommentonqty,1).'</pre>';
+						$currentcommentonqty = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
+						echo "currentcommentonqty after bash";
+						print '<pre>'.print_r($currentcommentonqty,1).'</pre>';
 						$bashformula = make_substitutions($tmparray[1], $substitarray);
 						
 						// SFTP refresh
@@ -4194,8 +4194,8 @@ class SellYourSaasUtils
 
 								dol_syslog("newqty = ".$newqty." resultstring = ".$resultstring);
 								//print '<pre>'.print_r($newqty,1).'</pre>';
-								$newcommentonqty2 .= $newcommentonqty .= 'Gb supp: ' . $newqty;
-								print '<pre>'.print_r($newcommentonqty2,1).'</pre>';
+								$currentcommentonqty .= $newcommentonqty .= 'Gb supp: ' . $newqty;
+								print '<pre>'.print_r($newcommentonqty,1).'</pre>';
 							} else {
 								$error++;
 								$this->error = 'ssh2_connect failed to connect to server '.$server.', port '.$server_port;
@@ -4338,8 +4338,8 @@ class SellYourSaasUtils
 		// If flag was set to say contract metrics has been refreshed
 		if (!empty($contracthasbeenrefreshed) && ! $error) {
 			$contract->array_options['options_latestresupdate_date'] = dol_now();
-			if ($currentcommentonqty2) {
-				$contract->array_options['options_commentonqty'] = $currentcommentonqty2 . ' ' . $newcommentonqty;
+			if ($newcommentonqty) {
+				$contract->array_options['options_commentonqty'] = $currentcommentonqty . ' ' . $newcommentonqty;
 			}
 
 			$contract->context['actionmsg'] = 'Update contract by '.getUserRemoteIP().' to set options_latestresupdate_date'.($newcommentonqty ? ' and options_commentonqty' : '');
