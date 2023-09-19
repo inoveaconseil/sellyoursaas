@@ -4101,6 +4101,7 @@ class SellYourSaasUtils
 										while ($itmp < $num) {
 											// If request is a list to count
 											$objsql = $dbinstance->fetch_object($resql);
+											print '<pre>'.print_r($objsql,1).'</pre>';
 											if ($objsql) {
 												if (empty($newqty)) {
 													$newqty = 0;	// To have $newqty not null and allow addition just after
