@@ -4278,7 +4278,11 @@ class SellYourSaasUtils
 
 													// Overwrite the extrafield commentonqty of the template invoice. Note that only last comment among all services is saved/kept. This is a bug.
 													if ($newcommentonqty && $lasttemplateinvoice->array_options['options_commentonqty'] != $newcommentonqty) {
-														$lasttemplateinvoice->array_options['options_commentonqty'] = $newcommentonqty;
+														if($tmparray[0] === 'BASH')
+														{
+															str_replace('#Gb supp: [0-9]+#', $currentcommentonqty)
+														}
+														$lasttemplateinvoice->array_options['options_commentonqty'] = $currentcommentonqty . ' ' . $newcommentonqty;
 
 														$tmpobject->context["actionmsg"] = $forceaddevent;
 
