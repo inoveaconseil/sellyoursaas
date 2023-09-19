@@ -4120,7 +4120,7 @@ class SellYourSaasUtils
 											$itmp++;
 										}
 										//$newcommentonqty .= 'Qty '.$producttmp->ref.' = '.$newqty."\n";
-										$newcommentonqty2 = $newcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
+										$newcommentonqty2 .= $newcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
 										echo "tata";
 										print '<pre>'.print_r($newcommentonqty2,1).'</pre>';
 									} else {
@@ -4194,7 +4194,7 @@ class SellYourSaasUtils
 
 								dol_syslog("newqty = ".$newqty." resultstring = ".$resultstring);
 								//print '<pre>'.print_r($newqty,1).'</pre>';
-								$newcommentonqty2 = $newcommentonqty .= 'Gb supp: ' . $newqty;
+								$newcommentonqty2 .= $newcommentonqty .= 'Gb supp: ' . $newqty;
 								print '<pre>'.print_r($newcommentonqty2,1).'</pre>';
 							} else {
 								$error++;
