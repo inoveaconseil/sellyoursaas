@@ -4040,6 +4040,7 @@ class SellYourSaasUtils
 					$tmparray = explode(':', $producttmp->array_options['options_resource_formula'], 2);
 					print '<pre>'.print_r($tmparray,1).'</pre>';
 					if ($tmparray[0] === 'SQL') {
+						$currentcommentonqty = preg_replace('#User Accounts ([0-9]+) : #', '' ,$currentcommentonqty);
 						$sqlformula = make_substitutions($tmparray[1], $substitarray);
 
 						//$serverdeployment = $this->getRemoteServerDeploymentIp($domainname);
@@ -4135,13 +4136,7 @@ class SellYourSaasUtils
 							$dbinstance->close();
 						}
 					} elseif ($tmparray[0] === 'BASH') {
-						echo "oui";
-						print_r($tmparray);
-						echo "toto";
-						print_r($currentcommentonqty);
 						$currentcommentonqty = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
-						print_r($currentcommentonqty);
-						echo "tata";
 						$bashformula = make_substitutions($tmparray[1], $substitarray);
 						
 						// SFTP refresh
