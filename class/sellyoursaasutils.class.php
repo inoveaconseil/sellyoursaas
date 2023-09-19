@@ -4120,9 +4120,9 @@ class SellYourSaasUtils
 											$itmp++;
 										}
 										//$newcommentonqty .= 'Qty '.$producttmp->ref.' = '.$newqty."\n";
-										$newcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
+										$newcommentonqty2 = $newcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
 										echo "tata";
-										print '<pre>'.print_r($newcommentonqty,1).'</pre>';
+										print '<pre>'.print_r($newcommentonqty2,1).'</pre>';
 									} else {
 										$error++;
 										$this->error = 'sellyoursaasRemoteAction: SQL to get resource list returns empty list for '.$object->ref.' - '.$producttmp->ref.' - '.$sqlformula;
@@ -4194,8 +4194,8 @@ class SellYourSaasUtils
 
 								dol_syslog("newqty = ".$newqty." resultstring = ".$resultstring);
 								//print '<pre>'.print_r($newqty,1).'</pre>';
-								$newcommentonqty .= 'Gb supp: ' . $newqty;
-								print '<pre>'.print_r($newcommentonqty,1).'</pre>';
+								$newcommentonqty2 = $newcommentonqty .= 'Gb supp: ' . $newqty;
+								print '<pre>'.print_r($newcommentonqty2,1).'</pre>';
 							} else {
 								$error++;
 								$this->error = 'ssh2_connect failed to connect to server '.$server.', port '.$server_port;
