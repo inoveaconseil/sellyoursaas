@@ -4101,7 +4101,6 @@ class SellYourSaasUtils
 										while ($itmp < $num) {
 											// If request is a list to count
 											$objsql = $dbinstance->fetch_object($resql);
-											print '<pre>'.print_r($objsql,1).'</pre>';
 											if ($objsql) {
 												if (empty($newqty)) {
 													$newqty = 0;	// To have $newqty not null and allow addition just after
@@ -4115,6 +4114,7 @@ class SellYourSaasUtils
 										}
 										//$newcommentonqty .= 'Qty '.$producttmp->ref.' = '.$newqty."\n";
 										$newcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment)."\n";
+										print '<pre>'.print_r($newcommentonqty,1).'</pre>';
 									} else {
 										$error++;
 										$this->error = 'sellyoursaasRemoteAction: SQL to get resource list returns empty list for '.$object->ref.' - '.$producttmp->ref.' - '.$sqlformula;
@@ -4181,7 +4181,8 @@ class SellYourSaasUtils
 
 								dol_syslog("newqty = ".$newqty." resultstring = ".$resultstring);
 								//print '<pre>'.print_r($newqty,1).'</pre>';
-								//$newcommentonqty .= $newqty."\n";
+								$newcommentonqty .= 'Gb supp: ' . $newqty ."\n";
+								print '<pre>'.print_r($newcommentonqty,1).'</pre>';
 							} else {
 								$error++;
 								$this->error = 'ssh2_connect failed to connect to server '.$server.', port '.$server_port;
