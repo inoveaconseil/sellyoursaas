@@ -4186,7 +4186,7 @@ class SellYourSaasUtils
 
 								dol_syslog("newqty = ".$newqty." resultstring = ".$resultstring);
 								//print '<pre>'.print_r($newqty,1).'</pre>';
-								$newcommentonqty .= 'Gb supp: ' . $newqty ."\n";
+								$newcommentonqty .= 'Gb supp: ' . $newqty;
 								print '<pre>'.print_r($newcommentonqty,1).'</pre>';
 							} else {
 								$error++;
