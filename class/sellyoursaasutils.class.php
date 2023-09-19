@@ -4278,11 +4278,7 @@ class SellYourSaasUtils
 
 													// Overwrite the extrafield commentonqty of the template invoice. Note that only last comment among all services is saved/kept. This is a bug.
 													if ($newcommentonqty && $lasttemplateinvoice->array_options['options_commentonqty'] != $newcommentonqty) {
-														if($tmparray[0] === 'BASH')
-														{
-															$currentcommentonqty = str_replace('#Gb supp: [0-9]+#', $currentcommentonqty);
-														}
-														$lasttemplateinvoice->array_options['options_commentonqty'] = $currentcommentonqty . ' ' . $newcommentonqty;
+														$lasttemplateinvoice->array_options['options_commentonqty'] = $newcommentonqty;
 
 														$tmpobject->context["actionmsg"] = $forceaddevent;
 
@@ -4331,7 +4327,11 @@ class SellYourSaasUtils
 		if (!empty($contracthasbeenrefreshed) && ! $error) {
 			$contract->array_options['options_latestresupdate_date'] = dol_now();
 			if ($newcommentonqty) {
-				$contract->array_options['options_commentonqty'] = $newcommentonqty;
+				if($tmparray[0] === 'BASH')
+				{
+					$currentcommentonqty = str_replace('#Gb supp: [0-9]+#', $currentcommentonqty);
+				}
+				$contract->array_options['options_commentonqty'] = $currentcommentonqty . ' ' . $newcommentonqty;
 			}
 
 			$contract->context['actionmsg'] = 'Update contract by '.getUserRemoteIP().' to set options_latestresupdate_date'.($newcommentonqty ? ' and options_commentonqty' : '');
