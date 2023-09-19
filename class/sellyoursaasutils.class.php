@@ -4329,8 +4329,9 @@ class SellYourSaasUtils
 			if ($newcommentonqty) {
 				if($tmparray[0] === 'BASH')
 				{
+					print_r($currentcommentonqty);
 					$currentcommentonqty = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
-					
+					print_r($currentcommentonqty);
 				}
 				$contract->array_options['options_commentonqty'] = $currentcommentonqty . ' ' . $newcommentonqty;
 			}
