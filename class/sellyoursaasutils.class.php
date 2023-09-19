@@ -4149,10 +4149,9 @@ class SellYourSaasUtils
 						echo "currentcommentonqty2 before bash";
 						print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
 						if(empty($currentcommentonqty2))
-						$currentcommentonqty2 = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
+							$currentcommentonqty2 = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
 						else
 							$currentcommentonqty2 = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty2);
-
 						echo "currentcommentonqty2 after bash";
 						print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
 						$bashformula = make_substitutions($tmparray[1], $substitarray);
@@ -4202,7 +4201,7 @@ class SellYourSaasUtils
 
 								dol_syslog("newqty = ".$newqty." resultstring = ".$resultstring);
 								//print '<pre>'.print_r($newqty,1).'</pre>';
-								$currentcommentonqty2 .= $currentcommentonqty .= $newcommentonqty .= 'Gb supp: ' . $newqty;
+								$currentcommentonqty2 .= 'Gb supp: ' . $newqty;
 								print '<pre>'.print_r($newcommentonqty,1).'</pre>';
 							} else {
 								$error++;
