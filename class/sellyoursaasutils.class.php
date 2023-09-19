@@ -4085,8 +4085,6 @@ class SellYourSaasUtils
 								if (preg_match('/^select count/i', $sqlformula)) {
 									// If request is a simple SELECT COUNT
 									$objsql = $dbinstance->fetch_object($resql);
-									echo "toto";
-									print '<pre>'.print_r($objsql->nb,1).'</pre>';
 									if ($objsql) {
 										$newqty = $objsql->nb;
 										$newcommentonqty .= '';
@@ -4104,6 +4102,8 @@ class SellYourSaasUtils
 										while ($itmp < $num) {
 											// If request is a list to count
 											$objsql = $dbinstance->fetch_object($resql);
+											echo "toto";
+											print '<pre>'.print_r($objsql->nb,1).'</pre>';
 											if ($objsql) {
 												if (empty($newqty)) {
 													$newqty = 0;	// To have $newqty not null and allow addition just after
