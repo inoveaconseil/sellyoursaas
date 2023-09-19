@@ -4039,7 +4039,11 @@ class SellYourSaasUtils
 
 					$tmparray = explode(':', $producttmp->array_options['options_resource_formula'], 2);
 					if ($tmparray[0] === 'SQL') {
+						echo "currentcommentonqty before sql";
+						print '<pre>'.print_r($currencommentonqty,1).'</pre>';
 						$currentcommentonqty = preg_replace('#User Accounts \([0-9]+\) : #', '' ,$currentcommentonqty);
+						echo "currentcommentonqty after sql";
+						print '<pre>'.print_r($currencommentonqty,1).'</pre>';
 						$sqlformula = make_substitutions($tmparray[1], $substitarray);
 
 						//$serverdeployment = $this->getRemoteServerDeploymentIp($domainname);
@@ -4138,7 +4142,11 @@ class SellYourSaasUtils
 							$dbinstance->close();
 						}
 					} elseif ($tmparray[0] === 'BASH') {
+						echo "currentcommentonqty before bash";
+						print '<pre>'.print_r($currencommentonqty,1).'</pre>';
 						$currentcommentonqty = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
+						echo "currentcommentonqty after bash";
+						print '<pre>'.print_r($currencommentonqty,1).'</pre>';
 						$bashformula = make_substitutions($tmparray[1], $substitarray);
 						
 						// SFTP refresh
