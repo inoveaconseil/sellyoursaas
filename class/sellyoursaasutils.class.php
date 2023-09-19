@@ -4135,8 +4135,15 @@ class SellYourSaasUtils
 							$dbinstance->close();
 						}
 					} elseif ($tmparray[0] === 'BASH') {
+						echo "oui";
+						print_r($tmparray);
+						echo "toto";
+						print_r($currentcommentonqty);
+						$currentcommentonqty = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
+						print_r($currentcommentonqty);
+						echo "tata";
 						$bashformula = make_substitutions($tmparray[1], $substitarray);
-
+						
 						// SFTP refresh
 						if (function_exists("ssh2_connect")) {
 							$server=$contract->array_options['options_hostname_os'];
@@ -4327,16 +4334,6 @@ class SellYourSaasUtils
 		if (!empty($contracthasbeenrefreshed) && ! $error) {
 			$contract->array_options['options_latestresupdate_date'] = dol_now();
 			if ($newcommentonqty) {
-				echo "oui";
-				print_r($tmparray);
-				if($tmparray[0] === 'BASH')
-				{
-					echo "toto";
-					print_r($currentcommentonqty);
-					$currentcommentonqty = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
-					print_r($currentcommentonqty);
-					echo "tata";
-				}
 				$contract->array_options['options_commentonqty'] = $currentcommentonqty . ' ' . $newcommentonqty;
 			}
 
