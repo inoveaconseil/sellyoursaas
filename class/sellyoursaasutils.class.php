@@ -4085,6 +4085,7 @@ class SellYourSaasUtils
 								if (preg_match('/^select count/i', $sqlformula)) {
 									// If request is a simple SELECT COUNT
 									$objsql = $dbinstance->fetch_object($resql);
+									echo "toto";
 									print '<pre>'.print_r($objsql->nb,1).'</pre>';
 									if ($objsql) {
 										$newqty = $objsql->nb;
@@ -4116,6 +4117,7 @@ class SellYourSaasUtils
 										}
 										//$newcommentonqty .= 'Qty '.$producttmp->ref.' = '.$newqty."\n";
 										$newcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
+										echo "tata";
 										print '<pre>'.print_r($newcommentonqty,1).'</pre>';
 									} else {
 										$error++;
