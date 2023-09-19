@@ -4039,15 +4039,11 @@ class SellYourSaasUtils
 
 					$tmparray = explode(':', $producttmp->array_options['options_resource_formula'], 2);
 					if ($tmparray[0] === 'SQL') {
-						echo "currentcommentonqty before sql";
-						print '<pre>'.print_r($currentcommentonqty,1).'</pre>';
 						if(empty($currentcommentonqty2))
 							$currentcommentonqty2 = preg_replace('#User Accounts \([0-9]+\) : #', '' ,$currentcommentonqty);
 						else
 							$currentcommentonqty2 = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
 
-						echo "currentcommentonqty2 after sql";
-						print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
 						$sqlformula = make_substitutions($tmparray[1], $substitarray);
 
 						//$serverdeployment = $this->getRemoteServerDeploymentIp($domainname);
@@ -4110,8 +4106,6 @@ class SellYourSaasUtils
 										while ($itmp < $num) {
 											// If request is a list to count
 											$objsql = $dbinstance->fetch_object($resql);
-											echo "toto";
-											print '<pre>'.print_r($objsql->nb,1).'</pre>';
 											if ($objsql) {
 												if (empty($newqty)) {
 													$newqty = 0;	// To have $newqty not null and allow addition just after
@@ -4125,8 +4119,6 @@ class SellYourSaasUtils
 										}
 										//$newcommentonqty .= 'Qty '.$producttmp->ref.' = '.$newqty."\n";
 										$currentcommentonqty2 .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
-										echo "currentcommentonqty2";
-										print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
 									} else {
 										$error++;
 										$this->error = 'sellyoursaasRemoteAction: SQL to get resource list returns empty list for '.$object->ref.' - '.$producttmp->ref.' - '.$sqlformula;
@@ -4146,14 +4138,10 @@ class SellYourSaasUtils
 							$dbinstance->close();
 						}
 					} elseif ($tmparray[0] === 'BASH') {
-						echo "currentcommentonqty2 before bash";
-						print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
 						if(empty($currentcommentonqty2))
 							$currentcommentonqty2 = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
 						else
 							$currentcommentonqty2 = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty2);
-						echo "currentcommentonqty2 after bash";
-						print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
 						$bashformula = make_substitutions($tmparray[1], $substitarray);
 
 						// SFTP refresh
@@ -4202,7 +4190,6 @@ class SellYourSaasUtils
 								dol_syslog("newqty = ".$newqty." resultstring = ".$resultstring);
 								//print '<pre>'.print_r($newqty,1).'</pre>';
 								$currentcommentonqty2 .= 'Gb supp: ' . $newqty;
-								print '<pre>'.print_r($newcommentonqty,1).'</pre>';
 							} else {
 								$error++;
 								$this->error = 'ssh2_connect failed to connect to server '.$server.', port '.$server_port;
