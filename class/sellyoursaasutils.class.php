@@ -4102,14 +4102,12 @@ class SellYourSaasUtils
 											// If request is a list to count
 											$objsql = $dbinstance->fetch_object($resql);
 											if ($objsql) {
-												print '<pre>'.print_r($objsql,1).'</pre>';
 												if (empty($newqty)) {
 													$newqty = 0;	// To have $newqty not null and allow addition just after
 												}
 												$newqty += (isset($objsql->nb) ? $objsql->nb : 1);
 												if (isset($objsql->comment)) {
 													$arrayofcomment[] = $objsql->comment;
-													print '<pre>'.print_r($arrayofcomment,1).'</pre>';
 												}
 											}
 											$itmp++;
@@ -4181,7 +4179,8 @@ class SellYourSaasUtils
 								}
 
 								dol_syslog("newqty = ".$newqty." resultstring = ".$resultstring);
-								$newcommentonqty .= ''.join(', ', $arrayofcomment)."\n";
+								print '<pre>'.print_r($newqty,1).'</pre>';
+								//$newcommentonqty .= ' '.join(', ', $arrayofcomment)."\n";
 							} else {
 								$error++;
 								$this->error = 'ssh2_connect failed to connect to server '.$server.', port '.$server_port;
