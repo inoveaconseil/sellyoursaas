@@ -4040,6 +4040,7 @@ class SellYourSaasUtils
 					$tmparray = explode(':', $producttmp->array_options['options_resource_formula'], 2);
 					if ($tmparray[0] === 'SQL') {
 						$sqlformula = make_substitutions($tmparray[1], $substitarray);
+						print '<pre>'.print_r($sqlformula,1).'</pre>';
 
 						//$serverdeployment = $this->getRemoteServerDeploymentIp($domainname);
 						$serverdeployment = $contract->array_options['options_deployment_host'];
