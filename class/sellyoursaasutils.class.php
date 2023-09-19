@@ -4327,6 +4327,8 @@ class SellYourSaasUtils
 		if (!empty($contracthasbeenrefreshed) && ! $error) {
 			$contract->array_options['options_latestresupdate_date'] = dol_now();
 			if ($newcommentonqty) {
+				echo "oui";
+				print_r($tmparray[0]);
 				if($tmparray[0] === 'BASH')
 				{
 					echo "toto";
