@@ -4124,7 +4124,7 @@ class SellYourSaasUtils
 											$itmp++;
 										}
 										//$newcommentonqty .= 'Qty '.$producttmp->ref.' = '.$newqty."\n";
-										$currentcommentonqty2 .= $currentcommentonqty .= $newcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
+										$currentcommentonqty2 .= $currentcommentonqty .= 'User Accounts ('.$newqty.') : '.join(', ', $arrayofcomment);
 										echo "currentcommentonqty2";
 										print '<pre>'.print_r($currentcommentonqty2,1).'</pre>';
 									} else {
