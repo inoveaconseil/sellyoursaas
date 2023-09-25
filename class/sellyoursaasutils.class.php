@@ -4042,7 +4042,7 @@ class SellYourSaasUtils
 						if(empty($currentcommentonqty2))
 							$currentcommentonqty2 = preg_replace('#User Accounts \([0-9]+\) : #', '' ,$currentcommentonqty);
 						else
-							$currentcommentonqty2 = preg_replace('#Gb supp: [0-9]+#', '' ,$currentcommentonqty);
+							$currentcommentonqty2 = preg_replace('#User Accounts \([0-9]+\) : #', '' ,$currentcommentonqty);
 
 						$sqlformula = make_substitutions($tmparray[1], $substitarray);
 
