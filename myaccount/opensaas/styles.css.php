@@ -344,7 +344,7 @@ height:5em;
 
 .signup .block.medium { padding-top: 10px; }
 
-.signup2 { max-width: 1000px; display: inline-block; text-align: initial; margin-left:20%; float:left }
+.signup2 { max-width: 1400px; display: inline-block; text-align: initial; margin-left:20%; float:left }
 
 .customcompanylogo{
 	display:none;
