@@ -583,10 +583,10 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 						$('.offers').hover(function(){
 						alert($(this).attr("data-url1"));
 						alert($(this).attr("data-url2"));
-							$('.offers').css('background',"url($(this).attr("data-url2"))");
+							$('.offers').css('background',"url($(this).attr('data-url2'))");
 						},
 					  function(){
-						$(".offers").css('background',"url($(this).attr("data-url1"))");
+						$(".offers").css('background',"url($(this).attr('data-url1'))");
 					  });
 					});
 				</script>
