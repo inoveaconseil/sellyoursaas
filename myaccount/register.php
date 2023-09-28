@@ -584,7 +584,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 							$(this).attr('src',$(this).attr('data-url2'));
 						},
 					  function(){
-						$(this).attr('src',"$(this).attr('data-url1')");
+						$(this).attr('src',$(this).attr('data-url1'));
 					  });
 					});
 				</script>
