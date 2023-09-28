@@ -584,9 +584,10 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 							$(this).css('cursor','pointer');
 						});
 						$('#offer1').click(function(){
+							$(".offers").each(function() {
+								 $(this).attr('src',$(this).attr('data-url1'));
+							});
 							$(this).attr('src',$(this).attr('data-url2'));
-						}else{
-							$(this).attr('src',$(this).attr('data-url1'));
 						});
 					});
 				</script>
