@@ -2479,7 +2479,7 @@ if ($mythirdpartyaccount->isareseller) {
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i> '.$langs->trans("Support").'</a>
             <ul class="dropdown-menu">';
 		// Boite à outils
-		print '<li><a class="dropdown-item" href="https://opensaas.fr/la-boite-a-outils-opensaas/"><i class="fa fa-toolbox pictofixedwidth"></i> '.$langs->trans("ToolBox").'</a></li>';
+		print '<li><a class="dropdown-item" href="https://opensaas.fr/la-boite-a-outils-opensaas/" target="_blank"><i class="fa fa-toolbox pictofixedwidth"></i> '.$langs->trans("ToolBox").'</a></li>';
 		// FAQ
 	print '<li class="dropdown-divider"></li>';
 		print '<li><a class="dropdown-item" href="'.$urlfaq.'" target="_newfaq"><i class="fa fa-question pictofixedwidth"></i> '.$langs->trans("FAQs").'</a></li>';
