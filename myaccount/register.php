@@ -584,7 +584,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 							$('.offers').css('background',"url('../img/Inscription-DoliStart-Choose.png')");
 						},
 					  function(){
-						$(".offers").css('background',"url('../img/Inscription-DoliStart-Choose.png')");
+						$(".offers").css('background',"url('../img/Inscription-DoliStart-NoChoose.png')");
 					  });
 					});
 				</script>
