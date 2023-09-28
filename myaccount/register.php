@@ -584,13 +584,10 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 							$(this).css('cursor','pointer');
 						}),
 					  function(){
-						$(this).attr('src',$(this).attr('data-url1'));
-					  },
-					  function(){
-					  $('.offers').click(function(){
-					  	$(this).attr('src',$(this).attr('data-url2'));
-					  });
-}
+						  $('.offers').click(function(){
+							$(this).attr('src',$(this).attr('data-url2'));
+						  });
+					  }
 					});
 				</script>
 		  <?php
