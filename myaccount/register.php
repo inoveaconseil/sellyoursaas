@@ -452,8 +452,11 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 			  <input type="hidden" name="disablecustomeremail" value="<?php echo dol_escape_htmltag($disablecustomeremail); ?>" />
 			  <!-- _SESSION['dol_loginsellyoursaas'] = <?php echo (empty($_SESSION['dol_loginsellyoursaas']) ? '' : $_SESSION['dol_loginsellyoursaas']); ?> -->
 
-			  <section id="enterUserAccountDetails">
+			  <section id="enterUserAccountDetails" style="width:60%;float:left;margin-right:5px;">
+				  <img src="../img/Inscription-Dolistart-NoChoose.png" />
+				<section id="offers" style="width:39%">
 
+				</section>
 
 			<?php
 			$disabled='';
@@ -571,6 +574,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 			?>
 
 		  </section>
+
 
 		  <?php
 			if ($productref != 'none') {
