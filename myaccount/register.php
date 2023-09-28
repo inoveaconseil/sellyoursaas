@@ -580,7 +580,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 				</section>
 				<script>
 					$(document).ready(function(){
-						$('.offers').click(function(){
+						$('.offers').on('click',function(){
 						alert('toto');
 							$(this).attr('src',$(this).attr('data-url2'));
 						},
