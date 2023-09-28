@@ -71,6 +71,7 @@ input#urlforpartner {
 .offers {
 	float:left;
 	width:200px;
+	height:350px;
 }
 
 #offer1:hover {
