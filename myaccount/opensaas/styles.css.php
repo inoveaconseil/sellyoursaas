@@ -74,10 +74,6 @@ input#urlforpartner {
 	height:350px;
 }
 
-#offer1:hover {
-	background:url('../img/Inscription-DoliStart-Choose.png');
-}
-
 label {
 	margin-bottom: .1rem;
 	margin-top: .4rem;

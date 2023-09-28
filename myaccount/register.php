@@ -573,11 +573,21 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 		  </section>
 
 				<section id="offers" style="width:48%;float:left;">
-					<div class="offers" id="offer1" style="background:url('../img/Inscription-DoliStart-NoChoose.png');" ></div>
-					<img class="offers" id="offer2" src="../img/Inscription-DoliUp-NoChoose.png" />
-					<img class="offers" id="offer3" src="../img/Inscription-DoliMax-NoChoose.png" />
+					<div class="offers" id="offer1" data-url="../img/Inscription-DoliStart-NoChoose.png" style="background:url('../img/Inscription-DoliStart-NoChoose.png');" ></div>
+					<img class="offers" id="offer2" data-url="../img/Inscription-DoliUp-NoChoose.png" src="../img/Inscription-DoliUp-NoChoose.png" />
+					<img class="offers" id="offer3" data-url="../img/Inscription-DoliMax-NoChoose.png" src="../img/Inscription-DoliMax-NoChoose.png" />
 
 				</section>
+				<script>
+					$(document).ready(function(){
+						$('.offers').hover(function(){
+							$('.offers').css('background',"url('../img/Inscription-DoliStart-Choose.png')");
+						},
+					  function(){
+						$(".offers").css('background',"url('../img/Inscription-DoliStart-Choose.png')");
+					  });
+					});
+				</script>
 		  <?php
 			if ($productref != 'none') {
 				if (empty($reusecontractid)) print '<br>';
