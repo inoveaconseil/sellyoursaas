@@ -581,7 +581,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 				<script>
 					$(document).ready(function(){
 						$('.offers').hover(function(){
-							$('.offers').css('background',"url($(this).attr('data-url2'))");
+							$(this).css('background',"url($(this).attr('data-url2'))");
 						},
 					  function(){
 						$(".offers").css('background',"url($(this).attr('data-url1'))");
