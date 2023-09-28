@@ -573,9 +573,9 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 		  </section>
 
 				<section id="offers" style="width:39%;float:left;">
-					<img src="../img/Inscription-DoliStart-NoChoose.png" />
-					<img src="../img/Inscription-DoliUp-NoChoose.png" />
-					<img src="../img/Inscription-DoliMax-NoChoose.png" />
+					<img class="offers" src="../img/Inscription-DoliStart-NoChoose.png" />
+					<img class="offers" src="../img/Inscription-DoliUp-NoChoose.png" />
+					<img class="offers" src="../img/Inscription-DoliMax-NoChoose.png" />
 
 				</section>
 		  <?php

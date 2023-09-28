@@ -68,6 +68,11 @@ input#urlforpartner {
     border-radius: 3px;
 }
 
+.offers {
+	float:left;
+	width:200px;
+}
+
 label {
 	margin-bottom: .1rem;
 	margin-top: .4rem;
