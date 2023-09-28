@@ -580,16 +580,13 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 				</section>
 				<script>
 					$(document).ready(function(){
-						$('.offers').hover(function(){
+						$('.offers').click(function(){
 							$(this).attr('src',$(this).attr('data-url2'));
 						},
 					  function(){
 						$(this).attr('src',$(this).attr('data-url1'));
 					  });
 
-					  $('.offers').click(function(){
-							$(this).attr('src',$(this).attr('data-url2'));
-						});
 					});
 				</script>
 		  <?php
