@@ -453,8 +453,8 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 			  <!-- _SESSION['dol_loginsellyoursaas'] = <?php echo (empty($_SESSION['dol_loginsellyoursaas']) ? '' : $_SESSION['dol_loginsellyoursaas']); ?> -->
 
 			  <section id="enterUserAccountDetails" style="width:60%;float:left;margin-right:5px;">
-				  <img src="../img/Inscription-Dolistart-NoChoose.png" />
 				<section id="offers" style="width:39%">
+					<img src="../img/Inscription-Dolistart-NoChoose.png" />
 
 				</section>
 
