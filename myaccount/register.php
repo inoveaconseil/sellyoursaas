@@ -588,7 +588,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 								 $(this).attr('src',$(this).attr('data-url1'));
 							});
 							$(this).attr('src',$(this).attr('data-url2'));
-							$("input['package']").attr('value',$(this).attr('data-package'));
+							$("input[name='package']").val($(this).attr('data-package'));
 						});
 					});
 				</script>
