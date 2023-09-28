@@ -573,18 +573,18 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 		  </section>
 
 				<section id="offers" style="width:48%;float:left;">
-					<div class="offers" id="offer1" data-url="../img/Inscription-DoliStart-NoChoose.png" style="background:url('../img/Inscription-DoliStart-NoChoose.png');" ></div>
-					<img class="offers" id="offer2" data-url="../img/Inscription-DoliUp-NoChoose.png" src="../img/Inscription-DoliUp-NoChoose.png" />
-					<img class="offers" id="offer3" data-url="../img/Inscription-DoliMax-NoChoose.png" src="../img/Inscription-DoliMax-NoChoose.png" />
+					<div class="offers" id="offer1" data-url1="../img/Inscription-DoliStart-NoChoose.png" data-url2="../img/Inscription-DoliStart-Choose.png" style="background:url('../img/Inscription-DoliStart-NoChoose.png');" ></div>
+					<img class="offers" id="offer2" data-url1="../img/Inscription-DoliUp-NoChoose.png" data-url2="../img/Inscription-DoliUp-Choose.png" src="../img/Inscription-DoliUp-NoChoose.png" />
+					<img class="offers" id="offer3" data-url1="../img/Inscription-DoliMax-NoChoose.png" data-url2="../img/Inscription-DoliMax-Choose.png" src="../img/Inscription-DoliMax-NoChoose.png" />
 
 				</section>
 				<script>
 					$(document).ready(function(){
 						$('.offers').hover(function(){
-							$('.offers').css('background',"url('../img/Inscription-DoliStart-Choose.png')");
+							$('.offers').css('background',"url($(this).data-url2)");
 						},
 					  function(){
-						$(".offers").css('background',"url('../img/Inscription-DoliStart-NoChoose.png')");
+						$(".offers").css('background',"url($(this).data-url1)");
 					  });
 					});
 				</script>
