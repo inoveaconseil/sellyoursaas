@@ -582,7 +582,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 					$(document).ready(function(){
 						$('.offers').hover(function(){
 							$(this).css('cursor','pointer');
-						},
+						}),
 					  function(){
 						$(this).attr('src',$(this).attr('data-url1'));
 					  },
