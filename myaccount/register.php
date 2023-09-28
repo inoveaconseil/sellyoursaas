@@ -581,11 +581,12 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 				<script>
 					$(document).ready(function(){
 						$('.offers').hover(function(){
-						alert($(this));
-							$('.offers').css('background',"url($(this).data-url2)");
+						alert($(this).attr(data-url1));
+						alert($(this).attr(data-url2));
+							$('.offers').css('background',"url($(this).attr(data-url2))");
 						},
 					  function(){
-						$(".offers").css('background',"url($(this).data-url1)");
+						$(".offers").css('background',"url($(this).attr(data-url1))");
 					  });
 					});
 				</script>
