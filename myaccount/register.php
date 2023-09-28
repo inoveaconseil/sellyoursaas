@@ -453,10 +453,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 			  <!-- _SESSION['dol_loginsellyoursaas'] = <?php echo (empty($_SESSION['dol_loginsellyoursaas']) ? '' : $_SESSION['dol_loginsellyoursaas']); ?> -->
 
 			  <section id="enterUserAccountDetails" style="width:60%;float:left;margin-right:5px;">
-				<section id="offers" style="width:39%">
-					<img src="../img/Inscription-DoliStart-NoChoose.png" />
 
-				</section>
 
 			<?php
 			$disabled='';
@@ -575,7 +572,10 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 
 		  </section>
 
+				<section id="offers" style="width:39%">
+					<img src="../img/Inscription-DoliStart-NoChoose.png" />
 
+				</section>
 		  <?php
 			if ($productref != 'none') {
 				if (empty($reusecontractid)) print '<br>';
