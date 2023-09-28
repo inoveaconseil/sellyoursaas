@@ -583,7 +583,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 						$('.offers').hover(function(){
 							$(this).css('cursor','pointer');
 						});
-						$('#offer1').click(function(){
+						$('.offers').click(function(){
 							$(".offers").each(function() {
 								 $(this).attr('src',$(this).attr('data-url1'));
 							});
