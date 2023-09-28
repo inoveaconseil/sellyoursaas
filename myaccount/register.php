@@ -573,14 +573,13 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 		  </section>
 
 				<section id="offers" style="width:48%;float:left;">
-					<img class="offers" id="offer1" data-package="dolistart" data-url1="img/Inscription-DoliStart-NoChoose.png" data-url2="img/Inscription-DoliStart-Choose.png" src="img/Inscription-DoliStart-NoChoose.png" />
+					<img class="offers" id="offer1" data-package="dolistart" data-url1="img/Inscription-DoliStart-NoChoose.png" data-url2="img/Inscription-DoliStart-Choose.png" src="img/Inscription-DoliStart-Choose.png" />
 					<img class="offers" id="offer2" data-package="doliup" data-url1="img/Inscription-DoliUp-NoChoose.png" data-url2="img/Inscription-DoliUp-Choose.png" src="img/Inscription-DoliUp-NoChoose.png" />
 					<img class="offers" id="offer3" data-package="dolimax"  data-url1="img/Inscription-DoliMax-NoChoose.png" data-url2="img/Inscription-DoliMax-Choose.png" src="img/Inscription-DoliMax-NoChoose.png" />
 
 				</section>
 				<script>
 					$(document).ready(function(){
-					$("#offer1").attr('src',$(this).attr('data-url2'));
 						$('.offers').hover(function(){
 							$(this).css('cursor','pointer');
 						});
