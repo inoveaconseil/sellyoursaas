@@ -398,7 +398,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 		</header>
 			<?php
 		}
-		print '<div class="signup2 centpercent customregistermain"r>';
+		print '<div class="signup2 centpercent customregistermain" style="margin-left:10%">';
 		?>
 
 			<?php
@@ -572,8 +572,10 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 
 		  </section>
 
-				<section id="offers" style="width:39%">
+				<section id="offers" style="width:39%;float:left;">
 					<img src="../img/Inscription-DoliStart-NoChoose.png" />
+					<img src="../img/Inscription-DoliUp-NoChoose.png" />
+					<img src="../img/Inscription-DoliMax-NoChoose.png" />
 
 				</section>
 		  <?php
