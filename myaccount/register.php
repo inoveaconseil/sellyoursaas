@@ -587,7 +587,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 						$(this).attr('src',$(this).attr('data-url1'));
 					  });
 					  $('.offers').click(function(){
-					  		$('.offers').triggers('moseouver');
+					  		$('.offers').trigger('moseouver');
 							$(this).attr('src',$(this).attr('data-url2'));
 						});
 					});
