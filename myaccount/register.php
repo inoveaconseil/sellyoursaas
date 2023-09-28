@@ -454,7 +454,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 
 			  <section id="enterUserAccountDetails" style="width:60%;float:left;margin-right:5px;">
 				<section id="offers" style="width:39%">
-					<img src="../img/Inscription-Dolistart-NoChoose.png" />
+					<img src="../img/Inscription-DoliStart-NoChoose.png" />
 
 				</section>
 
