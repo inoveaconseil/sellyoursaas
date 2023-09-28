@@ -452,7 +452,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 			  <input type="hidden" name="disablecustomeremail" value="<?php echo dol_escape_htmltag($disablecustomeremail); ?>" />
 			  <!-- _SESSION['dol_loginsellyoursaas'] = <?php echo (empty($_SESSION['dol_loginsellyoursaas']) ? '' : $_SESSION['dol_loginsellyoursaas']); ?> -->
 
-			  <section id="enterUserAccountDetails" style="width:60%;float:left;margin-right:5px;">
+			  <section id="enterUserAccountDetails" style="width:50%;float:left;margin-right:5px;">
 
 
 			<?php
@@ -572,10 +572,10 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 
 		  </section>
 
-				<section id="offers" style="width:39%;float:left;">
-					<img class="offers" src="../img/Inscription-DoliStart-NoChoose.png" />
-					<img class="offers" src="../img/Inscription-DoliUp-NoChoose.png" />
-					<img class="offers" src="../img/Inscription-DoliMax-NoChoose.png" />
+				<section id="offers" style="width:48%;float:left;">
+					<img class="offers" id="offer1" src="../img/Inscription-DoliStart-NoChoose.png" />
+					<img class="offers" id="offer2" src="../img/Inscription-DoliUp-NoChoose.png" />
+					<img class="offers" id="offer3" src="../img/Inscription-DoliMax-NoChoose.png" />
 
 				</section>
 		  <?php
