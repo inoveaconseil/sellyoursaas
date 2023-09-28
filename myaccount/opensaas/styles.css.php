@@ -73,7 +73,7 @@ input#urlforpartner {
 	width:200px;
 }
 
-#offer1:hover, #offer2:hover, #offer3:hover{
+#offer1:hover{
 	background-image:url('img/Inscription-DoliStart-Choose.png');
 }
 
