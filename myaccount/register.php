@@ -590,7 +590,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 					  $('.offers').click(function(){
 					  	$(this).attr('src',$(this).attr('data-url2'));
 					  });
-
+}
 					});
 				</script>
 		  <?php
