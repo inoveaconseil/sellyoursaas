@@ -394,7 +394,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 						<?php } ?>
 				</div>
 			</div>
-		  <h1 class="defaultheader"><?php echo $langs->trans("InstanceCreation") ?><?php echo ($tmpproduct->label?' '.$tmpproduct->label:''); ?></h1>
+		  <h1 class="defaultheader"><?php echo $langs->trans("InstanceCreation") ?><?php echo strtoupper($tmpproduct->label?' '.$tmpproduct->label:'')); ?></h1>
 		</header>
 			<?php
 		}
@@ -593,7 +593,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 							$("input[name='package']").val($(this).attr('data-package'));
 							$("input[name='service']").val($(this).attr('data-service'));
 							$("input[name='productref']").val($(this).attr('data-package'));
-							$(".defaultheader").html("Création de mon instance "+$(this).attr('data-package').charAt(0).toUpperCase());
+							$(".defaultheader").html("Création de mon instance "+$(this).attr('data-package').toUpperCase());
 						});
 					});
 				</script>
