@@ -541,11 +541,12 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 					</div>
 				  </div>
 				</div>
-				<span><?php echo dol_escape_htmltag($langs->trans("RuleForPassword", 8)) ?></span>
-
 			</div>
+				<span style="font-style:italic;font-size:10px">Le mot de passe doit contenir au moins 8 caractères, y compris MAJUSCULES/minuscules et chiffres</span>
 				<?php
 			}
+
+
 
 
 			if (empty($mythirdparty->id)) {
