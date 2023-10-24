@@ -593,7 +593,7 @@ llxHeader($head, $title, '', '', 0, 0, $arrayofjs, array(), '', 'register');
 							$("input[name='package']").val($(this).attr('data-package'));
 							$("input[name='service']").val($(this).attr('data-service'));
 							$("input[name='productref']").val($(this).attr('data-package'));
-							$(".defaultheader").html("Création de mon instance "+$(this).attr('data-package').toUpperCase());
+							$(".defaultheader").html("Création de mon instance "+$(this).attr('data-package').charAt(0).toUpperCase());
 						});
 					});
 				</script>
