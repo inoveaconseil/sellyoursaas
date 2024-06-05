@@ -104,6 +104,10 @@ if ($action == 'set') {
 			dolibarr_set_const($db, "SELLYOURSAAS_BLOCK_DISPOSABLE_EMAIL_ENABLED", GETPOST("SELLYOURSAAS_BLOCK_DISPOSABLE_EMAIL_ENABLED", 'alpha'), 'chaine', 0, '', $conf->entity);
 		}
 
+		if (GETPOSTISSET("SELLYOURSAAS_BLOCK_DISPOSABLE_EMAIL_API_KEY")) {
+			dolibarr_set_const($db, "SELLYOURSAAS_BLOCK_DISPOSABLE_EMAIL_API_KEY", GETPOST("SELLYOURSAAS_BLOCK_DISPOSABLE_EMAIL_API_KEY", 'alpha'), 'chaine', 0, '', $conf->entity);
+		}
+
 		if (GETPOSTISSET("SELLYOURSAAS_GETIPINTEL_ON")) {
 			dolibarr_set_const($db, "SELLYOURSAAS_GETIPINTEL_ON", GETPOST("SELLYOURSAAS_GETIPINTEL_ON", 'alpha'), 'chaine', 0, '', $conf->entity);
 		}
