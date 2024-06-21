@@ -14,7 +14,7 @@ if (! defined('NOIPCHECK'))      define('NOIPCHECK', '1');				// Do not check IP
 if (! defined('NOBROWSERNOTIF')) define('NOBROWSERNOTIF', '1');
 
 
-include '../mainmyaccount.inc.php';
+include './mainmyaccount.inc.php';
 
 // Load Dolibarr environment
 $res=0;
