@@ -485,7 +485,7 @@ if ($reusecontractid) {		// When we use the "Restart deploy" after error from ac
 							exit(-40);
 						} else {
 							setEventMessages($langs->trans("ErrorTechnicalErrorOccurredPleaseContactUsByEmail", $emailtowarn), null, 'errors');
-							print_r($resultData);
+							print_r("data" . $resultData);
 							header("Location: ".$newurl);
 							exit(-41);
 						}
