@@ -464,8 +464,6 @@ if ($reusecontractid) {		// When we use the "Restart deploy" after error from ac
 				$request = "https://status.block-disposable-email.com/status/?apikey=".$apikey;
 				$result = file_get_contents($request);
 				$resultData = json_decode($result, true);
-				print_r($resultData);
-				exit();
 				if ($resultData["request_status"] == "ok" && $resultData["apikeystatus"] == "active" && $resultData["credits"] > "0") {
 					$request = 'https://api.block-disposable-email.com/easyapi/json/'.$apikey.'/'.$domaintocheck;
 					$result = file_get_contents($request);
