@@ -468,8 +468,6 @@ if ($reusecontractid) {		// When we use the "Restart deploy" after error from ac
 					$request = 'https://api.block-disposable-email.com/easyapi/json/'.$apikey.'/'.$domaintocheck;
 					$result = file_get_contents($request);
 					$resultData = json_decode($result, true);
-					print_r($resultData);
-					exit();
 					if ($resultData["request_status"] == "success") {
 						require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 
